@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B3226392DD00ECD4DF /* Media.xcassets */; };
+		1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */; };
 		1C78A962226247A000436085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A961226247A000436085 /* AppDelegate.swift */; };
 		1C78A964226247A000436085 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A963226247A000436085 /* ViewController.swift */; };
 		1C78A967226247A000436085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A965226247A000436085 /* Main.storyboard */; };
-		1C78A969226247A200436085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A968226247A200436085 /* Assets.xcassets */; };
+		1C78A969226247A200436085 /* Dollar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A968226247A200436085 /* Dollar.xcassets */; };
 		1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A96A226247A200436085 /* LaunchScreen.storyboard */; };
+		1C78A99422627B4F00436085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* Extensions.swift */; };
+		1C78A9992262A04A00436085 /* Peso.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A9982262A04A00436085 /* Peso.xcassets */; };
+		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Make_It_Rain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C69F9B3226392DD00ECD4DF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cash_Currency.ttf; sourceTree = "<group>"; };
 		1C78A95E226247A000436085 /* Make It Rain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Make It Rain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C78A961226247A000436085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C78A963226247A000436085 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1C78A966226247A000436085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1C78A968226247A200436085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1C78A968226247A200436085 /* Dollar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dollar.xcassets; sourceTree = "<group>"; };
 		1C78A96B226247A200436085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C78A96D226247A200436085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C78A99322627B4F00436085 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1C78A9982262A04A00436085 /* Peso.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Peso.xcassets; sourceTree = "<group>"; };
+		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
+		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +53,8 @@
 			children = (
 				1C78A960226247A000436085 /* Make It Rain */,
 				1C78A95F226247A000436085 /* Products */,
+				7C6C8A8437836BFD82B62020 /* Pods */,
+				3C1883510CF9491072E7AAD1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +69,43 @@
 		1C78A960226247A000436085 /* Make It Rain */ = {
 			isa = PBXGroup;
 			children = (
+				1C78A995226290DA00436085 /* Fonts */,
 				1C78A961226247A000436085 /* AppDelegate.swift */,
 				1C78A963226247A000436085 /* ViewController.swift */,
+				1C78A99322627B4F00436085 /* Extensions.swift */,
 				1C78A965226247A000436085 /* Main.storyboard */,
-				1C78A968226247A200436085 /* Assets.xcassets */,
 				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
 				1C78A96D226247A200436085 /* Info.plist */,
+				1C78A968226247A200436085 /* Dollar.xcassets */,
+				1C78A9982262A04A00436085 /* Peso.xcassets */,
+				1C69F9B3226392DD00ECD4DF /* Media.xcassets */,
 			);
 			path = "Make It Rain";
+			sourceTree = "<group>";
+		};
+		1C78A995226290DA00436085 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		3C1883510CF9491072E7AAD1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C6C8A8437836BFD82B62020 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */,
+				86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1C78A970226247A200436085 /* Build configuration list for PBXNativeTarget "Make It Rain" */;
 			buildPhases = (
+				AAA61ABE68FF6839B91A7E19 /* [CP] Check Pods Manifest.lock */,
 				1C78A95A226247A000436085 /* Sources */,
 				1C78A95B226247A000436085 /* Frameworks */,
 				1C78A95C226247A000436085 /* Resources */,
+				00D6E2B8570CE9D9C02C4555 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,12 +169,62 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */,
-				1C78A969226247A200436085 /* Assets.xcassets in Resources */,
+				1C78A9992262A04A00436085 /* Peso.xcassets in Resources */,
+				1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */,
+				1C78A969226247A200436085 /* Dollar.xcassets in Resources */,
+				1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */,
 				1C78A967226247A000436085 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00D6E2B8570CE9D9C02C4555 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGCircularSlider.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAA61ABE68FF6839B91A7E19 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Make It Rain-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1C78A95A226247A000436085 /* Sources */ = {
@@ -136,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C78A964226247A000436085 /* ViewController.swift in Sources */,
+				1C78A99422627B4F00436085 /* Extensions.swift in Sources */,
 				1C78A962226247A000436085 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,10 +377,11 @@
 		};
 		1C78A971226247A200436085 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Q7FL57GKN;
+				DEVELOPMENT_TEAM = 7E4FRN2QG2;
 				INFOPLIST_FILE = "Make It Rain/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -298,10 +396,11 @@
 		};
 		1C78A972226247A200436085 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3Q7FL57GKN;
+				DEVELOPMENT_TEAM = 7E4FRN2QG2;
 				INFOPLIST_FILE = "Make It Rain/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

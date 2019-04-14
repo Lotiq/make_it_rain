@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uAj-vs-2xF">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,28 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Cash_Currency.ttf">
+            <string>CashCurrency</string>
+        </array>
+    </customFonts>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="oIG-YD-kAH">
+            <objects>
+                <navigationController id="uAj-vs-2xF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZAV-Kf-qao">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Bef-bU-4G1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jhs-10-xtP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-742" y="134"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,12 +38,102 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Pwu-0m-5WK">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umE-yK-HVb" customClass="CircularSlider" customModule="HGCircularSlider">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="592"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="$1000" borderStyle="roundedRect" textAlignment="center" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="46K-0Y-bwU">
+                                                <rect key="frame" x="132" y="266" width="150" height="60"/>
+                                                <color key="backgroundColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" red="0.12941176469999999" green="0.30588235289999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Yay-5p-rTS"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="CashCurrency" family="Cash Currency" pointSize="40"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="heightClass=compact-widthClass=regular">
+                                                    <color key="tintColor" red="0.12941176469999999" green="0.30588235289999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </variation>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.52156862749999999" green="0.73333333329999995" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="46K-0Y-bwU" firstAttribute="centerX" secondItem="umE-yK-HVb" secondAttribute="centerX" id="Ars-lq-yfm"/>
+                                            <constraint firstItem="46K-0Y-bwU" firstAttribute="centerY" secondItem="umE-yK-HVb" secondAttribute="centerY" id="T4k-cf-c0i"/>
+                                        </constraints>
+                                    </view>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="770-RH-TD3">
+                                        <rect key="frame" x="0.0" y="601" width="414" height="207"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="770-RH-TD3" secondAttribute="height" multiplier="7:3.5" id="qFs-6b-26s"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="fbL-jG-t7h" kind="embed" id="0Re-cA-Ptb"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52156862749999999" green="0.73333333329999995" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pwu-0m-5WK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9fk-fj-7v8"/>
+                            <constraint firstItem="Pwu-0m-5WK" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="PoP-yS-7YY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pwu-0m-5WK" secondAttribute="trailing" id="Qfh-AV-qCF"/>
+                            <constraint firstItem="Pwu-0m-5WK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="feC-BR-Bj8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="jaC-BG-iSF">
+                        <barButtonItem key="leftBarButtonItem" largeContentSizeImage="list" systemItem="edit" id="RKH-fG-xVs">
+                            <color key="tintColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" springLoaded="YES" systemItem="play" id="qI9-Ii-kte">
+                            <color key="tintColor" red="0.086274509799999996" green="0.50588235290000005" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cashTextField" destination="46K-0Y-bwU" id="cMh-37-GoA"/>
+                        <outlet property="menuBarButton" destination="RKH-fG-xVs" id="Oed-V8-Zql"/>
+                        <outlet property="playBarButton" destination="qI9-Ii-kte" id="Khc-xX-fZD"/>
+                        <outlet property="slider" destination="umE-yK-HVb" id="GeZ-tW-Zzo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0SK-yt-7Bs">
+            <objects>
+                <viewController id="fbL-jG-t7h" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2PR-3L-EEO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dollar" translatesAutoresizingMaskIntoConstraints="NO" id="SLo-4n-94e">
+                                <rect key="frame" x="20" y="0.0" width="374" height="183"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="SLo-4n-94e" firstAttribute="leading" secondItem="2PR-3L-EEO" secondAttribute="leading" constant="20" id="1ac-kf-fmb"/>
+                            <constraint firstItem="SLo-4n-94e" firstAttribute="top" secondItem="2PR-3L-EEO" secondAttribute="top" id="Cty-ig-3zl"/>
+                            <constraint firstAttribute="trailing" secondItem="SLo-4n-94e" secondAttribute="trailing" constant="20" id="W9f-8A-g1M"/>
+                            <constraint firstAttribute="bottom" secondItem="SLo-4n-94e" secondAttribute="bottom" constant="24" id="o1x-j4-WfB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ftM-cJ-zA7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kq7-ex-ygr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528.98550724637687" y="655.58035714285711"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dollar" width="230.39999389648438" height="97.44000244140625"/>
+        <image name="list" width="700" height="700"/>
+    </resources>
 </document>
