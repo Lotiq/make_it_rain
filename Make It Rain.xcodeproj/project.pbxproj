@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C14E436226534D700EB14C1 /* BanknoteViewController.swift */; };
 		1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B3226392DD00ECD4DF /* Media.xcassets */; };
 		1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */; };
+		1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69F9B72264D28C00ECD4DF /* CashTextField.swift */; };
 		1C78A962226247A000436085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A961226247A000436085 /* AppDelegate.swift */; };
 		1C78A964226247A000436085 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A963226247A000436085 /* ViewController.swift */; };
 		1C78A967226247A000436085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A965226247A000436085 /* Main.storyboard */; };
@@ -16,13 +18,16 @@
 		1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A96A226247A200436085 /* LaunchScreen.storyboard */; };
 		1C78A99422627B4F00436085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* Extensions.swift */; };
 		1C78A9992262A04A00436085 /* Peso.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A9982262A04A00436085 /* Peso.xcassets */; };
+		1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E469226575430084F229 /* BanknoteCell.swift */; };
 		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Make_It_Rain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C14E436226534D700EB14C1 /* BanknoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteViewController.swift; sourceTree = "<group>"; };
 		1C69F9B3226392DD00ECD4DF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cash_Currency.ttf; sourceTree = "<group>"; };
+		1C69F9B72264D28C00ECD4DF /* CashTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTextField.swift; sourceTree = "<group>"; };
 		1C78A95E226247A000436085 /* Make It Rain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Make It Rain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C78A961226247A000436085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C78A963226247A000436085 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -32,6 +37,7 @@
 		1C78A96D226247A200436085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C78A99322627B4F00436085 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1C78A9982262A04A00436085 /* Peso.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Peso.xcassets; sourceTree = "<group>"; };
+		1CC4E469226575430084F229 /* BanknoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteCell.swift; sourceTree = "<group>"; };
 		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
 		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,8 +78,11 @@
 				1C78A995226290DA00436085 /* Fonts */,
 				1C78A961226247A000436085 /* AppDelegate.swift */,
 				1C78A963226247A000436085 /* ViewController.swift */,
+				1C14E436226534D700EB14C1 /* BanknoteViewController.swift */,
+				1C69F9B72264D28C00ECD4DF /* CashTextField.swift */,
 				1C78A99322627B4F00436085 /* Extensions.swift */,
 				1C78A965226247A000436085 /* Main.storyboard */,
+				1CC4E469226575430084F229 /* BanknoteCell.swift */,
 				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
 				1C78A96D226247A200436085 /* Info.plist */,
 				1C78A968226247A200436085 /* Dollar.xcassets */,
@@ -189,12 +198,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGCircularSlider.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,8 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C78A964226247A000436085 /* ViewController.swift in Sources */,
+				1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */,
 				1C78A99422627B4F00436085 /* Extensions.swift in Sources */,
+				1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */,
 				1C78A962226247A000436085 /* AppDelegate.swift in Sources */,
+				1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

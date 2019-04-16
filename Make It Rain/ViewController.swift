@@ -14,27 +14,42 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var slider: CircularSlider!
     @IBOutlet weak var playBarButton: UIBarButtonItem!
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
-    @IBOutlet weak var cashTextField: UITextField!
+    @IBOutlet weak var cashTextField: CashTextField!
     
-    var currencies: [String:String] = ["dollar":"$","peso":"$"]
+    var currencies: [String:String] = ["dollar":"$","pound":"£","euro":"€"]
     var selectedCurrency: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSlider(slider: slider)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "money.jpg")!)
+        
         //navigationController?.navigationBar.backgroundColor = UIColor.themeColor.main
         navigationController?.navigationBar.barTintColor = UIColor.themeColor.main
-        // Do any additional setup after loading the view, typically from a nib.
         playBarButton.tintColor = UIColor.themeColor.extra
         menuBarButton.tintColor = UIColor.themeColor.extra
-        //menuBarButton.image
+        menuBarButton.image = UIImage(named: "list.png")
+        
+        cashTextField.layer.masksToBounds = false
+        cashTextField.layer.shadowRadius = 3.0
+        cashTextField.layer.shadowColor = UIColor.black.cgColor
+        cashTextField.layer.shadowOffset = CGSize(width: 1, height: 1)
+        cashTextField.layer.shadowOpacity = 1.0
+        
         cashTextField.delegate = self
         slider.addTarget(self, action: #selector(updateCashValue), for: .valueChanged)
         selectedCurrency = currencies["dollar"]!
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeybordNotifications()
+    }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
     
     func setupSlider(slider: CircularSlider){
         slider.minimumValue = 0
@@ -47,22 +62,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         slider.lineWidth = 14
         slider.endThumbStrokeColor = UIColor.themeColor.main
         slider.endThumbTintColor = UIColor.themeColor.extra
-        slider.thumbLineWidth = 8
-        slider.endPointValue = 300
+        slider.thumbLineWidth = 7
+        slider.endPointValue = 1000
         slider.endThumbStrokeHighlightedColor = UIColor.themeColor.main
         slider.backgroundColor = .clear
-        //slider.trackShadowColor = .red
-        
-        
     }
     
     @objc func updateCashValue(){
         let newValue = Int(slider.endPointValue)
         cashTextField.text = selectedCurrency + "\(newValue)"
-        
     }
-    
-    
     
     func updateSlider(num: Int){
         slider.endPointValue = num < Int(slider.maximumValue) ? CGFloat(num) : slider.maximumValue - 1
@@ -95,6 +104,59 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         textField.resignFirstResponder()
         return true
+    }
+    
+    // MARK: Keyboard Notifications
+    
+    func subscribeToKeybordNotifications(){
+        
+        //Initiation of notification observation
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification){
+        
+        //changes y-coordinate of the view above the keyboard if bottom text is selected
+        if (cashTextField.isFirstResponder){
+            let keyboardHeight = getKeyboardHeight(notification)
+            print("keyboardHeight = \(keyboardHeight)")
+            print("Center = \(slider.frame)")
+            print("Height/2 = \(slider.frame.size.height/2)")
+            print("Origin = \(slider.frame.origin.y)")
+
+            /* Real calculations accounting for navBar, but too much movement
+            let realOrigin = slider.superview!.convert(slider.frame.origin, to: self.view)
+            let bottomAnchor = view.frame.maxY - (slider.frame.height + realOrigin.y)
+            */
+            
+            let bottomAnchor = view.frame.maxY - slider.frame.maxY*1.02 // Not a great solution but works
+            if (bottomAnchor < keyboardHeight){
+                view.frame.origin.y = bottomAnchor - keyboardHeight
+            }
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification){
+        view.frame.origin.y = 0
+    }
+    
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        
+        //Gets keyboard height
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
+    func unsubscribeFromKeyboardNotifications() {
+        
+        //Removes this control view as observer for notifications
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 }
 

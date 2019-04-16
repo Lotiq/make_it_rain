@@ -1,16 +1,20 @@
 PODS:
+  - CenteredCollectionView (2.2.1)
   - HGCircularSlider (2.0.0)
 
 DEPENDENCIES:
+  - CenteredCollectionView (~> 2.2.1)
   - HGCircularSlider (~> 2.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - CenteredCollectionView
     - HGCircularSlider
 
 SPEC CHECKSUMS:
+  CenteredCollectionView: ba6e45fb7774627890621d73c8dd7dbd33391da9
   HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
 
-PODFILE CHECKSUM: 1f7bc5a7b520560674730c307566a3683bd288c3
+PODFILE CHECKSUM: c5b8d5e742813328263b2ca674222c8a1066cb46
 
 COCOAPODS: 1.6.1
