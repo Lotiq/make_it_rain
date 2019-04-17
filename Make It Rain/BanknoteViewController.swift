@@ -9,33 +9,32 @@
 import UIKit
 import CenteredCollectionView
 
-
-
 class BanknoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var banknoteCollectionView: UICollectionView!
-    var banknotes = ["dollar", "peso"]
+    
+    var banknotes = Currency.allCurrencies
     var centeredCollectionViewFlowLayout: CenteredCollectionViewFlowLayout!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         centeredCollectionViewFlowLayout = (banknoteCollectionView.collectionViewLayout as! CenteredCollectionViewFlowLayout)
-        // Modify the collectionView's decelerationRate (REQURED STEP)
+        // Modify the collectionView's decelerationRate
         banknoteCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
+        banknoteCollectionView.backgroundColor = .clear
         
         // Assign delegate and data source
         banknoteCollectionView.delegate = self
         banknoteCollectionView.dataSource = self
-        banknoteCollectionView.backgroundView?.backgroundColor = .clear
-        banknoteCollectionView.backgroundColor = .clear
         
-        // Configure the required item size (REQURED STEP)
+        // Configure the required item size
         centeredCollectionViewFlowLayout.itemSize = CGSize(
             width: view.bounds.width * 0.7,
             height: view.bounds.height * 0.7
         )
         
-        // Configure the optional inter item spacing (OPTIONAL STEP)
+        // Configure the optional inter item spacing
         centeredCollectionViewFlowLayout.minimumLineSpacing = 20
         
         // Get rid of scrolling indicators
@@ -49,18 +48,19 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "banknoteCell", for: indexPath) as! BanknoteCell
-        let imageName = banknotes[indexPath.row] + ".jpg"
-        cell.banknoteImageView.image = UIImage(named: imageName)
+        let images = banknotes[indexPath.row].getImages()
+        let image = images[5] ?? images.randomElement()!.value
+        cell.banknoteImageView.image = image
         return cell
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // check if the currentCenteredPage is not the page that was touched
+        let currentCenteredPage = centeredCollectionViewFlowLayout.currentCenteredPage
+        if currentCenteredPage != indexPath.row {
+            // trigger a scrollToPage(index: animated:)
+            centeredCollectionViewFlowLayout.scrollToPage(index: indexPath.row, animated: true)
+        }
     }
-    */
-
 }

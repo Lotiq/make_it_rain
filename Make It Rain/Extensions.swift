@@ -29,3 +29,32 @@ extension UIColor {
         static let gold = #colorLiteral(red: 0.8106517196, green: 0.6584199667, blue: 0.1929169595, alpha: 1)
     }
 }
+
+/*
+extension UserDefaults {
+    
+    func imageForKey(key: String) -> UIImage? {
+        var image: UIImage?
+        if let imageData = data(forKey: key) {
+            do {
+                image = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [UIImage.self], from: imageData) as? UIImage
+            } catch {
+                print("My Error: Couldn't unarchive")
+            }
+        }
+        return image
+    }
+    
+    func setImage(image: UIImage?, forKey key: String) {
+        var imageData: Data?
+        if let image = image {
+            //imageData = NSKeyedArchiver.archivedData(withRootObject: image) as NSData?
+            do {
+                imageData = try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: false)
+            } catch {
+                print("My Error: Couldn't archive")
+            }
+        }
+        set(imageData, forKey: key)
+    }
+}*/

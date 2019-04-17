@@ -19,13 +19,11 @@ class CashTextField: UITextField {
         return superRect
     }
     
-    
     // Override bounds function to avoid first character getting overlapped on editing
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         
         return bounds.inset(by: UIEdgeInsets.init(top: 1, left: 8, bottom: 1, right: 5))
     }
- 
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         

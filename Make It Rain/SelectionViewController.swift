@@ -9,7 +9,7 @@
 import UIKit
 import HGCircularSlider
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class SelectionViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var slider: CircularSlider!
     @IBOutlet weak var playBarButton: UIBarButtonItem!
@@ -121,11 +121,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //changes y-coordinate of the view above the keyboard if bottom text is selected
         if (cashTextField.isFirstResponder){
             let keyboardHeight = getKeyboardHeight(notification)
-            print("keyboardHeight = \(keyboardHeight)")
-            print("Center = \(slider.frame)")
-            print("Height/2 = \(slider.frame.size.height/2)")
-            print("Origin = \(slider.frame.origin.y)")
-
             /* Real calculations accounting for navBar, but too much movement
             let realOrigin = slider.superview!.convert(slider.frame.origin, to: self.view)
             let bottomAnchor = view.frame.maxY - (slider.frame.height + realOrigin.y)
