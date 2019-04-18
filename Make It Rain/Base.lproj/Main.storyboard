@@ -72,7 +72,7 @@
                                             <constraint firstAttribute="width" secondItem="770-RH-TD3" secondAttribute="height" multiplier="7:3.5" id="qFs-6b-26s"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="fbL-jG-t7h" kind="embed" id="0Re-cA-Ptb"/>
+                                            <segue destination="fbL-jG-t7h" kind="embed" identifier="containerBanknoteSegue" id="0Re-cA-Ptb"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -110,7 +110,7 @@
         <!--Banknote View Controller-->
         <scene sceneID="0SK-yt-7Bs">
             <objects>
-                <viewController id="fbL-jG-t7h" customClass="BanknoteViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BanknoteViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fbL-jG-t7h" customClass="BanknoteViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2PR-3L-EEO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

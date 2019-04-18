@@ -9,10 +9,15 @@
 import UIKit
 import CenteredCollectionView
 
+protocol BanknoteViewControllerDelegate{
+    func updateView()
+}
+
 class BanknoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var banknoteCollectionView: UICollectionView!
     
+    var banknoteViewControllerDelegate: BanknoteViewControllerDelegate?
     var banknotes = Currency.allCurrencies
     var centeredCollectionViewFlowLayout: CenteredCollectionViewFlowLayout!
     
@@ -20,6 +25,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
 
         centeredCollectionViewFlowLayout = (banknoteCollectionView.collectionViewLayout as! CenteredCollectionViewFlowLayout)
+        
         // Modify the collectionView's decelerationRate
         banknoteCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         banknoteCollectionView.backgroundColor = .clear
@@ -62,5 +68,12 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
             // trigger a scrollToPage(index: animated:)
             centeredCollectionViewFlowLayout.scrollToPage(index: indexPath.row, animated: true)
         }
+    }
+    
+    // MARK: Scroll View to Track current location
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        Currency.selectedCurrency = banknotes[centeredCollectionViewFlowLayout.currentCenteredPage!]
+        self.banknoteViewControllerDelegate?.updateView()
     }
 }

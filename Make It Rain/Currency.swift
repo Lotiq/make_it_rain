@@ -12,7 +12,7 @@ import UIKit
 struct Currency: Codable {
     
     static let currencyImageArrayKey = "currencyImageArrayKey"
-    static var selectedCurrency: Currency!
+    static var selectedCurrency: Currency = Currency.allCurrencies[0]
     
     let name: String
     let sign: String

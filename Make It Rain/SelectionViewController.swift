@@ -9,18 +9,26 @@
 import UIKit
 import HGCircularSlider
 
-class SelectionViewController: UIViewController, UITextFieldDelegate {
+class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteViewControllerDelegate {
+    
+    func updateView() {
+        updateTextField()
+    }
+    
 
     @IBOutlet weak var slider: CircularSlider!
     @IBOutlet weak var playBarButton: UIBarButtonItem!
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
     @IBOutlet weak var cashTextField: CashTextField!
-    
-    var currencies: [String:String] = ["dollar":"$","pound":"£","euro":"€"]
-    var selectedCurrency: String = ""
+
+    var banknoteVC: BanknoteViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //------------------- WHY DOESN'T this work? Needs segue instead...
+        banknoteVC = storyboard?.instantiateViewController(withIdentifier: "BanknoteViewController") as? BanknoteViewController
+        banknoteVC.banknoteViewControllerDelegate = self
+        //-------------------
         setupSlider(slider: slider)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "money.jpg")!)
         
@@ -38,7 +46,6 @@ class SelectionViewController: UIViewController, UITextFieldDelegate {
         
         cashTextField.delegate = self
         slider.addTarget(self, action: #selector(updateCashValue), for: .valueChanged)
-        selectedCurrency = currencies["dollar"]!
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -70,11 +77,22 @@ class SelectionViewController: UIViewController, UITextFieldDelegate {
     
     @objc func updateCashValue(){
         let newValue = Int(slider.endPointValue)
-        cashTextField.text = selectedCurrency + "\(newValue)"
+        cashTextField.text = Currency.selectedCurrency.sign + "\(newValue)"
     }
     
     func updateSlider(num: Int){
         slider.endPointValue = num < Int(slider.maximumValue) ? CGFloat(num) : slider.maximumValue - 1
+    }
+    
+    func updateTextField(){
+        guard let newVal = Int(cashTextField.text!.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted)) else {
+            print("error")
+            return
+        }
+        // NEED TO CONVERT CURRENCIES
+        cashTextField.text = Currency.selectedCurrency.sign + "\(newVal)"
+        updateSlider(num: newVal)
+        
     }
     
     // MARK: TextField Delegate
@@ -82,25 +100,25 @@ class SelectionViewController: UIViewController, UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldText = textField.text! as NSString
         let newText = oldText.replacingCharacters(in: range, with: string)
-        let modifiedText = newText.replacingOccurrences(of: selectedCurrency, with: "")
+        let modifiedText = newText.replacingOccurrences(of: Currency.selectedCurrency.sign, with: "")
         
         guard let num = Int(modifiedText) else {
             if (modifiedText == ""){
-                textField.text = selectedCurrency
+                textField.text = Currency.selectedCurrency.sign
                 updateSlider(num: 0)
             }
             return false
         }
         
-        textField.text = selectedCurrency + "\(num)"
+        textField.text = Currency.selectedCurrency.sign + "\(num)"
         updateSlider(num: num)
         
         return false
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if (textField.text == selectedCurrency){
-            textField.text = selectedCurrency + "0"
+        if (textField.text == Currency.selectedCurrency.sign){
+            textField.text = Currency.selectedCurrency.sign + "0"
         }
         textField.resignFirstResponder()
         return true
@@ -152,6 +170,15 @@ class SelectionViewController: UIViewController, UITextFieldDelegate {
         //Removes this control view as observer for notifications
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    // MARK: Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "containerBanknoteSegue" {
+            banknoteVC = segue.destination as? BanknoteViewController
+            banknoteVC!.banknoteViewControllerDelegate = self
+        }
     }
 }
 
