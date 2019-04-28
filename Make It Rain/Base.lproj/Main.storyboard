@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uAj-vs-2xF">
-    <device id="retina6_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -10,8 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Cash_Currency.ttf">
-            <string>CashCurrency</string>
+        <array key="Money_Money.ttf">
+            <string>MoneyMoney</string>
+        </array>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
         </array>
     </customFonts>
     <scenes>
@@ -20,7 +23,7 @@
             <objects>
                 <navigationController id="uAj-vs-2xF" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZAV-Kf-qao">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -36,24 +39,24 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="SelectionViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Pwu-0m-5WK">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umE-yK-HVb" customClass="CircularSlider" customModule="HGCircularSlider">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="592"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="527.66666666666663"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" text="$1000" borderStyle="roundedRect" textAlignment="center" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="46K-0Y-bwU" customClass="CashTextField" customModule="Make_It_Rain" customModuleProvider="target">
-                                                <rect key="frame" x="132" y="266" width="150" height="60"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$1000" borderStyle="roundedRect" textAlignment="center" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="46K-0Y-bwU" customClass="CashTextField" customModule="Make_It_Rain" customModuleProvider="target">
+                                                <rect key="frame" x="106" y="233.66666666666669" width="163" height="60"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="tintColor" red="0.12941176469999999" green="0.30588235289999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="Yay-5p-rTS"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" name="CashCurrency" family="Cash Currency" pointSize="40"/>
+                                                <fontDescription key="fontDescription" name="MoneyMoney" family="Money Money" pointSize="50"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <variation key="heightClass=compact-widthClass=regular">
                                                     <color key="tintColor" red="0.12941176469999999" green="0.30588235289999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,7 +70,7 @@
                                         </constraints>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="770-RH-TD3">
-                                        <rect key="frame" x="0.0" y="601" width="414" height="207"/>
+                                        <rect key="frame" x="0.0" y="536.66666666666663" width="375" height="187.33333333333337"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="770-RH-TD3" secondAttribute="height" multiplier="7:3.5" id="qFs-6b-26s"/>
                                         </constraints>
@@ -94,6 +97,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" springLoaded="YES" systemItem="play" id="qI9-Ii-kte">
                             <color key="tintColor" red="0.086274509799999996" green="0.50588235290000005" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="Ler-Rg-6dv" kind="show" identifier="ARSceneSegue" id="OMj-uN-Znq"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -101,26 +107,227 @@
                         <outlet property="menuBarButton" destination="RKH-fG-xVs" id="Oed-V8-Zql"/>
                         <outlet property="playBarButton" destination="qI9-Ii-kte" id="Khc-xX-fZD"/>
                         <outlet property="slider" destination="umE-yK-HVb" id="GeZ-tW-Zzo"/>
+                        <segue destination="gJz-zE-37Y" kind="show" identifier="newCurrencySegue" id="s07-kb-yaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
+            <point key="canvasLocation" x="220" y="65"/>
+        </scene>
+        <!--New Currency View Controller-->
+        <scene sceneID="8qV-kl-T7s">
+            <objects>
+                <viewController storyboardIdentifier="NewCurrencyViewController" id="gJz-zE-37Y" customClass="NewCurrencyViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gv4-jz-g4G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="beK-6c-KU5" userLabel="Text Field Stack View">
+                                <rect key="frame" x="20" y="107.99999999999999" width="335" height="166.66666666666663"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZAj-Ya-c7j" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="39.666666666666664"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Name"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textErrorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleErrorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineErrorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X2B-cx-nAc" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="0.0" y="63.666666666666657" width="335" height="39.333333333333343"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Currency Symbol"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineErrorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textErrorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="titleErrorColor">
+                                                <color key="value" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VSJ-Hr-spG" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="0.0" y="127.00000000000001" width="335" height="39.666666666666671"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Rate to $"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
+                                                <color key="value" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.3411764706" green="0.64705882349999999" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ByD-Bc-QVZ" customClass="ActionButton" customModule="Make_It_Rain" customModuleProvider="target">
+                                <rect key="frame" x="172.66666666666666" y="728" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.3803921569" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="gJz-zE-37Y" eventType="touchUpInside" id="XLY-wh-ZRH"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-ZD-Ea2">
+                                <rect key="frame" x="20" y="304.66666666666674" width="335" height="403.33333333333326"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageValueTableViewCell" rowHeight="100" id="ERB-g5-rPw" customClass="ImageValueTableViewCell" customModule="Make_It_Rain" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="335" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ERB-g5-rPw" id="8cc-2x-F3r">
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="99.666666666666671"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banknote" translatesAutoresizingMaskIntoConstraints="NO" id="7kf-AM-l5o">
+                                                    <rect key="frame" x="5" y="5" width="215" height="89.666666666666671"/>
+                                                    <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pgs-FL-E9L">
+                                                    <rect key="frame" x="225" y="35" width="100" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="0zf-hL-fuM"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7kf-AM-l5o" firstAttribute="leading" secondItem="8cc-2x-F3r" secondAttribute="leading" constant="5" id="2RY-ja-U4J"/>
+                                                <constraint firstItem="Pgs-FL-E9L" firstAttribute="top" secondItem="8cc-2x-F3r" secondAttribute="topMargin" constant="24" id="CI8-Nj-eFI"/>
+                                                <constraint firstItem="7kf-AM-l5o" firstAttribute="top" secondItem="8cc-2x-F3r" secondAttribute="top" constant="5" id="JVb-zX-mVL"/>
+                                                <constraint firstAttribute="bottom" secondItem="7kf-AM-l5o" secondAttribute="bottom" constant="5" id="KVU-aY-nOS"/>
+                                                <constraint firstItem="Pgs-FL-E9L" firstAttribute="leading" secondItem="7kf-AM-l5o" secondAttribute="trailing" constant="5" id="Vy3-Hy-MTu"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Pgs-FL-E9L" secondAttribute="bottom" constant="24" id="q7w-op-NAH"/>
+                                                <constraint firstItem="Pgs-FL-E9L" firstAttribute="trailing" secondItem="8cc-2x-F3r" secondAttribute="trailingMargin" constant="5" id="xT5-mG-b6B"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="banknoteImage" destination="7kf-AM-l5o" id="VCT-9S-aHE"/>
+                                            <outlet property="valueTextField" destination="Pgs-FL-E9L" id="Cgf-UN-ZiC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ByD-Bc-QVZ" firstAttribute="centerX" secondItem="Gv4-jz-g4G" secondAttribute="centerX" id="0cx-RW-VNV"/>
+                            <constraint firstItem="1i4-xL-Fdb" firstAttribute="bottom" secondItem="ByD-Bc-QVZ" secondAttribute="bottom" constant="20" id="2PK-Bg-GWk"/>
+                            <constraint firstItem="QEf-ZD-Ea2" firstAttribute="leading" secondItem="1i4-xL-Fdb" secondAttribute="leading" constant="20" id="ABQ-p0-2X4"/>
+                            <constraint firstItem="1i4-xL-Fdb" firstAttribute="trailing" secondItem="beK-6c-KU5" secondAttribute="trailing" constant="20" id="BdS-5y-Pir"/>
+                            <constraint firstItem="beK-6c-KU5" firstAttribute="top" secondItem="1i4-xL-Fdb" secondAttribute="top" constant="20" id="I5J-tT-BMT"/>
+                            <constraint firstItem="ByD-Bc-QVZ" firstAttribute="top" secondItem="QEf-ZD-Ea2" secondAttribute="bottom" constant="20" id="IAm-cx-Ndw"/>
+                            <constraint firstItem="1i4-xL-Fdb" firstAttribute="trailing" secondItem="QEf-ZD-Ea2" secondAttribute="trailing" constant="20" id="IHO-Su-XcZ"/>
+                            <constraint firstItem="QEf-ZD-Ea2" firstAttribute="top" secondItem="beK-6c-KU5" secondAttribute="bottom" priority="999" constant="30" id="STd-OL-GVV"/>
+                            <constraint firstItem="beK-6c-KU5" firstAttribute="leading" secondItem="1i4-xL-Fdb" secondAttribute="leading" constant="20" id="V2U-ZF-9o3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1i4-xL-Fdb"/>
+                    </view>
+                    <connections>
+                        <outlet property="banknoteTableView" destination="QEf-ZD-Ea2" id="8vM-Y0-Ux8"/>
+                        <outlet property="currencySignTextField" destination="X2B-cx-nAc" id="KcP-Ae-VqT"/>
+                        <outlet property="nameTextField" destination="ZAj-Ya-c7j" id="zIq-iK-kTn"/>
+                        <outlet property="rateTextField" destination="VSJ-Hr-spG" id="VFk-Xe-1qN"/>
+                        <outlet property="saveButton" destination="ByD-Bc-QVZ" id="CNE-W0-1XV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wEi-DM-5Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1360.8" y="-411.57635467980299"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="T3z-fY-ibF">
+            <objects>
+                <viewController id="Ler-Rg-6dv" customClass="ARViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i0Z-V9-NHZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1h-3W-2MN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5K-Rj-D0F">
+                                <rect key="frame" x="48" y="698" width="281" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgD-qA-ReG">
+                                <rect key="frame" x="173" y="727" width="30" height="30"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="17"/>
+                                <state key="normal" title="rain"/>
+                                <connections>
+                                    <action selector="makeItRain:" destination="Ler-Rg-6dv" eventType="touchUpInside" id="vfJ-vb-DKq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="U5K-Rj-D0F" firstAttribute="leading" secondItem="Wgh-XD-2FE" secondAttribute="leading" constant="48" id="2yM-9V-UHK"/>
+                            <constraint firstItem="Wgh-XD-2FE" firstAttribute="trailing" secondItem="lgD-qA-ReG" secondAttribute="trailing" constant="172" id="7BA-Bh-B6Y"/>
+                            <constraint firstItem="U5K-Rj-D0F" firstAttribute="top" secondItem="Wgh-XD-2FE" secondAttribute="top" constant="610" id="Bgb-S5-HT9"/>
+                            <constraint firstAttribute="bottom" secondItem="k1h-3W-2MN" secondAttribute="bottom" id="Lcj-Ne-baa"/>
+                            <constraint firstItem="lgD-qA-ReG" firstAttribute="top" secondItem="U5K-Rj-D0F" secondAttribute="bottom" constant="8" id="TSu-Hf-9mV"/>
+                            <constraint firstItem="Wgh-XD-2FE" firstAttribute="trailing" secondItem="U5K-Rj-D0F" secondAttribute="trailing" constant="46" id="XgS-WM-zEV"/>
+                            <constraint firstItem="k1h-3W-2MN" firstAttribute="leading" secondItem="Wgh-XD-2FE" secondAttribute="leading" id="cem-7h-se8"/>
+                            <constraint firstItem="Wgh-XD-2FE" firstAttribute="bottom" secondItem="lgD-qA-ReG" secondAttribute="bottom" constant="21" id="kkY-Cg-tiM"/>
+                            <constraint firstItem="Wgh-XD-2FE" firstAttribute="bottom" secondItem="U5K-Rj-D0F" secondAttribute="bottom" constant="59" id="qEf-db-01u"/>
+                            <constraint firstItem="k1h-3W-2MN" firstAttribute="top" secondItem="i0Z-V9-NHZ" secondAttribute="top" id="sp4-hm-fFo"/>
+                            <constraint firstItem="lgD-qA-ReG" firstAttribute="leading" secondItem="Wgh-XD-2FE" secondAttribute="leading" constant="173" id="uoX-1j-eoR"/>
+                            <constraint firstItem="k1h-3W-2MN" firstAttribute="trailing" secondItem="Wgh-XD-2FE" secondAttribute="trailing" id="xFl-Mu-w1k"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wgh-XD-2FE"/>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="k1h-3W-2MN" id="0Zf-b2-Q5O"/>
+                        <outlet property="sessionInfoLabel" destination="U5K-Rj-D0F" id="4n9-WV-OPF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-yi-Kty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1360.8" y="277.83251231527095"/>
         </scene>
         <!--Banknote View Controller-->
         <scene sceneID="0SK-yt-7Bs">
             <objects>
                 <viewController storyboardIdentifier="BanknoteViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fbL-jG-t7h" customClass="BanknoteViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2PR-3L-EEO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="187.33333333333337"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cbT-59-5Jr">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="173"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="187"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1Ys-75-iaf" customClass="CenteredCollectionViewFlowLayout" customModule="CenteredCollectionView"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="banknoteCell" id="nqj-ji-tCP" customClass="BanknoteCell" customModule="Make_It_Rain" customModuleProvider="target">
-                                        <rect key="frame" x="47" y="0.0" width="320" height="104"/>
+                                        <rect key="frame" x="27.666666666666668" y="0.0" width="320" height="104"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="104"/>
@@ -149,7 +356,7 @@
                             <constraint firstItem="cbT-59-5Jr" firstAttribute="top" secondItem="2PR-3L-EEO" secondAttribute="top" id="hge-Gu-QBg"/>
                             <constraint firstItem="cbT-59-5Jr" firstAttribute="leading" secondItem="ftM-cJ-zA7" secondAttribute="leading" id="k2R-0T-fy5"/>
                             <constraint firstItem="ftM-cJ-zA7" firstAttribute="trailing" secondItem="cbT-59-5Jr" secondAttribute="trailing" id="mio-tE-f9o"/>
-                            <constraint firstItem="ftM-cJ-zA7" firstAttribute="bottom" secondItem="cbT-59-5Jr" secondAttribute="bottom" id="wRe-UT-iZ7"/>
+                            <constraint firstItem="ftM-cJ-zA7" firstAttribute="bottom" secondItem="cbT-59-5Jr" secondAttribute="bottom" constant="-33.666666666666686" id="wRe-UT-iZ7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ftM-cJ-zA7"/>
                     </view>
@@ -159,10 +366,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kq7-ex-ygr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="528.98550724637687" y="655.24553571428567"/>
+            <point key="canvasLocation" x="528.79999999999995" y="654.67980295566508"/>
         </scene>
     </scenes>
     <resources>
+        <image name="banknote" width="564" height="349"/>
         <image name="list" width="33" height="33"/>
     </resources>
 </document>

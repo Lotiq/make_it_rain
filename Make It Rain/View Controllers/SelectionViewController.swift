@@ -11,8 +11,19 @@ import HGCircularSlider
 
 class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteViewControllerDelegate {
     
-    func updateView() {
-        updateTextField()
+    func updateView(ratio: Double) {
+        /*
+        guard let newVal = Double(cashTextField.text!.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted)) else {
+            print("error")
+            return
+        }
+        // NEED TO CONVERT CURRENCIES
+        let convertedVal = Int((Double(newVal)*ratio).rounded(.up))
+        */
+        let convertedVal = Int(Double(Currency.dollarValue) / Currency.selectedCurrency.ratio)
+        cashTextField.text = Currency.selectedCurrency.sign + "\(convertedVal)"
+        slider.maximumValue = CGFloat(10000/Currency.selectedCurrency.ratio)
+        slider.endPointValue = convertedVal < Int(slider.maximumValue) ? CGFloat(convertedVal) : slider.maximumValue - 1
     }
     
 
@@ -22,18 +33,19 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
     @IBOutlet weak var cashTextField: CashTextField!
 
     var banknoteVC: BanknoteViewController!
+    var topBar: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //------------------- WHY DOESN'T this work? Needs segue instead...
-        banknoteVC = storyboard?.instantiateViewController(withIdentifier: "BanknoteViewController") as? BanknoteViewController
-        banknoteVC.banknoteViewControllerDelegate = self
-        //-------------------
-        setupSlider(slider: slider)
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "money.jpg")!)
         
+        setupSlider(slider: slider)
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "money.jpg")!)
+         view.backgroundColor = UIColor.themeColor.secondary
+        topBar = UIApplication.shared.statusBarFrame.size.height +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
         //navigationController?.navigationBar.backgroundColor = UIColor.themeColor.main
         navigationController?.navigationBar.barTintColor = UIColor.themeColor.main
+        navigationController?.navigationBar.isTranslucent = false
         playBarButton.tintColor = UIColor.themeColor.extra
         menuBarButton.tintColor = UIColor.themeColor.extra
         menuBarButton.image = UIImage(named: "list.png")
@@ -46,6 +58,12 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
         
         cashTextField.delegate = self
         slider.addTarget(self, action: #selector(updateCashValue), for: .valueChanged)
+        
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
+        cancelButton.tintColor = UIColor.themeColor.extra
+        let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.themeColor.extra, NSAttributedString.Key.font: navigationFont!], for: .normal)
+        self.navigationItem.backBarButtonItem = cancelButton
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -77,22 +95,13 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
     
     @objc func updateCashValue(){
         let newValue = Int(slider.endPointValue)
+        Currency.dollarValue = Int(Double(newValue)*Currency.selectedCurrency.ratio)
         cashTextField.text = Currency.selectedCurrency.sign + "\(newValue)"
     }
     
     func updateSlider(num: Int){
+        Currency.dollarValue = Int(Double(num) * Currency.selectedCurrency.ratio)
         slider.endPointValue = num < Int(slider.maximumValue) ? CGFloat(num) : slider.maximumValue - 1
-    }
-    
-    func updateTextField(){
-        guard let newVal = Int(cashTextField.text!.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted)) else {
-            print("error")
-            return
-        }
-        // NEED TO CONVERT CURRENCIES
-        cashTextField.text = Currency.selectedCurrency.sign + "\(newVal)"
-        updateSlider(num: newVal)
-        
     }
     
     // MARK: TextField Delegate
@@ -119,6 +128,7 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text == Currency.selectedCurrency.sign){
             textField.text = Currency.selectedCurrency.sign + "0"
+            Currency.dollarValue = 0
         }
         textField.resignFirstResponder()
         return true
@@ -145,16 +155,15 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
             */
             
             let bottomAnchor = view.frame.maxY - slider.frame.maxY*1.02 // Not a great solution but works
+        
             if (bottomAnchor < keyboardHeight){
-                view.frame.origin.y = bottomAnchor - keyboardHeight
+                view.frame.origin.y += bottomAnchor - keyboardHeight
             }
-        } else {
-            view.frame.origin.y = 0
         }
     }
     
     @objc func keyboardWillHide(_ notification: Notification){
-        view.frame.origin.y = 0
+        view.frame.origin.y = topBar
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
@@ -175,6 +184,8 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
     // MARK: Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cashTextField.resignFirstResponder()
+        
         if segue.identifier == "containerBanknoteSegue" {
             banknoteVC = segue.destination as? BanknoteViewController
             banknoteVC!.banknoteViewControllerDelegate = self

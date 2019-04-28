@@ -21,6 +21,14 @@
 		1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E469226575430084F229 /* BanknoteCell.swift */; };
 		1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E46B22669D320084F229 /* Pound.xcassets */; };
 		1CC4E46E2266A4EC0084F229 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E46D2266A4EC0084F229 /* Currency.swift */; };
+		1CC4E472226A310D0084F229 /* Money_Money.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E471226A307A0084F229 /* Money_Money.ttf */; };
+		1CC4E479226A399B0084F229 /* Yuan.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E478226A399B0084F229 /* Yuan.xcassets */; };
+		1CC4E47B226AA2BC0084F229 /* NewCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */; };
+		1CC4E47E226E1D4D0084F229 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E47D226E1D4D0084F229 /* ARViewController.swift */; };
+		1CC4E4802270CA480084F229 /* ImageValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */; };
+		1CC4E48222738C2D0084F229 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E48122738C260084F229 /* Montserrat-Medium.ttf */; };
+		1CC4E48422738E170084F229 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E48322738E170084F229 /* ActionButton.swift */; };
+		1CC4E486227527D80084F229 /* TagTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */; };
 		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +50,14 @@
 		1CC4E469226575430084F229 /* BanknoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteCell.swift; sourceTree = "<group>"; };
 		1CC4E46B22669D320084F229 /* Pound.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pound.xcassets; sourceTree = "<group>"; };
 		1CC4E46D2266A4EC0084F229 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		1CC4E471226A307A0084F229 /* Money_Money.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Money_Money.ttf; sourceTree = "<group>"; };
+		1CC4E478226A399B0084F229 /* Yuan.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Yuan.xcassets; sourceTree = "<group>"; };
+		1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCurrencyViewController.swift; sourceTree = "<group>"; };
+		1CC4E47D226E1D4D0084F229 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValueTableViewCell.swift; sourceTree = "<group>"; };
+		1CC4E48122738C260084F229 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		1CC4E48322738E170084F229 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
 		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,20 +95,23 @@
 		1C78A960226247A000436085 /* Make It Rain */ = {
 			isa = PBXGroup;
 			children = (
+				1CC4E47C226AA2C10084F229 /* View Controllers */,
 				1C78A995226290DA00436085 /* Fonts */,
 				1C78A961226247A000436085 /* AppDelegate.swift */,
-				1C78A963226247A000436085 /* SelectionViewController.swift */,
-				1C14E436226534D700EB14C1 /* BanknoteViewController.swift */,
+				1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */,
 				1C69F9B72264D28C00ECD4DF /* CashTextField.swift */,
+				1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */,
 				1C78A99322627B4F00436085 /* Extensions.swift */,
 				1CC4E469226575430084F229 /* BanknoteCell.swift */,
 				1CC4E46D2266A4EC0084F229 /* Currency.swift */,
+				1CC4E48322738E170084F229 /* ActionButton.swift */,
 				1C78A965226247A000436085 /* Main.storyboard */,
 				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
 				1C78A96D226247A200436085 /* Info.plist */,
 				1CC4E46B22669D320084F229 /* Pound.xcassets */,
 				1C78A968226247A200436085 /* Dollar.xcassets */,
 				1C78A9982262A04A00436085 /* Euro.xcassets */,
+				1CC4E478226A399B0084F229 /* Yuan.xcassets */,
 				1C69F9B3226392DD00ECD4DF /* Media.xcassets */,
 			);
 			path = "Make It Rain";
@@ -102,8 +121,21 @@
 			isa = PBXGroup;
 			children = (
 				1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */,
+				1CC4E471226A307A0084F229 /* Money_Money.ttf */,
+				1CC4E48122738C260084F229 /* Montserrat-Medium.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1CC4E47C226AA2C10084F229 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1C14E436226534D700EB14C1 /* BanknoteViewController.swift */,
+				1C78A963226247A000436085 /* SelectionViewController.swift */,
+				1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */,
+				1CC4E47D226E1D4D0084F229 /* ARViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		3C1883510CF9491072E7AAD1 /* Frameworks */ = {
@@ -157,6 +189,7 @@
 				TargetAttributes = {
 					1C78A95D226247A000436085 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -183,10 +216,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC4E479226A399B0084F229 /* Yuan.xcassets in Resources */,
 				1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */,
 				1C78A9992262A04A00436085 /* Euro.xcassets in Resources */,
+				1CC4E472226A310D0084F229 /* Money_Money.ttf in Resources */,
 				1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */,
 				1C78A969226247A200436085 /* Dollar.xcassets in Resources */,
+				1CC4E48222738C2D0084F229 /* Montserrat-Medium.ttf in Resources */,
 				1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */,
 				1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */,
 				1C78A967226247A000436085 /* Main.storyboard in Resources */,
@@ -207,6 +243,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -214,6 +251,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGCircularSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -249,12 +287,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CC4E486227527D80084F229 /* TagTapGestureRecognizer.swift in Sources */,
 				1CC4E46E2266A4EC0084F229 /* Currency.swift in Sources */,
 				1C78A964226247A000436085 /* SelectionViewController.swift in Sources */,
 				1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */,
+				1CC4E48422738E170084F229 /* ActionButton.swift in Sources */,
+				1CC4E4802270CA480084F229 /* ImageValueTableViewCell.swift in Sources */,
+				1CC4E47E226E1D4D0084F229 /* ARViewController.swift in Sources */,
 				1C78A99422627B4F00436085 /* Extensions.swift in Sources */,
 				1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */,
 				1C78A962226247A000436085 /* AppDelegate.swift in Sources */,
+				1CC4E47B226AA2BC0084F229 /* NewCurrencyViewController.swift in Sources */,
 				1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,7 +454,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.timothy.Make-It-Rain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -430,7 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.timothy.Make-It-Rain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

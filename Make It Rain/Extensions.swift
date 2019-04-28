@@ -22,39 +22,34 @@ extension UIColor {
     }
     
     struct themeColor{
-        static let main = #colorLiteral(red: 0.1631833613, green: 0.3730655909, blue: 0.2650748491, alpha: 1)
-        static let secondary = #colorLiteral(red: 0.5862457752, green: 0.7702537179, blue: 0.4708444476, alpha: 1)
-        static let gray = #colorLiteral(red: 0.8014289141, green: 0.7830495238, blue: 0.7300147414, alpha: 1)
-        static let extra = #colorLiteral(red: 0.9134007692, green: 0.8268355727, blue: 0.4537941813, alpha: 1)
+        static let main = #colorLiteral(red: 0.1647058824, green: 0.3725490196, blue: 0.2666666667, alpha: 1)
+        static let secondary = #colorLiteral(red: 0.6792414784, green: 0.7620325685, blue: 0.6283513308, alpha: 1)
+        static let gray = #colorLiteral(red: 0.8, green: 0.7843137255, blue: 0.7294117647, alpha: 1)
+        static let extra = #colorLiteral(red: 0.9137254902, green: 0.8274509804, blue: 0.4549019608, alpha: 1)
         static let gold = #colorLiteral(red: 0.8106517196, green: 0.6584199667, blue: 0.1929169595, alpha: 1)
     }
 }
 
-/*
-extension UserDefaults {
-    
-    func imageForKey(key: String) -> UIImage? {
-        var image: UIImage?
-        if let imageData = data(forKey: key) {
-            do {
-                image = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [UIImage.self], from: imageData) as? UIImage
-            } catch {
-                print("My Error: Couldn't unarchive")
+extension CGPoint {
+    static func random(_ xsize: CGFloat, _ ysize: CGFloat)->CGPoint { return CGPoint(x:CGFloat((arc4random()%UInt32(xsize))),y:CGFloat((arc4random()%UInt32(ysize))))}
+}
+
+extension NSCharacterSet {
+    var characters:[String] {
+        var chars = [String]()
+        for plane:UInt8 in 0...16 {
+            if self.hasMemberInPlane(plane) {
+                let p0 = UInt32(plane) << 16
+                let p1 = (UInt32(plane) + 1) << 16
+                for c:UTF32Char in p0..<p1 {
+                    if self.longCharacterIsMember(c) {
+                        var c1 = c.littleEndian
+                        let s = NSString(bytes: &c1, length: 4, encoding: String.Encoding.utf32LittleEndian.rawValue)!
+                        chars.append(String(s))
+                    }
+                }
             }
         }
-        return image
+        return chars
     }
-    
-    func setImage(image: UIImage?, forKey key: String) {
-        var imageData: Data?
-        if let image = image {
-            //imageData = NSKeyedArchiver.archivedData(withRootObject: image) as NSData?
-            do {
-                imageData = try NSKeyedArchiver.archivedData(withRootObject: image, requiringSecureCoding: false)
-            } catch {
-                print("My Error: Couldn't archive")
-            }
-        }
-        set(imageData, forKey: key)
-    }
-}*/
+}

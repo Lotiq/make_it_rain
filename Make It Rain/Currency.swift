@@ -13,24 +13,36 @@ struct Currency: Codable {
     
     static let currencyImageArrayKey = "currencyImageArrayKey"
     static var selectedCurrency: Currency = Currency.allCurrencies[0]
+    static var dollarValue: Int = 1000
     
     let name: String
     let sign: String
     var ratio: Double // 1:ratio to dollars
     var images = [Int: Data]()
-    var availableBanknotes: [Int]
+    var availableBanknotes: Set<Int>
     
-    init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
+    fileprivate init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
         self.name = name
         self.sign = sign
         self.ratio = ratio
-        self.availableBanknotes = availableBanknotes
+        self.availableBanknotes = Set(availableBanknotes)
         
         for banknote in availableBanknotes {
             let imageName = name + "_" + String(banknote)
             let imageNameFull = imageName + ".jpg" // will need to accomodate other formats?
             let image = UIImage(named: imageNameFull)! // For now no checking but should be careful!!!
             self.images[banknote] = image.jpegData(compressionQuality: 1)
+        }
+    }
+    
+    public init(name: String, sign: String, rate: Double, valueImageDictionary: [Int: UIImage] ){
+        self.name = name
+        self.sign = sign
+        self.ratio = rate
+        self.availableBanknotes = Set(valueImageDictionary.keys)
+        
+        for banknote in valueImageDictionary {
+            self.images[banknote.key] = banknote.value.jpegData(compressionQuality: 1)
         }
     }
     
@@ -52,7 +64,8 @@ extension Currency{
         let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [1,5])
         let euro = Currency(name: "euro", sign: "€", ratio: 1.13, availableBanknotes: [5])
         let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5])
-        return [dollar,euro,pound]
+        let yuan = Currency(name: "yuan", sign: "¥", ratio: 0.15, availableBanknotes: [50])
+        return [dollar,euro,pound,yuan]
     }
     
     static var userDefaultCurrencies: [Currency] {
