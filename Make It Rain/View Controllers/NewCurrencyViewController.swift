@@ -85,7 +85,7 @@ class NewCurrencyViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         guard let name = nameTextField.text, let sign = currencySignTextField.text, let rate = Double(rateTextField.text!) else{
-            print("text fields are empty")
+        
             return
         }
         
@@ -98,7 +98,7 @@ class NewCurrencyViewController: UIViewController {
         }
         
         guard !valueImageDictionary.isEmpty else {
-            print("empty dictionary")
+            
             return
         }
         
@@ -113,11 +113,10 @@ class NewCurrencyViewController: UIViewController {
     func checkForCompletion() -> Bool{
         
         guard nameTextField.text != "", currencySignTextField.text != "", Double(rateTextField.text!) != nil, rateTextField.text != "", !currencySignTextField.hasErrorMessage , !rateTextField.hasErrorMessage else{
-            print("AND HERE")
-            print("Errors with text fields")
+         
             return false
         }
-        print("GOT THROUGH")
+    
         var valueImageDictionary: [Int:UIImage] = [:]
         for i in 0..<imageValueArray.count - 1 {
             guard let value = imageValueArray[i].1 else{
@@ -127,7 +126,7 @@ class NewCurrencyViewController: UIViewController {
         }
         
         guard !valueImageDictionary.isEmpty else {
-            print("empty dictionary")
+    
             return false
         }
         
@@ -168,7 +167,6 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
     
     @objc func imageSelectionPressed(sender: TagTapGestureRecognizer){
         latestRow = sender.row
-        print("image selection pressed")
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary //Depending on the button assigns where to get images from
@@ -178,7 +176,10 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
     // MARK: Image Delegate Operation
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // checks if the image was selected
         if let image = info[.originalImage] as? UIImage {
+            
+            // checks if the last image was a new row or and old one to replace an existing image
             if (imageValueArray[latestRow].0 == UIImage(named: "banknote.png")){
                 let tuple: (UIImage, Int?) = (UIImage(named: "banknote.png")!, 1)
                 imageValueArray.append(tuple)
@@ -227,6 +228,7 @@ extension NewCurrencyViewController: UITextFieldDelegate {
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         if let skyTextField = textField as? SkyFloatingLabelTextField {
             if skyTextField == currencySignTextField {
+                // Font used for the main text
                 let mainFontDescriptor = UIFont(name: "Money Money", size: 20)!.fontDescriptor
                 let mainCharacterSet : NSCharacterSet = mainFontDescriptor.object(forKey: UIFontDescriptor.AttributeName.characterSet) as! NSCharacterSet
                 
@@ -235,6 +237,7 @@ extension NewCurrencyViewController: UITextFieldDelegate {
                     skyTextField.errorMessage = "Too Many Symbols"
                     return true
                 } else {
+                    // this variable checks if all the characters are contained within the required main font
                     var allExisiting = true
                     for character in text {
                         if !mainCharacterSet.characters.contains(String(character)){
@@ -254,7 +257,6 @@ extension NewCurrencyViewController: UITextFieldDelegate {
             
             } else if skyTextField == rateTextField {
                 if (Double(text) != nil || text == ""){
-                    print("GOOOOT HERE")
                     if (Double(text) == 0){
                         skyTextField.errorMessage = "Rate can't be 0"
                     }
