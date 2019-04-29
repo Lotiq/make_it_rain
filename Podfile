@@ -9,4 +9,5 @@ target 'Make It Rain' do
   pod 'HGCircularSlider', '~> 2.0.0'
   pod 'CenteredCollectionView', '~> 2.2.1'
   pod 'SkyFloatingLabelTextField', '~> 3.6.0'
+  pod 'SideMenu', '~> 5.0.3'
 end
