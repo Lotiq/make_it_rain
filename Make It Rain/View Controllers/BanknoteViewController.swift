@@ -11,20 +11,20 @@ import CenteredCollectionView
 
 protocol BanknoteViewControllerDelegate{
     func updateView(ratio: Double)
+    func updateBackButton()
 }
 
 class BanknoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var banknoteCollectionView: UICollectionView!
+    @IBOutlet weak var centeredCollectionViewFlowLayout: CenteredCollectionViewFlowLayout!
     
     var banknoteViewControllerDelegate: BanknoteViewControllerDelegate?
     var banknotes = Currency.allCurrencies
-    var centeredCollectionViewFlowLayout: CenteredCollectionViewFlowLayout!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        centeredCollectionViewFlowLayout = (banknoteCollectionView.collectionViewLayout as! CenteredCollectionViewFlowLayout)
         
         // Modify the collectionView's decelerationRate
         banknoteCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
@@ -42,26 +42,32 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         // Configure the optional inter item spacing
         centeredCollectionViewFlowLayout.minimumLineSpacing = 20
-        
+        //banknoteCollectionView.collectionViewLayout = centeredCollectionViewFlowLayout
         // Get rid of scrolling indicators
         banknoteCollectionView.showsVerticalScrollIndicator = false
         banknoteCollectionView.showsHorizontalScrollIndicator = false
         
     }
-    /*
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        centeredCollectionViewFlowLayout.scrollToPage(index: 1, animated: false)
-    }*/
+        banknotes = Currency.allCurrencies
+        banknoteCollectionView.reloadData()
+        let index = banknotes.firstIndex(of: Currency.selectedCurrency) ?? 0
+        let ratio = Currency.selectedCurrency.ratio/banknotes[index].ratio
+        Currency.selectedCurrency = banknotes[index]
+        self.banknoteViewControllerDelegate?.updateView(ratio: ratio)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        centeredCollectionViewFlowLayout.scrollToPage(index: 1, animated: false)
+        let index = banknotes.firstIndex(of: Currency.selectedCurrency) ?? 0
+        
+        centeredCollectionViewFlowLayout.scrollToPage(index: index+1, animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        centeredCollectionViewFlowLayout.scrollToPage(index: 1, animated: false)
     }
     
     
@@ -99,6 +105,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
             // tapped again
             if (indexPath.row == 0){
                 let nextVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
+                self.banknoteViewControllerDelegate?.updateBackButton()
                 self.navigationController?.pushViewController(nextVC, animated: true)
             }
         }
@@ -117,4 +124,5 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
+    
 }

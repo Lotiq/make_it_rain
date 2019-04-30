@@ -464,7 +464,6 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
             print("nothing happening")
         }
         if message != ""{
-            print("diAGSDGSDGsap")
         }
         sessionInfoLabel.text = message
     }

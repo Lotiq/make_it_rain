@@ -7,23 +7,20 @@
 //
 
 import UIKit
+import SideMenu
 import HGCircularSlider
 
 class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteViewControllerDelegate {
     
     func updateView(ratio: Double) {
-        /*
-        guard let newVal = Double(cashTextField.text!.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789").inverted)) else {
-            print("error")
-            return
-        }
-        // NEED TO CONVERT CURRENCIES
-        let convertedVal = Int((Double(newVal)*ratio).rounded(.up))
-        */
         let convertedVal = Int(Double(Currency.dollarValue) / Currency.selectedCurrency.ratio)
         cashTextField.text = Currency.selectedCurrency.sign + "\(convertedVal)"
         slider.maximumValue = CGFloat(10000/Currency.selectedCurrency.ratio)
         slider.endPointValue = convertedVal < Int(slider.maximumValue) ? CGFloat(convertedVal) : slider.maximumValue - 1
+    }
+    
+    func updateBackButton(){
+       self.navigationItem.backBarButtonItem?.title = "Cancel"
     }
     
 
@@ -37,6 +34,11 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        SideMenuManager.default.menuFadeStatusBar = false
+        SideMenuManager.default.menuPresentMode = .viewSlideInOut
+        SideMenuManager.default.menuShadowColor = UIColor.darkGray
+        SideMenuManager.default.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "money")!)
         
         setupSlider(slider: slider)
         //view.backgroundColor = UIColor(patternImage: UIImage(named: "money.jpg")!)
@@ -189,6 +191,11 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
         if segue.identifier == "containerBanknoteSegue" {
             banknoteVC = segue.destination as? BanknoteViewController
             banknoteVC!.banknoteViewControllerDelegate = self
+        } else if segue.identifier == "ARSceneSegue"{
+            print("Return is set")
+            self.navigationItem.backBarButtonItem?.title = "Return"
+        } else {
+            self.navigationItem.backBarButtonItem?.title = "Back"  // temporary solution
         }
     }
 }

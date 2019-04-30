@@ -17,10 +17,12 @@ class NewCurrencyViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var banknoteTableView: UITableView!
     
+    var isEdited: Bool = false
+    var passedIndexValue: (Int,Currency)!
     var latestRow: Int!
     var numOfBanknotes: Int = 1
     var topBar:CGFloat = 0
-    var imageValueArray: [(UIImage,Int?)] = [(UIImage(named: "banknote.png")!,1)]
+    var imageValueArray: [(UIImage,Int?)] = [(UIImage(named: "banknote.png")!,nil)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,20 @@ class NewCurrencyViewController: UIViewController {
         banknoteTableView.layer.cornerRadius = 25
         banknoteTableView.backgroundColor = UIColor.themeColor.main
         
+        if (isEdited){
+            saveButton.titleLabel?.text = "UPDATE"
+            saveButton.isEnabled = true
+            let currency = passedIndexValue.1
+            nameTextField.text = currency.name
+            currencySignTextField.text = currency.sign
+            rateTextField.text = String(currency.ratio)
+            imageValueArray = []
+            for valuePair in currency.getImages() {
+                imageValueArray.append((valuePair.value,valuePair.key))
+            }
+            imageValueArray.append((UIImage(named: "banknote.png")!,nil))
+            
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -65,7 +81,7 @@ class NewCurrencyViewController: UIViewController {
         textField.delegate = self
         
         // placeholder color
-        textField.placeholderColor = .gray
+        textField.placeholderColor = .darkGray
 
         // error colors
         textField.errorColor = .red
@@ -104,9 +120,14 @@ class NewCurrencyViewController: UIViewController {
         
         let newCurrency = Currency(name: name, sign: sign, rate: rate, valueImageDictionary: valueImageDictionary)
         var updatedCurrencies = Currency.userDefaultCurrencies
-        updatedCurrencies.append(newCurrency)
-        
-        //UserDefaults.standard.set(try? PropertyListEncoder().encode(updatedCurrencies), forKey: Currency.currencyImageArrayKey)
+        if (!isEdited){
+            updatedCurrencies.append(newCurrency)
+        } else {
+            updatedCurrencies.remove(at: passedIndexValue.0)
+            updatedCurrencies.append(newCurrency)
+        }
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(updatedCurrencies), forKey: Currency.currencyArrayKey)
+        Currency.selectedCurrency = newCurrency
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -159,7 +180,7 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
             cell.valueTextField.text = ""
         }
         //cell.valueTextField.text = String(imageValueArray[indexPath.row].1)
-        cell.valueTextField.textColor = .gray
+        cell.valueTextField.textColor = .darkGray
         cell.valueTextField.delegate = self
         
         return cell
@@ -181,7 +202,7 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
             
             // checks if the last image was a new row or and old one to replace an existing image
             if (imageValueArray[latestRow].0 == UIImage(named: "banknote.png")){
-                let tuple: (UIImage, Int?) = (UIImage(named: "banknote.png")!, 1)
+                let tuple: (UIImage, Int?) = (UIImage(named: "banknote.png")!, nil)
                 imageValueArray.append(tuple)
             }
         
@@ -259,6 +280,8 @@ extension NewCurrencyViewController: UITextFieldDelegate {
                 if (Double(text) != nil || text == ""){
                     if (Double(text) == 0){
                         skyTextField.errorMessage = "Rate can't be 0"
+                    } else {
+                        skyTextField.errorMessage = ""
                     }
                     skyTextField.text = text
                     saveButton.isEnabled = checkForCompletion()

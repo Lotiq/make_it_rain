@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-struct Currency: Codable {
+struct Currency: Codable, Equatable {
     
-    static let currencyImageArrayKey = "currencyImageArrayKey"
+    static let currencyArrayKey = "currencyArrayKey"
     static var selectedCurrency: Currency = Currency.allCurrencies[0]
     static var dollarValue: Int = 1000
     
@@ -69,7 +69,7 @@ extension Currency{
     }
     
     static var userDefaultCurrencies: [Currency] {
-        if let data = UserDefaults.standard.value(forKey: currencyImageArrayKey) as? Data {
+        if let data = UserDefaults.standard.value(forKey: currencyArrayKey) as? Data {
             do{
                 let currencyArray = try PropertyListDecoder().decode(Array<Currency>.self, from: data)
                 return currencyArray

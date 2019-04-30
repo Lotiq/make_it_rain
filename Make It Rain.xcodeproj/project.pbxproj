@@ -29,6 +29,9 @@
 		1CC4E48222738C2D0084F229 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E48122738C260084F229 /* Montserrat-Medium.ttf */; };
 		1CC4E48422738E170084F229 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E48322738E170084F229 /* ActionButton.swift */; };
 		1CC4E486227527D80084F229 /* TagTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */; };
+		1CC4E4882277793F0084F229 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E4872277793F0084F229 /* SideMenuTableViewController.swift */; };
+		1CC8C1DA227799EE0058C6F6 /* MyCurrenciesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */; };
+		1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */; };
 		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +61,9 @@
 		1CC4E48122738C260084F229 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		1CC4E48322738E170084F229 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTapGestureRecognizer.swift; sourceTree = "<group>"; };
+		1CC4E4872277793F0084F229 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
+		1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrenciesTableViewController.swift; sourceTree = "<group>"; };
+		1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
 		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,24 +101,13 @@
 		1C78A960226247A000436085 /* Make It Rain */ = {
 			isa = PBXGroup;
 			children = (
+				1CC8C1E022779AF50058C6F6 /* Custom Standard Library Subclasses */,
+				1CC8C1DF22779AB40058C6F6 /* Assets */,
+				1CC8C1DE22779A820058C6F6 /* Model */,
+				1CC8C1DD22779A6A0058C6F6 /* Cells */,
 				1CC4E47C226AA2C10084F229 /* View Controllers */,
 				1C78A995226290DA00436085 /* Fonts */,
-				1C78A961226247A000436085 /* AppDelegate.swift */,
-				1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */,
-				1C69F9B72264D28C00ECD4DF /* CashTextField.swift */,
-				1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */,
-				1C78A99322627B4F00436085 /* Extensions.swift */,
-				1CC4E469226575430084F229 /* BanknoteCell.swift */,
-				1CC4E46D2266A4EC0084F229 /* Currency.swift */,
-				1CC4E48322738E170084F229 /* ActionButton.swift */,
-				1C78A965226247A000436085 /* Main.storyboard */,
-				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
-				1C78A96D226247A200436085 /* Info.plist */,
-				1CC4E46B22669D320084F229 /* Pound.xcassets */,
-				1C78A968226247A200436085 /* Dollar.xcassets */,
-				1C78A9982262A04A00436085 /* Euro.xcassets */,
-				1CC4E478226A399B0084F229 /* Yuan.xcassets */,
-				1C69F9B3226392DD00ECD4DF /* Media.xcassets */,
+				1CC8C1E122779B2E0058C6F6 /* Main and Extra */,
 			);
 			path = "Make It Rain";
 			sourceTree = "<group>";
@@ -130,12 +125,66 @@
 		1CC4E47C226AA2C10084F229 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */,
+				1CC4E4872277793F0084F229 /* SideMenuTableViewController.swift */,
 				1C14E436226534D700EB14C1 /* BanknoteViewController.swift */,
 				1C78A963226247A000436085 /* SelectionViewController.swift */,
 				1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */,
 				1CC4E47D226E1D4D0084F229 /* ARViewController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1CC8C1DD22779A6A0058C6F6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */,
+				1CC4E469226575430084F229 /* BanknoteCell.swift */,
+				1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1CC8C1DE22779A820058C6F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1CC4E46D2266A4EC0084F229 /* Currency.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1CC8C1DF22779AB40058C6F6 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1CC4E46B22669D320084F229 /* Pound.xcassets */,
+				1C78A968226247A200436085 /* Dollar.xcassets */,
+				1C78A9982262A04A00436085 /* Euro.xcassets */,
+				1CC4E478226A399B0084F229 /* Yuan.xcassets */,
+				1C69F9B3226392DD00ECD4DF /* Media.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		1CC8C1E022779AF50058C6F6 /* Custom Standard Library Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */,
+				1CC4E48322738E170084F229 /* ActionButton.swift */,
+				1C69F9B72264D28C00ECD4DF /* CashTextField.swift */,
+			);
+			path = "Custom Standard Library Subclasses";
+			sourceTree = "<group>";
+		};
+		1CC8C1E122779B2E0058C6F6 /* Main and Extra */ = {
+			isa = PBXGroup;
+			children = (
+				1C78A961226247A000436085 /* AppDelegate.swift */,
+				1C78A99322627B4F00436085 /* Extensions.swift */,
+				1C78A965226247A000436085 /* Main.storyboard */,
+				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
+				1C78A96D226247A200436085 /* Info.plist */,
+			);
+			path = "Main and Extra";
 			sourceTree = "<group>";
 		};
 		3C1883510CF9491072E7AAD1 /* Frameworks */ = {
@@ -290,8 +339,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CC4E486227527D80084F229 /* TagTapGestureRecognizer.swift in Sources */,
+				1CC4E4882277793F0084F229 /* SideMenuTableViewController.swift in Sources */,
 				1CC4E46E2266A4EC0084F229 /* Currency.swift in Sources */,
 				1C78A964226247A000436085 /* SelectionViewController.swift in Sources */,
+				1CC8C1DA227799EE0058C6F6 /* MyCurrenciesTableViewController.swift in Sources */,
 				1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */,
 				1CC4E48422738E170084F229 /* ActionButton.swift in Sources */,
 				1CC4E4802270CA480084F229 /* ImageValueTableViewCell.swift in Sources */,
@@ -300,6 +351,7 @@
 				1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */,
 				1C78A962226247A000436085 /* AppDelegate.swift in Sources */,
 				1CC4E47B226AA2BC0084F229 /* NewCurrencyViewController.swift in Sources */,
+				1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */,
 				1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,8 +500,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HY8AUX8L27;
-				INFOPLIST_FILE = "Make It Rain/Info.plist";
+				DEVELOPMENT_TEAM = 7E4FRN2QG2;
+				INFOPLIST_FILE = "$(SRCROOT)/Make It Rain/Main and Extra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,8 +519,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HY8AUX8L27;
-				INFOPLIST_FILE = "Make It Rain/Info.plist";
+				DEVELOPMENT_TEAM = 7E4FRN2QG2;
+				INFOPLIST_FILE = "$(SRCROOT)/Make It Rain/Main and Extra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
