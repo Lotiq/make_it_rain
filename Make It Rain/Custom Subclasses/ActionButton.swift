@@ -31,7 +31,8 @@ class ActionButton: UIButton {
         
         self.setTitleColor(UIColor.gray, for: .normal)
         self.setTitleColor(UIColor.gray.withAlphaComponent(0.3), for: .highlighted)
-        self.titleLabel?.font = UIFont(name: "Montserrat Medium", size: 24)
+        //self.titleLabel?.font = UIFont(name: "Montserrat Medium", size: 24)
+        self.titleLabel?.font = UIFont(name: "Money Money", size: 24)
         self.backgroundColor = UIColor.themeColor.extra
         self.layer.masksToBounds = false
         self.layer.cornerRadius = 10
@@ -39,7 +40,7 @@ class ActionButton: UIButton {
         self.layer.shadowColor = UIColor.gray.cgColor //UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.layer.shadowOpacity = 1.0
-        self.contentEdgeInsets = UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 10)
+        self.contentEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)
         
     }
 }

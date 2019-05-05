@@ -8,14 +8,17 @@
 
 import UIKit
 
-class MyCurrenciesTableViewController: UITableViewController {
+class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var currencyTableView: UITableView!
     var userDefaultCurrencies: [Currency]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        currencyTableView.backgroundColor = UIColor.themeColor.secondary
+        currencyTableView.separatorStyle = .none
         userDefaultCurrencies = Currency.userDefaultCurrencies
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -28,21 +31,38 @@ class MyCurrenciesTableViewController: UITableViewController {
         cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.themeColor.extra, NSAttributedString.Key.font: navigationFont!], for: .normal)
         self.navigationItem.backBarButtonItem = cancelButton
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        userDefaultCurrencies = Currency.userDefaultCurrencies
+        currencyTableView.reloadData()
+        print("viewWillAppear")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
+    }
+    
+    
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return userDefaultCurrencies.count
     }
 
+    @IBAction func newCurrencyAction(_ sender: Any) {
+        let newCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
+        self.navigationController?.pushViewController(newCurrencyVC, animated: true)
+    }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCurrencyTableViewCell", for: indexPath) as! MyCurrencyTableViewCell
         let image = userDefaultCurrencies[indexPath.row].getImages().randomElement()!.value // force unwrapping is not good, fix later
@@ -63,7 +83,7 @@ class MyCurrenciesTableViewController: UITableViewController {
     }
     */
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
         editCurrencyVC.isEdited = true
         editCurrencyVC.passedIndexValue = (indexPath.row,userDefaultCurrencies[indexPath.row])
@@ -72,37 +92,16 @@ class MyCurrenciesTableViewController: UITableViewController {
 
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             userDefaultCurrencies.remove(at: indexPath.row)
             UserDefaults.standard.set(try? PropertyListEncoder().encode(userDefaultCurrencies), forKey: Currency.currencyArrayKey)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.width * 0.5
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

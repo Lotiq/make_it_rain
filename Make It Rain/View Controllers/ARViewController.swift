@@ -14,6 +14,8 @@ class ARViewController: UIViewController {
 
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var sessionInfoLabel: UILabel!
+    @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var sessionInfoView: UIVisualEffectView!
     
     var money: Int!
     let restrictedWidth: CGFloat = 0.126 // in m
@@ -21,7 +23,7 @@ class ARViewController: UIViewController {
     var selectedCurrency: Currency!
     
     // Dictionary of banknote list and count
-    var banknoteBank: [Int : Int]! // [Banknote Bill: Number of them left]
+    var banknoteBank: [Int : Int]! // [Banknote Bill: Number In Use]
     
     // Dictionary of banknote nominal value and SCNNodes
     var modelAssets = [Int : SCNNode]()
@@ -29,17 +31,19 @@ class ARViewController: UIViewController {
     // Array for ar anchor planes added to scene.
     var anchorPlanesInScene = [SCNNode]()
     
+    // Bool variable to track whether the action has been performed
+    var rained = false
+    
     // Currently selected model to place in scene.
     //var currentModelAsset: SCNNode!
-    // 1280 × 541
-    // 0.1 x 0.05
     var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        interaction(isHidden: true)
         selectedCurrency = Currency.selectedCurrency
         money = Int(Double(Currency.dollarValue)/selectedCurrency.ratio)
-        banknoteBank = distributeCurrencyAscending(availableBanknotes: selectedCurrency.availableBanknotes, money: money)
+        banknoteBank = distributeCurrencyDescending(availableBanknotes: selectedCurrency.availableBanknotes, money: money)
         sceneView.delegate = self
         
         for banknote in banknoteBank{
@@ -48,8 +52,10 @@ class ARViewController: UIViewController {
             let width = image.size.width
             let ratio = restrictedWidth/width
             let plane = SCNPlane(width: restrictedWidth, height: image.size.height * ratio)
+            
             let material = SCNMaterial()
             material.diffuse.contents = image
+            material.isDoubleSided = true
             plane.materials = [material]
             
             let node = SCNNode(geometry: plane)
@@ -62,6 +68,8 @@ class ARViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.enableAllOrientations = true
 
     }
     
@@ -98,39 +106,44 @@ class ARViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.enableAllOrientations = false
         // Pause the view's session
         sceneView.session.pause()
+        
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     @IBAction func makeItRain(_ sender: UIButton) {
-        
-        sender.isHidden = true
-        for anchorPlane in anchorPlanesInScene {
-                anchorPlane.isHidden = true
-        }
-        //let interval: Double = Double(banknotes)*0.2 < 3 ? 0.2 : (7/Double(banknotes))
-//        let interval: Double = 0.1
-//        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(placeBanknote), userInfo: nil, repeats: true)
-        
+        //rained = true
+        //sender.isHidden = true
+    
         // SB
+        
         guard let anchor = sceneView.scene.rootNode.childNode(withName: "anchor", recursively: true) else {
             print("No plane anchor detected")
             return
         }
-        
+
+        //let anchor = anchorPlanesInScene[0]
         // Find bounds of our target
         // There is no reason to hit test anything because you already know where your target destination is.
         
         // Also --> your hitTest call will always return false
         // hitTest is for testing whether a user's touch on screen (in UIKit screen space) intersects with an object in the scene
         // You cannot use hitTest to test scene space coordinates.
-        let (min, max) = anchor.boundingBox
         
+        let (min, max) = anchor.boundingBox
+        //let thisAnchor = anchor
         // Anchor here refers to the plane you added to the anchor
         // The coordinate space of the anchor is local
         // You need to convert this coordinate space to world space
+        
+        
         let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
         let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
+ 
+        
         let anchorWorldPosition = anchor.convertPosition(anchor.position, to: sceneView.scene.rootNode)
      
         // Always just use a test cube to check your math
@@ -140,194 +153,86 @@ class ARViewController: UIViewController {
         
         // Get number of notes to drop
         // I'm not sure how the banknodeBank works, so I'm just taking the total number from all entries in the dictionary
+        
+        let xMinActual = Float.minimum(minWorld.x, maxWorld.x)
+        let xMaxActual = Float.maximum(minWorld.x, maxWorld.x)
+        let zMinActual = Float.minimum(minWorld.z, maxWorld.z)
+        let zMaxActual = Float.maximum(minWorld.z, maxWorld.z)
+        /*
+        let box1 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
+        box1.position = SCNVector3(xMinActual, anchorWorldPosition.y, zMinActual)
+        sceneView.scene.rootNode.addChildNode(box1)
+        
+        let box2 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
+        box2.position = SCNVector3(xMaxActual, anchorWorldPosition.y, zMaxActual)
+        sceneView.scene.rootNode.addChildNode(box2)
+        
+        let box3 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
+        box3.position = SCNVector3(xMinActual, anchorWorldPosition.y, zMaxActual)
+        sceneView.scene.rootNode.addChildNode(box3)
+        
+        let box4 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
+        box4.position = SCNVector3(xMaxActual, anchorWorldPosition.y, zMinActual)
+        sceneView.scene.rootNode.addChildNode(box4)
+        */
+
+        
+        for anchorPlane in anchorPlanesInScene {
+            anchorPlane.isHidden = true
+        }
+        
         let count = banknoteBank.reduce(0) { (total, entry) -> Int in
             total + entry.value
         }
-//
-        for _ in (0..<count) {
-            let offsetY: Float = 2.0
-            
-            // because of orientation, min and max are not always the same for every
-            // axis
-            let xMinActual = Float.minimum(minWorld.x, maxWorld.x)
-            let xMaxActual = Float.maximum(minWorld.x, maxWorld.x)
-            let zMinActual = Float.minimum(minWorld.z, maxWorld.z)
-            let zMaxActual = Float.maximum(minWorld.z, maxWorld.z)
-            
-            
-            let endX = Float.random(in: xMinActual ... xMaxActual)
-            
-            // Add a tiny offset to the Y to avoid flickering issue when money overlaps
-            let zFightingAdjustment = Float.random(in: 0.00001...0.01)
-            let endY = anchorWorldPosition.y + zFightingAdjustment
-            let endZ = Float.random(in: zMinActual ... zMaxActual)
-            let endLocation = SCNVector3(endX, endY, endZ)
-            
-            let startLocation = SCNVector3(endX, endY + offsetY, endZ)
-            
-            guard let note = banknoteBank.randomElement() else {
-                print("Unable to get note")
-                return
-            }
-            
-            let (key, _) = note
-            
-            guard let modelAsset = modelAssets[key] else {
-                print("Unable to get model asset")
-                return
-            }
-            
-            let newNode = modelAsset.clone()
-            newNode.position = startLocation
-            
-            newNode.eulerAngles.y = Float.random(in: 0..<2 * Float.pi)
-            newNode.eulerAngles.x = -Float.pi/2
-            
-            sceneView.scene.rootNode.addChildNode(newNode)
-            
-            // Add random timing
-            let duration = Double.random(in: 1.0...5.0)
-            let action = SCNAction.move(to: endLocation, duration: duration)
-            newNode.runAction(action)
+        var timing = (2+Double(count)/10)
+        if timing > 15 {
+            timing = 15
         }
         
-//        var banknote: (key: Int, value: Int)!
-//        repeat {
-//            banknote = banknoteBank.randomElement()
-//
-//        } while banknote.value == 0
-//
-//        let modelAsset = modelAssets[banknote.key]!.clone() as SCNNode
-//
-//
-//        //let modelAsset = currentModelAsset.clone() as SCNNode
-//        let change = hit.worldTransform.columns.3.y * Float.random(in: 0.2..<0.5)
-//        let moveDown = SCNAction.moveBy(x: 0, y: CGFloat(change), z: 0, duration: 2)
-//
-//        modelAsset.position = SCNVector3Make(hit.worldTransform.columns.3.x,
-//                                             hit.worldTransform.columns.3.y - change,
-//                                             hit.worldTransform.columns.3.z)
-//        modelAsset.eulerAngles.y = Float.random(in: 0..<2*Float.pi)
-//        modelAsset.eulerAngles.x = -Float.pi/2
-//
-//        modelAsset.name = selectedCurrency.name + "_" + String(banknote.value)
-//
-//        sceneView.scene.rootNode.addChildNode(modelAsset)
-//        modelAsset.runAction(moveDown)
-//
-        // Int.random(in: 0 ... 10)
-        
-        
-        
-    }
-    
-    
-    
-    @objc func placeBanknote(){
-        var count = 0
-        for banknote in banknoteBank{
-           count += banknote.value
-        }
-        if (count == 0){
-            timer.invalidate()
-        } else {
-            detectAndPlace2()
-        }
-    }
-    
-    func detectAndPlace2() {
-        //sceneView.scene.rootNode.
-        guard let anchor = sceneView.scene.rootNode.childNode(withName: "anchor", recursively: true) else {
-            timer.invalidate()
-            return
-        }
-        let minx = anchor.boundingBox.min.x
-        let maxx = anchor.boundingBox.max.x
-        let minz = anchor.boundingBox.min.z
-        let maxz = anchor.boundingBox.max.z
-        let x = Float.random(in: minx...maxx)
-        let z = Float.random(in: minz...maxz)
-        
-        let newLocation = CGPoint(x: CGFloat(x), y: CGFloat(z))
-        
-        let arHitTestResult = sceneView.hitTest(newLocation, types: .existingPlaneUsingExtent)
-        
-        guard !arHitTestResult.isEmpty else {
-            print("empty hit")
-            return
-        }
-        
-        let hit = arHitTestResult.first!
-        var banknote: (key: Int, value: Int)!
-        repeat {
-            banknote = banknoteBank.randomElement()
-            
-        } while banknote.value == 0
-        
-        let modelAsset = modelAssets[banknote.key]!.clone() as SCNNode
-        
-        //let modelAsset = currentModelAsset.clone() as SCNNode
-        let change = hit.worldTransform.columns.3.y * Float.random(in: 0.2..<0.5)
-        let moveDown = SCNAction.moveBy(x: 0, y: CGFloat(change), z: 0, duration: 2)
-        
-        modelAsset.position = SCNVector3Make(hit.worldTransform.columns.3.x,
-                                             hit.worldTransform.columns.3.y - change,
-                                             hit.worldTransform.columns.3.z)
-        modelAsset.eulerAngles.y = Float.random(in: 0..<2*Float.pi)
-        modelAsset.eulerAngles.x = -Float.pi/2
-        
-        modelAsset.name = selectedCurrency.name + "_" + String(banknote.value)
-        
-        sceneView.scene.rootNode.addChildNode(modelAsset)
-        modelAsset.runAction(moveDown)
-        
-    }
-    
-    func detectAndPlace(){
-        var location: CGPoint!
-        var arHitTestResult: [ARHitTestResult]!
-        repeat {
-            
-            location = CGPoint.random(sceneView.coordinateSpace.bounds.width,sceneView.coordinateSpace.bounds.height)
-            arHitTestResult = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-        } while arHitTestResult.isEmpty
-        
-        if !arHitTestResult.isEmpty {
-            let hit = arHitTestResult.first!
-            var banknote: (key: Int, value: Int)!
-            repeat {
-                banknote = banknoteBank.randomElement()
+        for banknote in banknoteBank {
+            for _ in (0..<banknote.value){
+                let endX = Float.random(in: xMinActual ... xMaxActual)
+                let endZ = Float.random(in: zMinActual ... zMaxActual)
                 
-            } while banknote.value == 0
-            
-            banknoteBank[banknote.key] = banknote.value - 1
-            
-            let modelAsset = modelAssets[banknote.key]!.clone() as SCNNode
-            
-            //let modelAsset = currentModelAsset.clone() as SCNNode
-            let change = hit.worldTransform.columns.3.y * Float.random(in: 0.2..<0.5)
-            let moveDown = SCNAction.moveBy(x: 0, y: CGFloat(change), z: 0, duration: 2)
-            
-            modelAsset.position = SCNVector3Make(hit.worldTransform.columns.3.x,
-                                                 hit.worldTransform.columns.3.y - change,
-                                                 hit.worldTransform.columns.3.z)
-            modelAsset.eulerAngles.y = Float.random(in: 0..<2*Float.pi)
-            modelAsset.eulerAngles.x = -Float.pi/2
-            
-            modelAsset.name = selectedCurrency.name + "_" + String(banknote.value)
-            
-            sceneView.scene.rootNode.addChildNode(modelAsset)
-            modelAsset.runAction(moveDown)
-            //modelsInScene.append(modelAsset)
+                let zFightingAdjustment = Float.random(in: 0.00001...0.01)
+                let endY = anchorWorldPosition.y + zFightingAdjustment
+                let offsetY: Float = 0.5 + Float.random(in: 0.3...1.0)
+                
+                let startLocation = SCNVector3(endX, endY + offsetY, endZ)
+                let endLocation = SCNVector3(endX, endY, endZ)
+                
+                guard let newNode = modelAssets[banknote.key]?.clone() else {
+                    print("Unable to create a new node")
+                    return
+                }
+                
+                newNode.position = startLocation
+                
+                newNode.eulerAngles.y = Float.random(in: 0..<2 * Float.pi)
+                newNode.eulerAngles.x = -Float.pi/2
+                
+                sceneView.scene.rootNode.addChildNode(newNode)
+                
+                // Add random timing
+                let duration = Double.random(in: 2...timing)
+                let action = SCNAction.move(to: endLocation, duration: duration)
+                newNode.runAction(action)
+            }
         }
+        
     }
     
+    func interaction(isHidden: Bool) {
+        actionButton.isHidden = isHidden
+        sessionInfoView.isHidden = !isHidden
+    }
+
     // TEMPORARY FUNCTION
-    func distributeCurrencyAscending(availableBanknotes: Set<Int>, money: Int) -> [Int : Int]{
+    func distributeCurrencyDescending(availableBanknotes: Set<Int>, money: Int) -> [Int : Int]{
         var output = [Int : Int]()
         var r = money
         var mutableAvailableBanknotes = availableBanknotes
-        while(r > availableBanknotes.min()!){
+        while(r >= availableBanknotes.min()!){
             let newMax = mutableAvailableBanknotes.max()!
             let (quotient, remainder) = r.quotientAndRemainder(dividingBy: newMax)
             r = remainder
@@ -372,7 +277,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         node.addChildNode(planeNode)
         
         // Save all plane nodes.
-        // anchorPlanesInScene.append(planeNode)
+        anchorPlanesInScene.append(planeNode)
     }
     
     /// - Tag: UpdateARContent
@@ -396,7 +301,10 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         plane.width = CGFloat(planeAnchor.extent.x)
         plane.height = CGFloat(planeAnchor.extent.z)
     }
-    
+    /*
+    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
+        <#code#>
+    }*/
     // MARK: - ARSessionDelegate
     
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
@@ -463,7 +371,12 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         case .limited(_):
             print("nothing happening")
         }
-        if message != ""{
+        if (!rained){
+            if message != ""{
+                interaction(isHidden: true)
+            } else {
+                interaction(isHidden: false)
+            }
         }
         sessionInfoLabel.text = message
     }

@@ -51,8 +51,9 @@ class NewCurrencyViewController: UIViewController {
         banknoteTableView.backgroundColor = UIColor.themeColor.main
         
         if (isEdited){
-            saveButton.titleLabel?.text = "UPDATE"
             saveButton.isEnabled = true
+            saveButton.setTitle("Update", for: .normal)
+            
             let currency = passedIndexValue.1
             nameTextField.text = currency.name
             currencySignTextField.text = currency.sign
@@ -126,7 +127,13 @@ class NewCurrencyViewController: UIViewController {
             updatedCurrencies.remove(at: passedIndexValue.0)
             updatedCurrencies.append(newCurrency)
         }
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(updatedCurrencies), forKey: Currency.currencyArrayKey)
+        
+        do {
+            UserDefaults.standard.set(try PropertyListEncoder().encode(updatedCurrencies), forKey: Currency.currencyArrayKey)
+        } catch {
+            print("couldn't encode array")
+        }
+        
         Currency.selectedCurrency = newCurrency
         self.navigationController?.popViewController(animated: true)
     }

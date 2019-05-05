@@ -84,7 +84,7 @@ extension Currency{
     }
     
     static var allCurrencies: [Currency] {
-        let addCurrencies = self.userDefaultCurrencies + self.localCurrencies
+        let addCurrencies = self.userDefaultCurrencies.reversed() + self.localCurrencies
         return addCurrencies
     }
 }

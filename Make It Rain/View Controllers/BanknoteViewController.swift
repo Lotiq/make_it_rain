@@ -36,9 +36,10 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         // Configure the required item size
         centeredCollectionViewFlowLayout.itemSize = CGSize(
-            width: view.bounds.width * 0.7,
-            height: view.bounds.height * 0.7
+            width: banknoteCollectionView.bounds.width * 0.7,
+            height: banknoteCollectionView.bounds.height * 0.7
         )
+        
         
         // Configure the optional inter item spacing
         centeredCollectionViewFlowLayout.minimumLineSpacing = 20

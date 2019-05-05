@@ -10,7 +10,7 @@ import UIKit
 import SideMenu
 import HGCircularSlider
 
-class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteViewControllerDelegate {
+class SelectionViewController: UIViewController, BanknoteViewControllerDelegate {
     
     func updateView(ratio: Double) {
         let convertedVal = Int(Double(Currency.dollarValue) / Currency.selectedCurrency.ratio)
@@ -67,6 +67,8 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
         cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.themeColor.extra, NSAttributedString.Key.font: navigationFont!], for: .normal)
         self.navigationItem.backBarButtonItem = cancelButton
         
+        rainMoney(with: UIImage(named: "dollar_particle.png")!)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -105,6 +107,35 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
         Currency.dollarValue = Int(Double(num) * Currency.selectedCurrency.ratio)
         slider.endPointValue = num < Int(slider.maximumValue) ? CGFloat(num) : slider.maximumValue - 1
     }
+    
+    func rainMoney(with image: UIImage){
+        let emitter = RainEmitter.get(with: image)
+        emitter.emitterPosition = CGPoint(x: view.frame.width/2, y: -10)
+        emitter.emitterSize = CGSize(width: view.frame.width*2, height: 2)
+        let newView = UIView()
+        newView.layer.addSublayer(emitter)
+        view.addSubview(newView)
+        view.sendSubviewToBack(newView)
+    }
+    
+    // MARK: Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cashTextField.resignFirstResponder()
+        
+        if segue.identifier == "containerBanknoteSegue" {
+            banknoteVC = segue.destination as? BanknoteViewController
+            banknoteVC!.banknoteViewControllerDelegate = self
+        } else if segue.identifier == "ARSceneSegue"{
+            self.navigationItem.backBarButtonItem?.title = "Return"
+        } else {
+            self.navigationItem.backBarButtonItem?.title = "Back"  // temporary solution
+        }
+    }
+
+}
+
+extension SelectionViewController: UITextFieldDelegate {
     
     // MARK: TextField Delegate
     
@@ -151,16 +182,11 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
         //changes y-coordinate of the view above the keyboard if bottom text is selected
         if (cashTextField.isFirstResponder){
             let keyboardHeight = getKeyboardHeight(notification)
-            /* Real calculations accounting for navBar, but too much movement
-            let realOrigin = slider.superview!.convert(slider.frame.origin, to: self.view)
-            let bottomAnchor = view.frame.maxY - (slider.frame.height + realOrigin.y)
-            */
             
-            let bottomAnchor = view.frame.maxY - slider.frame.maxY*1.02 // Not a great solution but works
-        
-            if (bottomAnchor < keyboardHeight){
-                view.frame.origin.y += bottomAnchor - keyboardHeight
-            }
+            let heightDifference = view.frame.height - keyboardHeight
+            let requiredMovement = (slider.frame.height - heightDifference)/2
+            view.frame.origin.y -= requiredMovement
+            
         }
     }
     
@@ -181,22 +207,6 @@ class SelectionViewController: UIViewController, UITextFieldDelegate, BanknoteVi
         //Removes this control view as observer for notifications
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
-    
-    // MARK: Segues
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        cashTextField.resignFirstResponder()
-        
-        if segue.identifier == "containerBanknoteSegue" {
-            banknoteVC = segue.destination as? BanknoteViewController
-            banknoteVC!.banknoteViewControllerDelegate = self
-        } else if segue.identifier == "ARSceneSegue"{
-            print("Return is set")
-            self.navigationItem.backBarButtonItem?.title = "Return"
-        } else {
-            self.navigationItem.backBarButtonItem?.title = "Back"  // temporary solution
-        }
     }
 }
 
