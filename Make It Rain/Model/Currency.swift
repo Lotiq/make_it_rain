@@ -18,7 +18,7 @@ struct Currency: Codable, Equatable {
     let name: String
     let sign: String
     var ratio: Double // 1:ratio to dollars
-    var images = [Int: Data]()
+    fileprivate var images = [Int: String]() // stores URL to the image
     var availableBanknotes: Set<Int>
     
     fileprivate init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
@@ -26,13 +26,6 @@ struct Currency: Codable, Equatable {
         self.sign = sign
         self.ratio = ratio
         self.availableBanknotes = Set(availableBanknotes)
-        
-        for banknote in availableBanknotes {
-            let imageName = name + "_" + String(banknote)
-            let imageNameFull = imageName + ".jpg" // will need to accomodate other formats?
-            let image = UIImage(named: imageNameFull)! // For now no checking but should be careful!!!
-            self.images[banknote] = image.jpegData(compressionQuality: 1)
-        }
     }
     
     public init(name: String, sign: String, rate: Double, valueImageDictionary: [Int: UIImage] ){
@@ -42,19 +35,59 @@ struct Currency: Codable, Equatable {
         self.availableBanknotes = Set(valueImageDictionary.keys)
         
         for banknote in valueImageDictionary {
-            self.images[banknote.key] = banknote.value.jpegData(compressionQuality: 1)
+            
+            guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                return
+            }
+            
+            let imageName = name+"_"+String(banknote.key)+".jpg"
+            let imgPath = documentDirectoryPath.appendingPathComponent(imageName)
+            
+            do {
+                
+                try banknote.value.jpegData(compressionQuality: 1)?.write(to: imgPath, options: .atomic)
+                self.images[banknote.key] = imageName
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+ 
         }
     }
     
-    // returns images as images when needed, but stores them as Data
+    // returns images as images when needed, but stores them as Files and has a URL Path
     func getImages() -> [Int:UIImage]{
         var unarchivedImages = [Int:UIImage]()
-        for keyValue in self.images.enumerated() {
+
+        if !self.images.isEmpty {
+            let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
-            let newImage = UIImage(data: keyValue.element.value)! // For now no checking but should be careful!!!
-            unarchivedImages[keyValue.element.key] = newImage
+            for imageLoc in images{
+                let imageURL = documentDirectoryPath.appendingPathComponent(imageLoc.value)
+                //let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
+                let image = UIImage(contentsOfFile: imageURL.path)
+                unarchivedImages[imageLoc.key] = image
+            }
+        } else {
+            for banknote in self.availableBanknotes {
+                let imageName = self.name + "_" + String(banknote)
+                let imageNameFull = imageName + ".jpg"
+                let image = UIImage(named: imageNameFull)!
+                unarchivedImages[banknote] = image
+            }
         }
+        
         return unarchivedImages
+    }
+    
+    func deleteImages(){
+        if !self.images.isEmpty {
+            let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            for imageLoc in images{
+                let imageURL = documentDirectoryPath.appendingPathComponent(imageLoc.value)
+                try? FileManager.default.removeItem(at: imageURL)
+            }
+        }
     }
 }
 
@@ -88,5 +121,3 @@ extension Currency{
         return addCurrencies
     }
 }
-
-

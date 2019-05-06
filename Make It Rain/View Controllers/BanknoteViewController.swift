@@ -80,6 +80,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "banknoteCell", for: indexPath) as! BanknoteCell
         
         if (indexPath.row != 0){
+            print(banknotes[indexPath.row-1].name)
             let images = banknotes[indexPath.row-1].getImages()
             let image = images[5] ?? images.randomElement()!.value
             cell.banknoteImageView.image = image

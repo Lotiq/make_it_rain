@@ -94,6 +94,8 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     // Override to support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let currency = userDefaultCurrencies[indexPath.row]
+            currency.deleteImages()
             userDefaultCurrencies.remove(at: indexPath.row)
             UserDefaults.standard.set(try? PropertyListEncoder().encode(userDefaultCurrencies), forKey: Currency.currencyArrayKey)
             tableView.deleteRows(at: [indexPath], with: .fade)

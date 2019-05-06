@@ -115,30 +115,20 @@ class ARViewController: UIViewController {
     }
     
     @IBAction func makeItRain(_ sender: UIButton) {
-        //rained = true
-        //sender.isHidden = true
-    
-        // SB
+        rained = true
+        sender.isHidden = true
         
         guard let anchor = sceneView.scene.rootNode.childNode(withName: "anchor", recursively: true) else {
             print("No plane anchor detected")
             return
         }
-
-        //let anchor = anchorPlanesInScene[0]
-        // Find bounds of our target
-        // There is no reason to hit test anything because you already know where your target destination is.
-        
-        // Also --> your hitTest call will always return false
-        // hitTest is for testing whether a user's touch on screen (in UIKit screen space) intersects with an object in the scene
-        // You cannot use hitTest to test scene space coordinates.
         
         let (min, max) = anchor.boundingBox
-        //let thisAnchor = anchor
-        // Anchor here refers to the plane you added to the anchor
-        // The coordinate space of the anchor is local
-        // You need to convert this coordinate space to world space
+
         
+        // Anchor here refers to the plane added to the anchor
+        // The coordinate space of the anchor is local
+        // This coordinate space needs to be converted  to world space
         
         let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
         let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
@@ -158,6 +148,7 @@ class ARViewController: UIViewController {
         let xMaxActual = Float.maximum(minWorld.x, maxWorld.x)
         let zMinActual = Float.minimum(minWorld.z, maxWorld.z)
         let zMaxActual = Float.maximum(minWorld.z, maxWorld.z)
+        
         /*
         let box1 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
         box1.position = SCNVector3(xMinActual, anchorWorldPosition.y, zMinActual)
@@ -175,7 +166,6 @@ class ARViewController: UIViewController {
         box4.position = SCNVector3(xMaxActual, anchorWorldPosition.y, zMinActual)
         sceneView.scene.rootNode.addChildNode(box4)
         */
-
         
         for anchorPlane in anchorPlanesInScene {
             anchorPlane.isHidden = true

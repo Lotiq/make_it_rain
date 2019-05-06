@@ -124,6 +124,8 @@ class NewCurrencyViewController: UIViewController {
         if (!isEdited){
             updatedCurrencies.append(newCurrency)
         } else {
+            let currency = updatedCurrencies[passedIndexValue.0]
+            currency.deleteImages()
             updatedCurrencies.remove(at: passedIndexValue.0)
             updatedCurrencies.append(newCurrency)
         }

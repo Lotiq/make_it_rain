@@ -54,7 +54,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         
         cashTextField.layer.masksToBounds = false
         cashTextField.layer.shadowRadius = 3.0
-        cashTextField.layer.shadowColor = UIColor.black.cgColor
+        cashTextField.layer.shadowColor = UIColor.gray.cgColor
         cashTextField.layer.shadowOffset = CGSize(width: 1, height: 1)
         cashTextField.layer.shadowOpacity = 1.0
         
