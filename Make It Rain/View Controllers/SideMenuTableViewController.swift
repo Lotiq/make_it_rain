@@ -12,11 +12,23 @@ class SideMenuTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor.themeColor.main
+        navigationController?.navigationBar.barTintColor = UIColor.themeColor.secondary
+        navigationController?.navigationBar.isTranslucent = false
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func myCurrenciesAction(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "MyCurrenciesTableViewController") as! MyCurrenciesTableViewController
+        vc.doublePresenting = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func aboutAction(_ sender: UIButton) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

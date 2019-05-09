@@ -11,6 +11,7 @@ import UIKit
 class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var currencyTableView: UITableView!
+    var doublePresenting = false
     var userDefaultCurrencies: [Currency]!
     
     override func viewDidLoad() {
@@ -33,15 +34,55 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        userDefaultCurrencies = Currency.userDefaultCurrencies
-        currencyTableView.reloadData()
-        print("viewWillAppear")
+        if (!doublePresenting){
+            super.viewWillAppear(animated)
+            userDefaultCurrencies = Currency.userDefaultCurrencies
+            currencyTableView.reloadData()
+            print("viewWillAppear")
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("viewWillDisappear")
+        
+        // Remove all animations.
+        for view in view.subviews {
+            view.layer.removeAllAnimations()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (!doublePresenting){
+            super.viewDidAppear(animated)
+            print("viewDidAppear")
+            for i in 0..<userDefaultCurrencies.count{
+                let cell = self.currencyTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MyCurrencyTableViewCell
+                cell?.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY)
+                
+                UIView.animate(
+                    withDuration: 2,
+                    delay: 0.07 * Double(i),
+                    animations: {
+                        cell?.contentView.alpha = 1
+                })
+                
+                UIView.animate(
+                    withDuration: 0.7,
+                    delay: 0.07 * Double(i),
+                    animations: {
+            
+                        cell?.transform = .identity
+                })
+            }
+        } else {
+            doublePresenting = false
+        }
+        
+    }
+    
+    @IBAction func newCurrencyAction(_ sender: Any) {
+        let newCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
+        self.navigationController?.pushViewController(newCurrencyVC, animated: true)
     }
     
     
@@ -56,11 +97,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         // #warning Incomplete implementation, return the number of rows
         return userDefaultCurrencies.count
     }
-
-    @IBAction func newCurrencyAction(_ sender: Any) {
-        let newCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
-        self.navigationController?.pushViewController(newCurrencyVC, animated: true)
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -68,20 +104,11 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         let image = userDefaultCurrencies[indexPath.row].getImages().randomElement()!.value // force unwrapping is not good, fix later
         cell.sampleBanknoteImageView.image = image
         cell.nameLabel.text = userDefaultCurrencies[indexPath.row].name
-        
+        cell.contentView.alpha = 0
         // Configure the cell...
 
         return cell
     }
-    
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController

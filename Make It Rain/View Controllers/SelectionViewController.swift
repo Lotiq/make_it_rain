@@ -38,6 +38,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         SideMenuManager.default.menuFadeStatusBar = false
         SideMenuManager.default.menuPresentMode = .viewSlideInOut
         SideMenuManager.default.menuShadowColor = UIColor.darkGray
+        //SideMenuManager.default.menuPushStyle = .replace
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "money")!)
         
         setupSlider(slider: slider)
@@ -54,7 +55,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         
         cashTextField.layer.masksToBounds = false
         cashTextField.layer.shadowRadius = 3.0
-        cashTextField.layer.shadowColor = UIColor.gray.cgColor
+        cashTextField.layer.shadowColor = UIColor.darkGray.cgColor
         cashTextField.layer.shadowOffset = CGSize(width: 1, height: 1)
         cashTextField.layer.shadowOpacity = 1.0
         

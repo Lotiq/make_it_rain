@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1C0493FC227F80B4005D0ABD /* RainEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0493FB227F80B4005D0ABD /* RainEmitter.swift */; };
+		1C0493FE227FF041005D0ABD /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0493FD227FF041005D0ABD /* AboutViewController.swift */; };
 		1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C14E436226534D700EB14C1 /* BanknoteViewController.swift */; };
 		1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B3226392DD00ECD4DF /* Media.xcassets */; };
 		1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Make_It_Rain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C0493FB227F80B4005D0ABD /* RainEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainEmitter.swift; sourceTree = "<group>"; };
+		1C0493FD227FF041005D0ABD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1C14E436226534D700EB14C1 /* BanknoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteViewController.swift; sourceTree = "<group>"; };
 		1C69F9B3226392DD00ECD4DF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cash_Currency.ttf; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				1C14E436226534D700EB14C1 /* BanknoteViewController.swift */,
 				1C78A963226247A000436085 /* SelectionViewController.swift */,
 				1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */,
+				1C0493FD227FF041005D0ABD /* AboutViewController.swift */,
 				1CC4E47D226E1D4D0084F229 /* ARViewController.swift */,
 			);
 			path = "View Controllers";
@@ -358,6 +361,7 @@
 				1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */,
 				1CC4E48422738E170084F229 /* ActionButton.swift in Sources */,
 				1CC4E4802270CA480084F229 /* ImageValueTableViewCell.swift in Sources */,
+				1C0493FE227FF041005D0ABD /* AboutViewController.swift in Sources */,
 				1CC4E47E226E1D4D0084F229 /* ARViewController.swift in Sources */,
 				1C78A99422627B4F00436085 /* Extensions.swift in Sources */,
 				1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */,

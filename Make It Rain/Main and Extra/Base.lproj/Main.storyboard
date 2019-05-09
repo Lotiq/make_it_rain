@@ -37,7 +37,7 @@
         <!--Selection View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SelectionViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectionViewController" id="BYZ-38-t0r" customClass="SelectionViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -158,7 +158,7 @@
                                             <color key="titleColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="oPN-CF-xDX" kind="show" id="YvP-nI-eW5"/>
+                                            <action selector="myCurrenciesAction:" destination="0ZF-oD-Mgv" eventType="touchUpInside" id="0p2-7X-4eW"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4j-vy-8rn">
@@ -168,7 +168,7 @@
                                             <color key="titleColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="6Av-dp-Oog" kind="show" identifier="AboutViewControllerSegue" id="2Qr-mw-1cf"/>
+                                            <action selector="aboutAction:" destination="0ZF-oD-Mgv" eventType="touchUpInside" id="Vv4-NQ-1dB"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -190,13 +190,13 @@
         <!--My Currencies Table View Controller-->
         <scene sceneID="UK0-LY-uC5">
             <objects>
-                <viewController id="oPN-CF-xDX" customClass="MyCurrenciesTableViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyCurrenciesTableViewController" id="oPN-CF-xDX" customClass="MyCurrenciesTableViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="C1h-h0-hfD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xBB-BU-mQu">
-                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyCurrencyTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyCurrencyTableViewCell" rowHeight="250" id="67Y-q4-zzz" customClass="MyCurrencyTableViewCell" customModule="Make_It_Rain" customModuleProvider="target">
@@ -276,23 +276,27 @@
             </objects>
             <point key="canvasLocation" x="2777" y="-1094"/>
         </scene>
-        <!--View Controller-->
+        <!--About View Controller-->
         <scene sceneID="8dX-Sd-drU">
             <objects>
-                <viewController id="6Av-dp-Oog" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" id="6Av-dp-Oog" customClass="AboutViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sp9-Rn-hSA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Well, this is a story of my life " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vF0-vZ-tfn">
-                                <rect key="frame" x="16" y="140" width="343" height="453"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make It Rain is a non-profit open-source app created by Timothy Lobiak" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vF0-vZ-tfn">
+                                <rect key="frame" x="20" y="63.999999999999993" width="335" height="73.333333333333314"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="20"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.67843137249999996" green="0.77647058820000003" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vF0-vZ-tfn" firstAttribute="leading" secondItem="IEd-vU-0Po" secondAttribute="leading" constant="20" id="dH2-qE-GIm"/>
+                            <constraint firstItem="vF0-vZ-tfn" firstAttribute="top" secondItem="IEd-vU-0Po" secondAttribute="top" constant="20" id="m9J-MD-97X"/>
+                            <constraint firstItem="IEd-vU-0Po" firstAttribute="trailing" secondItem="vF0-vZ-tfn" secondAttribute="trailing" constant="20" id="xPi-WK-PK6"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IEd-vU-0Po"/>
                     </view>
                 </viewController>
@@ -451,7 +455,7 @@
         <!--View Controller-->
         <scene sceneID="T3z-fY-ibF">
             <objects>
-                <viewController id="Ler-Rg-6dv" customClass="ARViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ARViewController" id="Ler-Rg-6dv" customClass="ARViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i0Z-V9-NHZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -460,15 +464,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </arscnView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRq-Jk-Psb">
-                                <rect key="frame" x="0.0" y="753" width="375" height="25"/>
+                                <rect key="frame" x="0.0" y="753.66666666666663" width="375" height="24.333333333333371"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="01b-oj-lZ3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5K-Rj-D0F">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="24.666666666666668"/>
                                             <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="20"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" red="0.76470588240000004" green="0.59999999999999998" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

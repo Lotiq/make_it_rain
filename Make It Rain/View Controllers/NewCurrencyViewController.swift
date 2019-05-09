@@ -142,16 +142,18 @@ class NewCurrencyViewController: UIViewController {
     
     func checkForCompletion() -> Bool{
         
-        guard nameTextField.text != "", currencySignTextField.text != "", Double(rateTextField.text!) != nil, rateTextField.text != "", !currencySignTextField.hasErrorMessage , !rateTextField.hasErrorMessage else{
-         
+        guard nameTextField.text != "", currencySignTextField.text != "", Double(rateTextField.text!) != nil, rateTextField.text != "", !currencySignTextField.hasErrorMessage , !rateTextField.hasErrorMessage else {
             return false
         }
     
         var valueImageDictionary: [Int:UIImage] = [:]
         for i in 0..<imageValueArray.count - 1 {
-            guard let value = imageValueArray[i].1 else{
+            
+            // Check for value of each row that has an image
+            guard let value = imageValueArray[i].1, value != 0 else{
                 return false
             }
+            
             valueImageDictionary[value] = imageValueArray[i].0
         }
         

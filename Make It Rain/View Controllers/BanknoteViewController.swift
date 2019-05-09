@@ -79,9 +79,10 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "banknoteCell", for: indexPath) as! BanknoteCell
         
+        // Check if the cell is not the one reserved for new currencies
         if (indexPath.row != 0){
-            print(banknotes[indexPath.row-1].name)
             let images = banknotes[indexPath.row-1].getImages()
+        
             let image = images[5] ?? images.randomElement()!.value
             cell.banknoteImageView.image = image
         } else {

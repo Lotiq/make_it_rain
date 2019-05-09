@@ -18,7 +18,7 @@ struct Currency: Codable, Equatable {
     let name: String
     let sign: String
     var ratio: Double // 1:ratio to dollars
-    fileprivate var images = [Int: String]() // stores URL to the image
+    fileprivate var images = [Int: String]() // stores the name of the image
     var availableBanknotes: Set<Int>
     
     fileprivate init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
@@ -40,12 +40,12 @@ struct Currency: Codable, Equatable {
                 return
             }
             
-            let imageName = name+"_"+String(banknote.key)+".jpg"
+            let imageName = name+"_"+String(banknote.key)+".png"
             let imgPath = documentDirectoryPath.appendingPathComponent(imageName)
             
             do {
-                
-                try banknote.value.jpegData(compressionQuality: 1)?.write(to: imgPath, options: .atomic)
+                try banknote.value.pngData()?.write(to: imgPath, options: .atomic)
+                //try banknote.value.jpegData(compressionQuality: 1)?.write(to: imgPath, options: .atomic)
                 self.images[banknote.key] = imageName
                 
             } catch {

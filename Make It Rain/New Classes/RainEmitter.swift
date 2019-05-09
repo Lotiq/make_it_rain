@@ -31,7 +31,7 @@ class RainEmitter {
         cell.scale = 0.3
         cell.scaleRange = 0.3
         cell.spin = 0.1
-        cell.spinRange = 0.15
+        cell.spinRange = 0.2
         
         cells.append(cell)
         return cells
