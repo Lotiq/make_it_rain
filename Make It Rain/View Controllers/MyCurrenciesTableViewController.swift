@@ -11,6 +11,7 @@ import UIKit
 class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var currencyTableView: UITableView!
+    @IBOutlet weak var addNewCurrencyButton: CircularButton!
     var doublePresenting = false
     var userDefaultCurrencies: [Currency]!
     
@@ -19,7 +20,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         currencyTableView.backgroundColor = UIColor.themeColor.secondary
         currencyTableView.separatorStyle = .none
         userDefaultCurrencies = Currency.userDefaultCurrencies
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -60,7 +60,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
                 cell?.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY)
                 
                 UIView.animate(
-                    withDuration: 2,
+                    withDuration: 1.4,
                     delay: 0.07 * Double(i),
                     animations: {
                         cell?.contentView.alpha = 1
@@ -89,7 +89,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 

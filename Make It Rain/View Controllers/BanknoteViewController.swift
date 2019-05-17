@@ -82,8 +82,8 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         // Check if the cell is not the one reserved for new currencies
         if (indexPath.row != 0){
             let images = banknotes[indexPath.row-1].getImages()
-        
-            let image = images[5] ?? images.randomElement()!.value
+            let smallestValue = images.keys.min()!
+            let image = images[5] ?? images[smallestValue]
             cell.banknoteImageView.image = image
         } else {
             let image = UIImage(named: "newCurrency.jpg")

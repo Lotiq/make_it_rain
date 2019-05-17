@@ -89,14 +89,49 @@ struct Currency: Codable, Equatable {
             }
         }
     }
+    
+    static func distributeCurrencyDescending() -> [Int : Int]{
+        let availableBanknotes = Currency.selectedCurrency.availableBanknotes
+        let money = Int(Double(Currency.dollarValue)/Currency.selectedCurrency.ratio)
+        var output = [Int : Int]()
+        var r = money
+        var mutableAvailableBanknotes = availableBanknotes
+        while(r >= availableBanknotes.min()!){
+            let newMax = mutableAvailableBanknotes.max()!
+            let (quotient, remainder) = r.quotientAndRemainder(dividingBy: newMax)
+            r = remainder
+            output[newMax] = quotient
+            mutableAvailableBanknotes.remove(newMax)
+        }
+        
+        // Rounding up so at least 1 currency
+        if r > 0 {
+            if let val = output[availableBanknotes.min()!]{
+                output[availableBanknotes.min()!] = val + 1
+            } else {
+                output[availableBanknotes.min()!] = 1
+            }
+        }
+        
+        return output
+    }
+    
+    static func isRenderableFor(maxcount: Int) -> Bool {
+        let output = distributeCurrencyDescending()
+        let count = output.reduce(0) { (total, entry) -> Int in
+            total + entry.value
+        }
+        
+        return count <= maxcount
+    }
 }
 
 extension Currency{
     
     static var localCurrencies: [Currency] {
-        let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [1,5])
+        let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [1,5,20,100])
         let euro = Currency(name: "euro", sign: "€", ratio: 1.13, availableBanknotes: [5])
-        let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5])
+        let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5,50])
         let yuan = Currency(name: "yuan", sign: "¥", ratio: 0.15, availableBanknotes: [50])
         return [dollar,euro,pound,yuan]
     }

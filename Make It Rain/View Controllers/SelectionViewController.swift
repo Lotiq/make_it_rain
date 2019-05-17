@@ -25,12 +25,13 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     
 
     @IBOutlet weak var slider: CircularSlider!
-    @IBOutlet weak var playBarButton: UIBarButtonItem!
+    @IBOutlet weak var playBarButton: PulsingBarButtonItem!
     @IBOutlet weak var menuBarButton: UIBarButtonItem!
     @IBOutlet weak var cashTextField: CashTextField!
 
     var banknoteVC: BanknoteViewController!
     var topBar: CGFloat = 0
+    var pulseLayers: [CAShapeLayer] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +47,18 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
          view.backgroundColor = UIColor.themeColor.secondary
         topBar = UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
-        //navigationController?.navigationBar.backgroundColor = UIColor.themeColor.main
         navigationController?.navigationBar.barTintColor = UIColor.themeColor.main
         navigationController?.navigationBar.isTranslucent = false
-        playBarButton.tintColor = UIColor.themeColor.extra
+        
+        
+        let button = UIButton(type: .custom)
+        let image = UIImage(named: "plays")!.withRenderingMode(.alwaysTemplate)
+        button.setImage(image.tint(with: UIColor.themeColor.extra), for: .normal)
+        button.tintColor = UIColor.themeColor.extra
+        button.addTarget(self, action: #selector(presentARVC), for: .touchUpInside)
+        button.frame = CGRect(x: 0, y: 0, width: 48, height: 44)
+        playBarButton.customView = button
+        
         menuBarButton.tintColor = UIColor.themeColor.extra
         menuBarButton.image = UIImage(named: "list.png")
         
@@ -58,8 +67,8 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         cashTextField.layer.shadowColor = UIColor.darkGray.cgColor
         cashTextField.layer.shadowOffset = CGSize(width: 1, height: 1)
         cashTextField.layer.shadowOpacity = 1.0
-        
         cashTextField.delegate = self
+        
         slider.addTarget(self, action: #selector(updateCashValue), for: .valueChanged)
         
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
@@ -71,14 +80,29 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         rainMoney(with: UIImage(named: "dollar_particle.png")!)
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeybordNotifications()
+        subscribeToBackgroundNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
+        unsubscribeToBackgroundNotifications()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        playBarButton.pulse()
+        
     }
     
     func setupSlider(slider: CircularSlider){
@@ -111,7 +135,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     
     func rainMoney(with image: UIImage){
         let emitter = RainEmitter.get(with: image)
-        emitter.emitterPosition = CGPoint(x: view.frame.width/2, y: -10)
+        emitter.emitterPosition = CGPoint(x: view.frame.width/2, y: -20)
         emitter.emitterSize = CGSize(width: view.frame.width*2, height: 2)
         let newView = UIView()
         newView.layer.addSublayer(emitter)
@@ -119,7 +143,26 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         view.sendSubviewToBack(newView)
     }
     
+    @objc func addAnimations(){
+        playBarButton.pulse()
+    }
+    
     // MARK: Segues
+    
+    @objc func presentARVC(){
+        if (Currency.isRenderableFor(maxcount: 100000)){
+            let vc = storyboard?.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+            let vc = storyboard.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
+            
+            vc.bodyText = "I know you are a wealthy one, but this is too much money to rain my dear, try something more modest"
+            vc.titleText = "Ouch!"
+            vc.buttonText = "Fine"
+            present(vc, animated: true, completion: nil)
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         cashTextField.resignFirstResponder()
@@ -208,6 +251,18 @@ extension SelectionViewController: UITextFieldDelegate {
         //Removes this control view as observer for notifications
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    // MARK: Background Notifications
+    
+    func subscribeToBackgroundNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(addAnimations), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
+    }
+    
+    func unsubscribeToBackgroundNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 }
 

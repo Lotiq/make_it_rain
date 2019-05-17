@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uQj-Oe-IEz">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Alert View Controller-->
+        <scene sceneID="L9V-gD-oXe">
+            <objects>
+                <viewController storyboardIdentifier="AlertViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="uQj-Oe-IEz" customClass="AlertViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yDL-OM-rQO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wff-DX-8az">
+                                <rect key="frame" x="69.5" y="310.5" width="275" height="275"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCP-VU-rAU">
+                                        <rect key="frame" x="8" y="8" width="259" height="37"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="30"/>
+                                        <color key="textColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whatever the text is" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VC-gF-UOb">
+                                        <rect key="frame" x="8" y="61" width="259" height="21"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdW-MC-A5m" customClass="ActionButton" customModule="Make_It_Rain" customModuleProvider="target">
+                                        <rect key="frame" x="122.5" y="237" width="30" height="30"/>
+                                        <state key="normal" title="OK"/>
+                                        <connections>
+                                            <action selector="actionButtonPressed:" destination="uQj-Oe-IEz" eventType="touchUpInside" id="liW-ER-F5A"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.30588235289999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="GdW-MC-A5m" secondAttribute="bottom" constant="8" id="29v-dz-93z"/>
+                                    <constraint firstItem="1VC-gF-UOb" firstAttribute="leading" secondItem="wff-DX-8az" secondAttribute="leading" constant="8" id="41g-RP-Jd1"/>
+                                    <constraint firstItem="1VC-gF-UOb" firstAttribute="top" secondItem="vCP-VU-rAU" secondAttribute="bottom" constant="16" id="PxB-jA-Ps9"/>
+                                    <constraint firstAttribute="trailing" secondItem="vCP-VU-rAU" secondAttribute="trailing" constant="8" id="Rrw-6g-eV6"/>
+                                    <constraint firstItem="vCP-VU-rAU" firstAttribute="leading" secondItem="wff-DX-8az" secondAttribute="leading" constant="8" id="etP-Ma-ZDp"/>
+                                    <constraint firstAttribute="height" constant="275" id="pN7-8E-eDa"/>
+                                    <constraint firstItem="GdW-MC-A5m" firstAttribute="centerX" secondItem="wff-DX-8az" secondAttribute="centerX" id="rEc-eA-1dX"/>
+                                    <constraint firstAttribute="trailing" secondItem="1VC-gF-UOb" secondAttribute="trailing" constant="8" id="wE0-nR-soe"/>
+                                    <constraint firstAttribute="width" constant="275" id="wGy-Ys-sho"/>
+                                    <constraint firstItem="vCP-VU-rAU" firstAttribute="top" secondItem="wff-DX-8az" secondAttribute="top" constant="8" id="xto-bg-9eN"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="wff-DX-8az" firstAttribute="centerX" secondItem="yDL-OM-rQO" secondAttribute="centerX" id="8b4-SQ-bV4"/>
+                            <constraint firstItem="wff-DX-8az" firstAttribute="centerY" secondItem="yDL-OM-rQO" secondAttribute="centerY" id="tgG-Pw-dot"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wKn-Ra-URA"/>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="wff-DX-8az" id="4O7-iM-4NQ"/>
+                        <outlet property="bodyLabel" destination="1VC-gF-UOb" id="kC1-Lj-LYc"/>
+                        <outlet property="buttonLabel" destination="GdW-MC-A5m" id="RTC-Tg-ZSs"/>
+                        <outlet property="titleLabel" destination="vCP-VU-rAU" id="ZMu-Bt-cGK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oY3-Nj-oQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-462.31884057971018" y="-167.41071428571428"/>
+        </scene>
+    </scenes>
+</document>

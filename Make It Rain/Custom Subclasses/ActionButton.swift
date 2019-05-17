@@ -34,12 +34,12 @@ class ActionButton: UIButton {
         //self.titleLabel?.font = UIFont(name: "Montserrat Medium", size: 24)
         self.titleLabel?.font = UIFont(name: "Money Money", size: 24)
         self.backgroundColor = UIColor.themeColor.extra
-        self.layer.masksToBounds = false
         self.layer.cornerRadius = 10
         self.layer.shadowRadius = 4.0
         self.layer.shadowColor = UIColor.gray.cgColor //UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.layer.shadowOpacity = 1.0
+        self.layer.masksToBounds = true
         self.contentEdgeInsets = UIEdgeInsets(top: 8, left: 10, bottom: 8, right: 10)
         
     }

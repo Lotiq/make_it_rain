@@ -43,7 +43,7 @@ class ARViewController: UIViewController {
         interaction(isHidden: true)
         selectedCurrency = Currency.selectedCurrency
         money = Int(Double(Currency.dollarValue)/selectedCurrency.ratio)
-        banknoteBank = distributeCurrencyDescending(availableBanknotes: selectedCurrency.availableBanknotes, money: money)
+        banknoteBank = Currency.distributeCurrencyDescending()
         sceneView.delegate = self
         
         for banknote in banknoteBank{
@@ -122,20 +122,33 @@ class ARViewController: UIViewController {
             print("No plane anchor detected")
             return
         }
-        
-        let (min, max) = anchor.boundingBox
-
+        //var corners: [(x: Float,z: Float)] = []
+        //let (min, max) = anchor.boundingBox
         
         // Anchor here refers to the plane added to the anchor
         // The coordinate space of the anchor is local
         // This coordinate space needs to be converted  to world space
         
-        let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
-        let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
- 
+        //let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
+        //let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
+        
+        var width: Float!
+        var height: Float!
         
         let anchorWorldPosition = anchor.convertPosition(anchor.position, to: sceneView.scene.rootNode)
-     
+        
+        if let plane = anchor.geometry as? SCNPlane {
+            width = Float(plane.width)
+            height = Float(plane.height)
+            /*
+            corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z - height/2))
+            corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z + height/2))
+            corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z - height/2))
+            corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z + height/2))
+             */
+        
+        }
+        
         // Always just use a test cube to check your math
         // let cube = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
         // cube.position = anchor.convertPosition(anchor.position, to: sceneView.scene.rootNode)
@@ -143,27 +156,29 @@ class ARViewController: UIViewController {
         
         // Get number of notes to drop
         // I'm not sure how the banknodeBank works, so I'm just taking the total number from all entries in the dictionary
-        
+        /*
+        print(minWorld.y, maxWorld.y)
         let xMinActual = Float.minimum(minWorld.x, maxWorld.x)
         let xMaxActual = Float.maximum(minWorld.x, maxWorld.x)
         let zMinActual = Float.minimum(minWorld.z, maxWorld.z)
         let zMaxActual = Float.maximum(minWorld.z, maxWorld.z)
+        */
         
         /*
         let box1 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box1.position = SCNVector3(xMinActual, anchorWorldPosition.y, zMinActual)
+        box1.position = SCNVector3(corners[0].x, anchorWorldPosition.y, corners[0].z)
         sceneView.scene.rootNode.addChildNode(box1)
         
         let box2 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box2.position = SCNVector3(xMaxActual, anchorWorldPosition.y, zMaxActual)
+        box2.position = SCNVector3(corners[1].x, anchorWorldPosition.y, corners[1].z)
         sceneView.scene.rootNode.addChildNode(box2)
         
         let box3 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box3.position = SCNVector3(xMinActual, anchorWorldPosition.y, zMaxActual)
+        box3.position = SCNVector3(corners[2].x, anchorWorldPosition.y, corners[2].z)
         sceneView.scene.rootNode.addChildNode(box3)
         
         let box4 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box4.position = SCNVector3(xMaxActual, anchorWorldPosition.y, zMinActual)
+        box4.position = SCNVector3(corners[3].x, anchorWorldPosition.y, corners[3].z)
         sceneView.scene.rootNode.addChildNode(box4)
         */
         
@@ -174,15 +189,16 @@ class ARViewController: UIViewController {
         let count = banknoteBank.reduce(0) { (total, entry) -> Int in
             total + entry.value
         }
+        
         var timing = (2+Double(count)/10)
-        if timing > 15 {
-            timing = 15
+        if timing > 30 {
+            timing = 30
         }
         
         for banknote in banknoteBank {
             for _ in (0..<banknote.value){
-                let endX = Float.random(in: xMinActual ... xMaxActual)
-                let endZ = Float.random(in: zMinActual ... zMaxActual)
+                let endX = Float.random(in: anchorWorldPosition.x - width/2 ... anchorWorldPosition.x + width/2)
+                let endZ = Float.random(in: anchorWorldPosition.z - height/2 ... anchorWorldPosition.z + height/2)
                 
                 let zFightingAdjustment = Float.random(in: 0.00001...0.01)
                 let endY = anchorWorldPosition.y + zFightingAdjustment
@@ -216,22 +232,6 @@ class ARViewController: UIViewController {
         actionButton.isHidden = isHidden
         sessionInfoView.isHidden = !isHidden
     }
-
-    // TEMPORARY FUNCTION
-    func distributeCurrencyDescending(availableBanknotes: Set<Int>, money: Int) -> [Int : Int]{
-        var output = [Int : Int]()
-        var r = money
-        var mutableAvailableBanknotes = availableBanknotes
-        while(r >= availableBanknotes.min()!){
-            let newMax = mutableAvailableBanknotes.max()!
-            let (quotient, remainder) = r.quotientAndRemainder(dividingBy: newMax)
-            r = remainder
-            output[newMax] = quotient
-            mutableAvailableBanknotes.remove(newMax)
-        }
-        
-        return output
-    }
 }
 
 
@@ -248,6 +248,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
         let planeNode = SCNNode(geometry: plane)
         planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
+        
         
         /*
          `SCNPlane` is vertically oriented in its local coordinate space, so
@@ -291,10 +292,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         plane.width = CGFloat(planeAnchor.extent.x)
         plane.height = CGFloat(planeAnchor.extent.z)
     }
-    /*
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
-        <#code#>
-    }*/
+    
     // MARK: - ARSessionDelegate
     
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
