@@ -50,6 +50,8 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         banknoteCollectionView.showsVerticalScrollIndicator = false
         banknoteCollectionView.showsHorizontalScrollIndicator = false
         
+        // Fixes collection view layout for large screens with poor size estimation 
+        banknoteCollectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
