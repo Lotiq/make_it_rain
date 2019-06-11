@@ -12,10 +12,6 @@ class PulsingBarButtonItem: UIBarButtonItem {
     
     var pulseLayers: [CAShapeLayer] = []
     
-    override init() {
-        super.init()
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -27,6 +23,7 @@ class PulsingBarButtonItem: UIBarButtonItem {
         }
         
         for i in 0..<3{
+            
             if i < pulseLayers.count {
                pulseLayers[i].removeAllAnimations()
             }
@@ -37,16 +34,11 @@ class PulsingBarButtonItem: UIBarButtonItem {
             pulseLayer.lineWidth = 2
             pulseLayer.fillColor = UIColor.clear.cgColor
             pulseLayer.opacity = 0
-            view.layer.addSublayer(pulseLayer)
-            pulseLayer.strokeColor = UIColor.themeColor.extra.cgColor
+            pulseLayer.strokeColor = UIColor.theme.gold.cgColor
             pulseLayer.lineCap = .round
             pulseLayer.position = CGPoint(x: view.frame.width/2 , y: view.frame.height/2)
-            //pulseLayers[i] = pulseLayer
-            if i < pulseLayers.count {
-                pulseLayers[i] = pulseLayer
-            } else {
-                pulseLayers.append(pulseLayer)
-            }
+            view.layer.addSublayer(pulseLayer)
+            pulseLayers.insert(pulseLayer, at: i)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
@@ -83,5 +75,4 @@ class PulsingBarButtonItem: UIBarButtonItem {
         
         pulseLayers[index].add(group, forKey: "group")
     }
-    
 }

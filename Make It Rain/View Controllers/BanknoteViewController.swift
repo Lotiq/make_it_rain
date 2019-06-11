@@ -10,22 +10,25 @@ import UIKit
 import CenteredCollectionView
 
 protocol BanknoteViewControllerDelegate{
-    func updateView(ratio: Double)
+    func updateView()
     func updateBackButton()
 }
 
 class BanknoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait}
+    
     @IBOutlet weak var banknoteCollectionView: UICollectionView!
     @IBOutlet weak var centeredCollectionViewFlowLayout: CenteredCollectionViewFlowLayout!
     
     var banknoteViewControllerDelegate: BanknoteViewControllerDelegate?
-    var banknotes = Currency.allCurrencies
+    var allCurrencies = Currency.allCurrencies
+    
+    // MARK: Override Presenting Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // Modify the collectionView's decelerationRate
         banknoteCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         banknoteCollectionView.backgroundColor = .clear
@@ -40,10 +43,9 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
             height: banknoteCollectionView.bounds.height * 0.7
         )
         
-        
         // Configure the optional inter item spacing
         centeredCollectionViewFlowLayout.minimumLineSpacing = 20
-        //banknoteCollectionView.collectionViewLayout = centeredCollectionViewFlowLayout
+        
         // Get rid of scrolling indicators
         banknoteCollectionView.showsVerticalScrollIndicator = false
         banknoteCollectionView.showsHorizontalScrollIndicator = false
@@ -52,36 +54,30 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        banknotes = Currency.allCurrencies
+        allCurrencies = Currency.allCurrencies
         banknoteCollectionView.reloadData()
-        let index = banknotes.firstIndex(of: Currency.selectedCurrency) ?? 0
-        let ratio = Currency.selectedCurrency.ratio/banknotes[index].ratio
-        Currency.selectedCurrency = banknotes[index]
-        self.banknoteViewControllerDelegate?.updateView(ratio: ratio)
+        let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
+        Currency.selectedCurrency = allCurrencies[index]
+        self.banknoteViewControllerDelegate?.updateView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        let index = banknotes.firstIndex(of: Currency.selectedCurrency) ?? 0
-        
+        let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
         centeredCollectionViewFlowLayout.scrollToPage(index: index+1, animated: true)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-    }
     
+    // MARK: Collection View Setup
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return banknotes.count+1
-    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {return allCurrencies.count + 1}
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "banknoteCell", for: indexPath) as! BanknoteCell
         
         // Check if the cell is not the one reserved for new currencies
         if (indexPath.row != 0){
-            let images = banknotes[indexPath.row-1].getImages()
+            let images = allCurrencies[indexPath.row-1].getImages()
             let smallestValue = images.keys.min()!
             let image = images[5] ?? images[smallestValue]
             cell.banknoteImageView.image = image
@@ -100,12 +96,11 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         if currentCenteredPage != indexPath.row {
             centeredCollectionViewFlowLayout.scrollToPage(index: indexPath.row, animated: true)
             if (indexPath.row != 0){
-                let ratio = Currency.selectedCurrency.ratio/banknotes[indexPath.row-1].ratio
-                Currency.selectedCurrency = banknotes[indexPath.row-1]
-                self.banknoteViewControllerDelegate?.updateView(ratio: ratio)
+                Currency.selectedCurrency = allCurrencies[indexPath.row-1]
+                self.banknoteViewControllerDelegate?.updateView()
             }
         } else {
-            // tapped again
+            // Tapped again
             if (indexPath.row == 0){
                 let nextVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
                 self.banknoteViewControllerDelegate?.updateBackButton()
@@ -114,18 +109,13 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    
     // MARK: Scroll View to Track current location
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (centeredCollectionViewFlowLayout.currentCenteredPage != 0){
-            let ratio = Currency.selectedCurrency.ratio/banknotes[centeredCollectionViewFlowLayout.currentCenteredPage!-1].ratio
-            Currency.selectedCurrency = banknotes[centeredCollectionViewFlowLayout.currentCenteredPage!-1]
-            self.banknoteViewControllerDelegate?.updateView(ratio: ratio)
+            Currency.selectedCurrency = allCurrencies[centeredCollectionViewFlowLayout.currentCenteredPage!-1]
+            self.banknoteViewControllerDelegate?.updateView()
         }
     }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
 }

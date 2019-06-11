@@ -100,6 +100,14 @@
 			path = "New Classes";
 			sourceTree = "<group>";
 		};
+		1C0494092292BF40005D0ABD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1C78A99322627B4F00436085 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		1C78A955226247A000436085 = {
 			isa = PBXGroup;
 			children = (
@@ -121,14 +129,15 @@
 		1C78A960226247A000436085 /* Make It Rain */ = {
 			isa = PBXGroup;
 			children = (
+				1C0494092292BF40005D0ABD /* Extensions */,
 				1C0493FA227F8099005D0ABD /* New Classes */,
 				1CC8C1E022779AF50058C6F6 /* Custom Subclasses */,
-				1CC8C1DF22779AB40058C6F6 /* Assets */,
 				1CC8C1DE22779A820058C6F6 /* Model */,
 				1CC8C1DD22779A6A0058C6F6 /* Cells */,
 				1CC4E47C226AA2C10084F229 /* View Controllers */,
-				1C78A995226290DA00436085 /* Fonts */,
 				1CC8C1E122779B2E0058C6F6 /* Main and Extra */,
+				1CC8C1DF22779AB40058C6F6 /* Assets */,
+				1C78A995226290DA00436085 /* Fonts */,
 			);
 			path = "Make It Rain";
 			sourceTree = "<group>";
@@ -203,9 +212,8 @@
 		1CC8C1E122779B2E0058C6F6 /* Main and Extra */ = {
 			isa = PBXGroup;
 			children = (
-				1C049401228D6504005D0ABD /* AlertStoryboard.storyboard */,
 				1C78A961226247A000436085 /* AppDelegate.swift */,
-				1C78A99322627B4F00436085 /* Extensions.swift */,
+				1C049401228D6504005D0ABD /* AlertStoryboard.storyboard */,
 				1C78A965226247A000436085 /* Main.storyboard */,
 				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
 				1C78A96D226247A200436085 /* Info.plist */,

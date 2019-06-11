@@ -30,9 +30,9 @@ class NewCurrencyViewController: UIViewController {
         self.setupHideKeyboardOnTap()
         saveButton.isEnabled = false
         
-        view.backgroundColor = UIColor.themeColor.secondary
+        view.backgroundColor = UIColor.theme.secondary
         
-        navigationController?.navigationBar.barTintColor = UIColor.themeColor.main
+        navigationController?.navigationBar.barTintColor = UIColor.theme.main
         navigationController?.navigationBar.isTranslucent = false
         
         topBar = UIApplication.shared.statusBarFrame.size.height +
@@ -48,7 +48,7 @@ class NewCurrencyViewController: UIViewController {
         banknoteTableView.separatorColor = UIColor.white
         banknoteTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         banknoteTableView.layer.cornerRadius = 25
-        banknoteTableView.backgroundColor = UIColor.themeColor.main
+        banknoteTableView.backgroundColor = UIColor.theme.main
         
         if (isEdited){
             saveButton.isEnabled = true
@@ -90,13 +90,13 @@ class NewCurrencyViewController: UIViewController {
         textField.titleErrorColor = .red
         
         // selected colors
-        textField.selectedLineColor = UIColor.themeColor.extra
-        textField.selectedTitleColor = UIColor.themeColor.extra
+        textField.selectedLineColor = UIColor.theme.gold
+        textField.selectedTitleColor = UIColor.theme.gold
         
         // normal state colors
         textField.textColor = .white
         textField.lineColor = .white
-        textField.titleColor = UIColor.themeColor.extra
+        textField.titleColor = UIColor.theme.gold
     }
     
     
@@ -120,7 +120,7 @@ class NewCurrencyViewController: UIViewController {
         }
         
         let newCurrency = Currency(name: name, sign: sign, rate: rate, valueImageDictionary: valueImageDictionary)
-        var updatedCurrencies = Currency.userDefaultCurrencies
+        var updatedCurrencies = Currency.userDefinedCurrencies
         if (!isEdited){
             updatedCurrencies.append(newCurrency)
         } else {

@@ -9,5 +9,6 @@
 import UIKit
 
 class TagTapGestureRecognizer: UITapGestureRecognizer {
+    // Custom Tap Gesture Recognizer that keeps row address, that can be accessed through #selector
     var row: Int = 0
 }

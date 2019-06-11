@@ -11,18 +11,6 @@ import SideMenu
 import HGCircularSlider
 
 class SelectionViewController: UIViewController, BanknoteViewControllerDelegate {
-    
-    func updateView(ratio: Double) {
-        let convertedVal = Int(Double(Currency.dollarValue) / Currency.selectedCurrency.ratio)
-        cashTextField.text = Currency.selectedCurrency.sign + "\(convertedVal)"
-        slider.maximumValue = CGFloat(10000/Currency.selectedCurrency.ratio)
-        slider.endPointValue = convertedVal < Int(slider.maximumValue) ? CGFloat(convertedVal) : slider.maximumValue - 1
-    }
-    
-    func updateBackButton(){
-       self.navigationItem.backBarButtonItem?.title = "Cancel"
-    }
-    
 
     @IBOutlet weak var slider: CircularSlider!
     @IBOutlet weak var playBarButton: PulsingBarButtonItem!
@@ -35,31 +23,32 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let FirstViewController = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as? SideMenuTableViewController //dont call UISidemenuNavigation here
+        let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: FirstViewController!)
+        SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.default.menuFadeStatusBar = false
         SideMenuManager.default.menuPresentMode = .viewSlideInOut
         SideMenuManager.default.menuShadowColor = UIColor.darkGray
-        //SideMenuManager.default.menuPushStyle = .replace
         SideMenuManager.default.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "money")!)
         
         setupSlider(slider: slider)
-        //view.backgroundColor = UIColor(patternImage: UIImage(named: "money.jpg")!)
-         view.backgroundColor = UIColor.themeColor.secondary
+
+        view.backgroundColor = UIColor.theme.secondary
         topBar = UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
-        navigationController?.navigationBar.barTintColor = UIColor.themeColor.main
+        navigationController?.navigationBar.barTintColor = UIColor.theme.main
         navigationController?.navigationBar.isTranslucent = false
         
         
         let button = UIButton(type: .custom)
         let image = UIImage(named: "plays")!.withRenderingMode(.alwaysTemplate)
-        button.setImage(image.tint(with: UIColor.themeColor.extra), for: .normal)
-        button.tintColor = UIColor.themeColor.extra
+        button.setImage(image.tint(with: UIColor.theme.gold), for: .normal)
+        button.tintColor = UIColor.theme.gold
         button.addTarget(self, action: #selector(presentARVC), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 48, height: 44)
         playBarButton.customView = button
         
-        menuBarButton.tintColor = UIColor.themeColor.extra
+        menuBarButton.tintColor = UIColor.theme.gold
         menuBarButton.image = UIImage(named: "list.png")
         
         cashTextField.layer.masksToBounds = false
@@ -72,12 +61,12 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         slider.addTarget(self, action: #selector(updateCashValue), for: .valueChanged)
         
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
-        cancelButton.tintColor = UIColor.themeColor.extra
+        cancelButton.tintColor = UIColor.theme.gold
         let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.themeColor.extra, NSAttributedString.Key.font: navigationFont!], for: .normal)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
         self.navigationItem.backBarButtonItem = cancelButton
         
-        rainMoney(with: UIImage(named: "dollar_particle.png")!)
+        rain(with: UIImage(named: "dollar_particle.png")!)
         
     }
     
@@ -94,38 +83,32 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         playBarButton.pulse()
         
     }
     
+    @IBAction func MenuAction(_ sender: UIBarButtonItem){
+        self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    
+    
     func setupSlider(slider: CircularSlider){
         slider.minimumValue = 0
         slider.maximumValue = 10000
         slider.diskColor = .clear
-        slider.trackFillColor = UIColor.themeColor.main
+        slider.trackFillColor = UIColor.theme.main
         slider.thumbRadius = 16
-        slider.trackColor = UIColor.themeColor.gray
+        slider.trackColor = UIColor.theme.gray
         slider.backtrackLineWidth = 6
         slider.lineWidth = 14
-        slider.endThumbStrokeColor = UIColor.themeColor.main
-        slider.endThumbTintColor = UIColor.themeColor.extra
+        slider.endThumbStrokeColor = UIColor.theme.main
+        slider.endThumbTintColor = UIColor.theme.gold
         slider.thumbLineWidth = 7
         slider.endPointValue = 1000
-        slider.endThumbStrokeHighlightedColor = UIColor.themeColor.main
+        slider.endThumbStrokeHighlightedColor = UIColor.theme.main
         slider.backgroundColor = .clear
-    }
-    
-    @objc func updateCashValue(){
-        let newValue = Int(slider.endPointValue)
-        Currency.dollarValue = Int(Double(newValue)*Currency.selectedCurrency.ratio)
-        cashTextField.text = Currency.selectedCurrency.sign + "\(newValue)"
     }
     
     func updateSlider(num: Int){
@@ -133,7 +116,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         slider.endPointValue = num < Int(slider.maximumValue) ? CGFloat(num) : slider.maximumValue - 1
     }
     
-    func rainMoney(with image: UIImage){
+    func rain(with image: UIImage){
         let emitter = RainEmitter.get(with: image)
         emitter.emitterPosition = CGPoint(x: view.frame.width/2, y: -20)
         emitter.emitterSize = CGSize(width: view.frame.width*2, height: 2)
@@ -143,9 +126,30 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         view.sendSubviewToBack(newView)
     }
     
+    @objc func updateCashValue(){
+        let newValue = Int(slider.endPointValue)
+        Currency.dollarValue = Int(Double(newValue)*Currency.selectedCurrency.ratio)
+        cashTextField.text = Currency.selectedCurrency.sign + "\(newValue)"
+    }
+    
     @objc func addAnimations(){
         playBarButton.pulse()
     }
+    
+    
+    // MARK: Delegate Functions
+    
+    func updateView() {
+        let convertedVal = Int(Double(Currency.dollarValue) / Currency.selectedCurrency.ratio)
+        cashTextField.text = Currency.selectedCurrency.sign + "\(convertedVal)"
+        slider.maximumValue = CGFloat(10000/Currency.selectedCurrency.ratio)
+        slider.endPointValue = convertedVal < Int(slider.maximumValue) ? CGFloat(convertedVal) : slider.maximumValue - 1
+    }
+    
+    func updateBackButton(){
+        self.navigationItem.backBarButtonItem?.title = "Cancel"
+    }
+    
     
     // MARK: Segues
     
@@ -179,7 +183,9 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
 
 }
 
+
 extension SelectionViewController: UITextFieldDelegate {
+    
     
     // MARK: TextField Delegate
     
@@ -211,6 +217,7 @@ extension SelectionViewController: UITextFieldDelegate {
         return true
     }
     
+    
     // MARK: Keyboard Notifications
     
     func subscribeToKeybordNotifications(){
@@ -221,31 +228,6 @@ extension SelectionViewController: UITextFieldDelegate {
         
     }
     
-    @objc func keyboardWillShow(_ notification: Notification){
-        
-        //changes y-coordinate of the view above the keyboard if bottom text is selected
-        if (cashTextField.isFirstResponder){
-            let keyboardHeight = getKeyboardHeight(notification)
-            
-            let heightDifference = view.frame.height - keyboardHeight
-            let requiredMovement = (slider.frame.height - heightDifference)/2
-            view.frame.origin.y -= requiredMovement
-            
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification){
-        view.frame.origin.y = topBar
-    }
-    
-    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
-        
-        //Gets keyboard height
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.cgRectValue.height
-    }
-    
     func unsubscribeFromKeyboardNotifications() {
         
         //Removes this control view as observer for notifications
@@ -253,16 +235,25 @@ extension SelectionViewController: UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
+    @objc func keyboardWillShow(_ notification: Notification) {slider.isEnabled = false}
+    
+    @objc func keyboardWillHide(_ notification: Notification) {slider.isEnabled = true}
+    
+    // Enables hiding keyboard on touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     // MARK: Background Notifications
     
     func subscribeToBackgroundNotifications() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(addAnimations), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
     }
     
     func unsubscribeToBackgroundNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
+    
 }
 

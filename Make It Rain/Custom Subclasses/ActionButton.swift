@@ -16,14 +16,13 @@ class ActionButton: UIButton {
     
     override var isEnabled: Bool {
         didSet {
-            self.backgroundColor = isEnabled ? UIColor.themeColor.extra : UIColor.lightGray
+            self.backgroundColor = isEnabled ? UIColor.theme.gold : UIColor.lightGray
         }
     }
     
     // For storyboard
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         configure()
     }
     
@@ -31,12 +30,11 @@ class ActionButton: UIButton {
         
         self.setTitleColor(UIColor.gray, for: .normal)
         self.setTitleColor(UIColor.gray.withAlphaComponent(0.3), for: .highlighted)
-        //self.titleLabel?.font = UIFont(name: "Montserrat Medium", size: 24)
         self.titleLabel?.font = UIFont(name: "Money Money", size: 24)
-        self.backgroundColor = UIColor.themeColor.extra
+        self.backgroundColor = UIColor.theme.gold
         self.layer.cornerRadius = 10
         self.layer.shadowRadius = 4.0
-        self.layer.shadowColor = UIColor.gray.cgColor //UIColor.black.cgColor
+        self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.layer.shadowOpacity = 1.0
         self.layer.masksToBounds = true

@@ -64,7 +64,6 @@ struct Currency: Codable, Equatable {
             
             for imageLoc in images{
                 let imageURL = documentDirectoryPath.appendingPathComponent(imageLoc.value)
-                //let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("Image2.png")
                 let image = UIImage(contentsOfFile: imageURL.path)
                 unarchivedImages[imageLoc.key] = image
             }
@@ -128,15 +127,15 @@ struct Currency: Codable, Equatable {
 
 extension Currency{
     
-    static var localCurrencies: [Currency] {
-        let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [1,5,20,100])
+    static var defaultCurrencies: [Currency] {
+        let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [5,20])
         let euro = Currency(name: "euro", sign: "€", ratio: 1.13, availableBanknotes: [5])
         let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5,50])
         let yuan = Currency(name: "yuan", sign: "¥", ratio: 0.15, availableBanknotes: [50])
         return [dollar,euro,pound,yuan]
     }
     
-    static var userDefaultCurrencies: [Currency] {
+    static var userDefinedCurrencies: [Currency] {
         if let data = UserDefaults.standard.value(forKey: currencyArrayKey) as? Data {
             do{
                 let currencyArray = try PropertyListDecoder().decode(Array<Currency>.self, from: data)
@@ -152,7 +151,7 @@ extension Currency{
     }
     
     static var allCurrencies: [Currency] {
-        let addCurrencies = self.userDefaultCurrencies.reversed() + self.localCurrencies
+        let addCurrencies = self.userDefinedCurrencies.reversed() + self.defaultCurrencies
         return addCurrencies
     }
 }

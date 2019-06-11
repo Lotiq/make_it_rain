@@ -18,11 +18,13 @@ class ARViewController: UIViewController {
     @IBOutlet weak var sessionInfoView: UIVisualEffectView!
     
     var money: Int!
-    let restrictedWidth: CGFloat = 0.126 // in m
-    // Selected currency
+    // Width of the currency in meters
+    let restrictedWidth: CGFloat = 0.126
+    
+    // Selected currency local variable
     var selectedCurrency: Currency!
     
-    // Dictionary of banknote list and count
+    // Dictionary of banknote nominals
     var banknoteBank: [Int : Int]! // [Banknote Bill: Number In Use]
     
     // Dictionary of banknote nominal value and SCNNodes
@@ -34,43 +36,19 @@ class ARViewController: UIViewController {
     // Bool variable to track whether the action has been performed
     var rained = false
     
-    // Currently selected model to place in scene.
-    //var currentModelAsset: SCNNode!
-    var timer = Timer()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        interaction(isHidden: true)
-        selectedCurrency = Currency.selectedCurrency
-        money = Int(Double(Currency.dollarValue)/selectedCurrency.ratio)
-        banknoteBank = Currency.distributeCurrencyDescending()
         sceneView.delegate = self
         
-        for banknote in banknoteBank{
-            let image = selectedCurrency.getImages()[banknote.key]!
-            
-            let width = image.size.width
-            let ratio = restrictedWidth/width
-            let plane = SCNPlane(width: restrictedWidth, height: image.size.height * ratio)
-            
-            let material = SCNMaterial()
-            material.diffuse.contents = image
-            material.isDoubleSided = true
-            plane.materials = [material]
-            
-            let node = SCNNode(geometry: plane)
-            
-            
-            modelAssets[banknote.key] = node
-        }
-        // Do any additional setup after loading the view.
+        interaction(isHidden: true)
+        
+        initiateBanknoteBank()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.enableAllOrientations = true
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,8 +86,14 @@ class ARViewController: UIViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.enableAllOrientations = false
+        
         // Pause the view's session
         sceneView.session.pause()
+        
+        // Rotates back to Portrait if needed
+        if (self.isMovingFromParent) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
         
         UIApplication.shared.isIdleTimerDisabled = false
     }
@@ -118,53 +102,39 @@ class ARViewController: UIViewController {
         rained = true
         sender.isHidden = true
         
+        // Get SNNode which is serves as an anchor
         guard let anchor = sceneView.scene.rootNode.childNode(withName: "anchor", recursively: true) else {
             print("No plane anchor detected")
             return
         }
-        //var corners: [(x: Float,z: Float)] = []
-        //let (min, max) = anchor.boundingBox
         
-        // Anchor here refers to the plane added to the anchor
-        // The coordinate space of the anchor is local
-        // This coordinate space needs to be converted  to world space
-        
-        //let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
-        //let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
-        
-        var width: Float!
-        var height: Float!
-        
+        // Convert anchors center position to
         let anchorWorldPosition = anchor.convertPosition(anchor.position, to: sceneView.scene.rootNode)
         
-        if let plane = anchor.geometry as? SCNPlane {
-            width = Float(plane.width)
-            height = Float(plane.height)
-            /*
-            corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z - height/2))
-            corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z + height/2))
-            corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z - height/2))
-            corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z + height/2))
-             */
-        
+        guard let plane = anchor.geometry as? SCNPlane else {
+            return
         }
+        // Get plane's width and height
+        let width = Float(plane.width)
+        let height = Float(plane.height)
         
-        // Always just use a test cube to check your math
-        // let cube = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        // cube.position = anchor.convertPosition(anchor.position, to: sceneView.scene.rootNode)
-        // sceneView.scene.rootNode.addChildNode(cube)
-        
-        // Get number of notes to drop
-        // I'm not sure how the banknodeBank works, so I'm just taking the total number from all entries in the dictionary
         /*
-        print(minWorld.y, maxWorld.y)
+        // Test Corners
+        var corners: [(x: Float,z: Float)] = []
+        corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z - height/2))
+        corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z + height/2))
+        corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z - height/2))
+        corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z + height/2)
+        
+        let (min, max) = anchor.boundingBox
+        let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
+        let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
         let xMinActual = Float.minimum(minWorld.x, maxWorld.x)
         let xMaxActual = Float.maximum(minWorld.x, maxWorld.x)
         let zMinActual = Float.minimum(minWorld.z, maxWorld.z)
         let zMaxActual = Float.maximum(minWorld.z, maxWorld.z)
-        */
         
-        /*
+        // Test Corner boxes
         let box1 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
         box1.position = SCNVector3(corners[0].x, anchorWorldPosition.y, corners[0].z)
         sceneView.scene.rootNode.addChildNode(box1)
@@ -190,6 +160,7 @@ class ARViewController: UIViewController {
             total + entry.value
         }
         
+        // Adjust maximum duration
         var timing = (2+Double(count)/10)
         if timing > 30 {
             timing = 30
@@ -197,16 +168,23 @@ class ARViewController: UIViewController {
         
         for banknote in banknoteBank {
             for _ in (0..<banknote.value){
+                
+                // Choose a random location certain distance away from the center
                 let endX = Float.random(in: anchorWorldPosition.x - width/2 ... anchorWorldPosition.x + width/2)
                 let endZ = Float.random(in: anchorWorldPosition.z - height/2 ... anchorWorldPosition.z + height/2)
                 
+                // Adjusting z position to avoid flickering
                 let zFightingAdjustment = Float.random(in: 0.00001...0.01)
                 let endY = anchorWorldPosition.y + zFightingAdjustment
+                
+                // Random height from which they fall
                 let offsetY: Float = 0.5 + Float.random(in: 0.3...1.0)
                 
+                // Combine to create start and end locations
                 let startLocation = SCNVector3(endX, endY + offsetY, endZ)
                 let endLocation = SCNVector3(endX, endY, endZ)
                 
+                // Get the SCNNode with the required image
                 guard let newNode = modelAssets[banknote.key]?.clone() else {
                     print("Unable to create a new node")
                     return
@@ -214,14 +192,18 @@ class ARViewController: UIViewController {
                 
                 newNode.position = startLocation
                 
+                // Random rotation
                 newNode.eulerAngles.y = Float.random(in: 0..<2 * Float.pi)
+                
+                // Adjust for SCNNode to be positioned lying, but not standing
                 newNode.eulerAngles.x = -Float.pi/2
                 
                 sceneView.scene.rootNode.addChildNode(newNode)
                 
-                // Add random timing
+                // Add random duration
                 let duration = Double.random(in: 2...timing)
                 let action = SCNAction.move(to: endLocation, duration: duration)
+                
                 newNode.runAction(action)
             }
         }
@@ -231,6 +213,30 @@ class ARViewController: UIViewController {
     func interaction(isHidden: Bool) {
         actionButton.isHidden = isHidden
         sessionInfoView.isHidden = !isHidden
+    }
+    
+    func initiateBanknoteBank(){
+        selectedCurrency = Currency.selectedCurrency
+        money = Int(Double(Currency.dollarValue)/selectedCurrency.ratio)
+        banknoteBank = Currency.distributeCurrencyDescending()
+        
+        for banknote in banknoteBank{
+            let image = selectedCurrency.getImages()[banknote.key]!
+            
+            let width = image.size.width
+            let ratio = restrictedWidth/width
+            let plane = SCNPlane(width: restrictedWidth, height: image.size.height * ratio)
+            
+            let material = SCNMaterial()
+            material.diffuse.contents = image
+            material.isDoubleSided = true
+            plane.materials = [material]
+            
+            let node = SCNNode(geometry: plane)
+            
+            
+            modelAssets[banknote.key] = node
+        }
     }
 }
 
@@ -359,6 +365,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         case .limited(_):
             print("nothing happening")
         }
+        // Disable raining again, once finished
         if (!rained){
             if message != ""{
                 interaction(isHidden: true)

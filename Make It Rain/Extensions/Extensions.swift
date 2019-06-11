@@ -21,19 +21,15 @@ extension UIColor {
         self.init(red:(hex >> 16) & 0xff, green:(hex >> 8) & 0xff, blue:hex & 0xff)
     }
     
-    struct themeColor{
+    struct theme{
         static let main = #colorLiteral(red: 0.1631833613, green: 0.3730655909, blue: 0.2650748491, alpha: 1)
         static let secondary = #colorLiteral(red: 0.731172502, green: 0.8121758103, blue: 0.6814717054, alpha: 1)
         static let gray = #colorLiteral(red: 0.8, green: 0.7843137255, blue: 0.7294117647, alpha: 1)
-        static let extra = #colorLiteral(red: 0.9137254902, green: 0.8274509804, blue: 0.4549019608, alpha: 1)
-        static let gold = #colorLiteral(red: 0.8106517196, green: 0.6584199667, blue: 0.1929169595, alpha: 1)
+        static let gold = #colorLiteral(red: 0.9137254902, green: 0.8274509804, blue: 0.4549019608, alpha: 1)
     }
 }
 
-extension CGPoint {
-    static func random(_ xsize: CGFloat, _ ysize: CGFloat)->CGPoint { return CGPoint(x:CGFloat((arc4random()%UInt32(xsize))),y:CGFloat((arc4random()%UInt32(ysize))))}
-}
-
+// Returns all characters in a font
 extension NSCharacterSet {
     var characters:[String] {
         var chars = [String]()
@@ -54,6 +50,7 @@ extension NSCharacterSet {
     }
 }
 
+// Tints image
 extension UIImage {
     func tint(with color: UIColor) -> UIImage {
         var image = withRenderingMode(.alwaysTemplate)

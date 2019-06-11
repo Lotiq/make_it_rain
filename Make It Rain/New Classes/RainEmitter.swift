@@ -24,7 +24,12 @@ class RainEmitter {
         let cell = CAEmitterCell()
         cell.contents = image.cgImage
         cell.birthRate = 0.8
-        cell.lifetime = 50
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            cell.lifetime = 60
+        } else {
+            cell.lifetime = 150
+        }
+       
         cell.velocity = 25
         cell.emissionLongitude = (180*(.pi/180))
         cell.emissionRange = (75*(.pi/180))
