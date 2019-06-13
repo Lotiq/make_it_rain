@@ -374,7 +374,7 @@ extension NewCurrencyViewController: UITextFieldDelegate {
         self.navigationController?.navigationBar.addGestureRecognizer(self.endEditingRecognizer())
     }
     
-    /// Dismisses the keyboard from self.view
+    // Dismisses the keyboard from self.view
     private func endEditingRecognizer() -> UIGestureRecognizer {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
         tap.cancelsTouchesInView = false

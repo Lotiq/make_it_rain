@@ -37,12 +37,6 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         banknoteCollectionView.delegate = self
         banknoteCollectionView.dataSource = self
         
-        // Configure the required item size
-        centeredCollectionViewFlowLayout.itemSize = CGSize(
-            width: banknoteCollectionView.bounds.width * 0.7,
-            height: banknoteCollectionView.bounds.height * 0.7
-        )
-        
         // Configure the optional inter item spacing
         centeredCollectionViewFlowLayout.minimumLineSpacing = 20
         
@@ -56,6 +50,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         allCurrencies = Currency.allCurrencies
         banknoteCollectionView.reloadData()
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
@@ -64,11 +59,21 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        banknoteCollectionView.reloadData()
         super.viewDidAppear(true)
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
         centeredCollectionViewFlowLayout.scrollToPage(index: index+1, animated: true)
     }
     
+    override func viewDidLayoutSubviews() {
+        
+        // Configure the required item size
+        centeredCollectionViewFlowLayout.itemSize = CGSize(
+            width: banknoteCollectionView.bounds.width * 0.7,
+            height: banknoteCollectionView.bounds.height * 0.7
+        )
+    }
     
     // MARK: Collection View Setup
     

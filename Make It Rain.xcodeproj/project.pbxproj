@@ -540,7 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7E4FRN2QG2;
+				DEVELOPMENT_TEAM = 3Q7FL57GKN;
 				INFOPLIST_FILE = "$(SRCROOT)/Make It Rain/Main and Extra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -559,7 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7E4FRN2QG2;
+				DEVELOPMENT_TEAM = 3Q7FL57GKN;
 				INFOPLIST_FILE = "$(SRCROOT)/Make It Rain/Main and Extra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
