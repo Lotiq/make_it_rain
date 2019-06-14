@@ -23,6 +23,7 @@ class NewCurrencyViewController: UIViewController {
     var numOfBanknotes: Int = 1
     var topBar:CGFloat = 0
     var imageValueArray: [(UIImage,Int?)] = [(UIImage(named: "banknote.png")!,nil)]
+    var userDefinedCurrencies = [Currency]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +54,13 @@ class NewCurrencyViewController: UIViewController {
         if (isEdited){
             saveButton.isEnabled = true
             saveButton.setTitle("Update", for: .normal)
-            
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
             let currency = passedIndexValue.1
             nameTextField.text = currency.name
             currencySignTextField.text = currency.sign
-            rateTextField.text = String(currency.ratio)
+            rateTextField.text = currency.ratio.toString()
+            
             imageValueArray = []
             for valuePair in currency.getImages() {
                 imageValueArray.append((valuePair.value,valuePair.key))
@@ -70,6 +73,7 @@ class NewCurrencyViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        userDefinedCurrencies = Currency.userDefinedCurrencies
         subscribeToKeybordNotifications()
     }
     
@@ -99,9 +103,8 @@ class NewCurrencyViewController: UIViewController {
         textField.titleColor = UIColor.theme.gold
     }
     
-    
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        guard let name = nameTextField.text, let sign = currencySignTextField.text, let rate = Double(rateTextField.text!) else{
+        guard let name = nameTextField.text, !nameTextField.hasErrorMessage, let sign = currencySignTextField.text, let rate = Double(rateTextField.text!) else{
         
             return
         }
@@ -119,16 +122,16 @@ class NewCurrencyViewController: UIViewController {
             return
         }
         
-        let newCurrency = Currency(name: name, sign: sign, rate: rate, valueImageDictionary: valueImageDictionary)
         var updatedCurrencies = Currency.userDefinedCurrencies
-        if (!isEdited){
-            updatedCurrencies.append(newCurrency)
-        } else {
+        
+        if (isEdited){
             let currency = updatedCurrencies[passedIndexValue.0]
             currency.deleteImages()
             updatedCurrencies.remove(at: passedIndexValue.0)
-            updatedCurrencies.append(newCurrency)
         }
+        
+        let newCurrency = Currency(name: name, sign: sign, rate: rate, valueImageDictionary: valueImageDictionary)
+        updatedCurrencies.append(newCurrency)
         
         do {
             UserDefaults.standard.set(try PropertyListEncoder().encode(updatedCurrencies), forKey: Currency.currencyArrayKey)
@@ -137,12 +140,15 @@ class NewCurrencyViewController: UIViewController {
         }
         
         Currency.selectedCurrency = newCurrency
+        
+        
         self.navigationController?.popViewController(animated: true)
+        
     }
     
     func checkForCompletion() -> Bool{
         
-        guard nameTextField.text != "", currencySignTextField.text != "", Double(rateTextField.text!) != nil, rateTextField.text != "", !currencySignTextField.hasErrorMessage , !rateTextField.hasErrorMessage else {
+        guard nameTextField.text != "", currencySignTextField.text != "", Double(rateTextField.text!) != nil, rateTextField.text != "", !currencySignTextField.hasErrorMessage , !rateTextField.hasErrorMessage, !nameTextField.hasErrorMessage else {
             return false
         }
     
@@ -259,6 +265,7 @@ extension NewCurrencyViewController: UITextFieldDelegate {
         
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         if let skyTextField = textField as? SkyFloatingLabelTextField {
+            
             if skyTextField == currencySignTextField {
                 // Font used for the main text
                 let mainFontDescriptor = UIFont(name: "Money Money", size: 20)!.fontDescriptor
@@ -286,26 +293,65 @@ extension NewCurrencyViewController: UITextFieldDelegate {
                     saveButton.isEnabled = checkForCompletion()
                     return false
                 }
+                
             
             } else if skyTextField == rateTextField {
-                if (Double(text) != nil || text == ""){
-                    if (Double(text) == 0){
+                if (Double(text) != nil){
+                    let num = Double(text)!
+                    if (num == 0){
                         skyTextField.errorMessage = "Rate can't be 0"
+                    } else if (num < 0){
+                        skyTextField.text = String(-num)
+                        saveButton.isEnabled = checkForCompletion()
+                        return false
+                    } else if (num < 0.000001){
+                        skyTextField.errorMessage = "Rate is too small"
+                    } else if (num > 1000000){
+                        skyTextField.errorMessage = "Rate is too large"
                     } else {
                         skyTextField.errorMessage = ""
                     }
                     skyTextField.text = text
                     saveButton.isEnabled = checkForCompletion()
                     return false
+                } else if (text == ""){
+                    skyTextField.text = text
+                    return false
                 } else {
                     skyTextField.errorMessage = ""
                     saveButton.isEnabled = checkForCompletion()
                     return false
-                    
                 }
+                
+                
+            } else if skyTextField == nameTextField {
+                guard text.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) == nil else {
+                    skyTextField.errorMessage = "not a valid name"
+                    saveButton.isEnabled = checkForCompletion()
+                    return true
+                }
+                
+                var names = [String]()
+                for currency in userDefinedCurrencies {
+                    names.append(currency.name)
+                }
+                
+                guard !names.contains(text) else {
+                    skyTextField.errorMessage = "name is already taken"
+                    saveButton.isEnabled = checkForCompletion()
+                    return true
+                }
+                
+                skyTextField.errorMessage = ""
+                skyTextField.text = text
+                saveButton.isEnabled = checkForCompletion()
+                
+                return false
             }
+            
+            
         } else {
-            if let value = Int(text) {
+            if let value = Int(text), value > 0 {
                 for i in 0..<banknoteTableView.numberOfRows(inSection: 0){
                     let cell = banknoteTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! ImageValueTableViewCell
                     if (cell.valueTextField == textField){

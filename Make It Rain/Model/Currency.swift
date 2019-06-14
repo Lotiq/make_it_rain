@@ -18,7 +18,7 @@ struct Currency: Codable, Equatable {
     let name: String
     let sign: String
     var ratio: Double // 1:ratio to dollars
-    fileprivate var images = [Int: String]() // stores the name of the image
+    var images = [Int: String]() // stores the name of the image
     var availableBanknotes: Set<Int>
     
     fileprivate init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
@@ -39,17 +39,16 @@ struct Currency: Codable, Equatable {
             guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
                 return
             }
-            
+        
             let imageName = name+"_"+String(banknote.key)+".png"
             let imgPath = documentDirectoryPath.appendingPathComponent(imageName)
             
             do {
                 try banknote.value.pngData()?.write(to: imgPath, options: .atomic)
-                //try banknote.value.jpegData(compressionQuality: 1)?.write(to: imgPath, options: .atomic)
                 self.images[banknote.key] = imageName
                 
             } catch {
-                print(error.localizedDescription)
+                return
             }
  
         }
@@ -64,7 +63,11 @@ struct Currency: Codable, Equatable {
             
             for imageLoc in images{
                 let imageURL = documentDirectoryPath.appendingPathComponent(imageLoc.value)
-                let image = UIImage(contentsOfFile: imageURL.path)
+                
+                // HERE LIES THE CAUSE OF A LOT OF SUFFERING
+                let imageData = try? Data(contentsOf: imageURL)
+                let image = UIImage(data: imageData!)
+                
                 unarchivedImages[imageLoc.key] = image
             }
         } else {
@@ -83,8 +86,15 @@ struct Currency: Codable, Equatable {
         if !self.images.isEmpty {
             let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             for imageLoc in images{
+                
                 let imageURL = documentDirectoryPath.appendingPathComponent(imageLoc.value)
-                try? FileManager.default.removeItem(at: imageURL)
+                
+                if FileManager.default.fileExists(atPath: imageURL.path) {
+                    try? FileManager.default.removeItem(atPath: imageURL.path)
+                } else {
+                    print("file doesn't exist")
+                }
+                
             }
         }
     }
@@ -122,6 +132,22 @@ struct Currency: Codable, Equatable {
         }
         
         return count <= maxcount
+    }
+    
+    static func isIntableFor(num: Int,in currency: Currency) -> Bool {
+        let currencies = allCurrencies
+        var min: Double = defaultCurrencies[0].ratio
+        for currency in currencies {
+            if currency.ratio < min {
+                min = currency.ratio
+            }
+        }
+        
+        if (Double(Int.max) < (Double(num)*currency.ratio)/min){
+            return false
+        } else {
+            return true
+        }
     }
 }
 

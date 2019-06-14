@@ -19,7 +19,7 @@ class AboutViewController: UIViewController {
         let text = NSMutableAttributedString(string: """
             Make It Rain is an AR experience app that helps to visualize money, inducing reactions and emotions that are otherwise inhibited through the constant use of digital transactions.
             
-            This is a non-profit open-source app created by Timothy Lobiak. Other projects of mine can be viewed at timothylobiak.me
+            This is a non-profit open-source app created by Timothy Lobiak. Other work can be viewed at timothylobiak.me
             """)
         let foundRange = text.mutableString.range(of: "timothylobiak.me")
         let attributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont(name: "Montserrat Medium", size: 20)!, NSAttributedString.Key.foregroundColor: UIColor.darkGray]

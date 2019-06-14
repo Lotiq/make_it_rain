@@ -71,7 +71,13 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        if !Currency.isIntableFor(num: Currency.dollarValue, in: Currency.defaultCurrencies[0]) {
+            Currency.selectedCurrency = Currency.defaultCurrencies[0]
+            Currency.dollarValue = 1000
+            updateView()
+        }
         subscribeToKeybordNotifications()
         subscribeToBackgroundNotifications()
     }
@@ -199,6 +205,10 @@ extension SelectionViewController: UITextFieldDelegate {
                 textField.text = Currency.selectedCurrency.sign
                 updateSlider(num: 0)
             }
+            return false
+        }
+        
+        guard Currency.isIntableFor(num: num, in: Currency.selectedCurrency) else {
             return false
         }
         

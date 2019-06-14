@@ -20,7 +20,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     // Local user default
     var userDefinedCurrencies: [Currency]!
     
-    
     // MARK: Override Presenting Functions
     
     override func viewDidLoad() {
