@@ -349,7 +349,7 @@
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Rate to $ (1:?$)"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Rate to $     (1 : ?$)"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="lineColor">
                                                 <color key="value" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>

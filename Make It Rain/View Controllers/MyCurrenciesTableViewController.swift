@@ -48,7 +48,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         // Animations
         for i in 0..<userDefinedCurrencies.count{
             let cell = self.currencyTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MyCurrencyTableViewCell

@@ -44,6 +44,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         let image = UIImage(named: "plays")!.withRenderingMode(.alwaysTemplate)
         button.setImage(image.tint(with: UIColor.theme.gold), for: .normal)
         button.tintColor = UIColor.theme.gold
+        button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(presentARVC), for: .touchUpInside)
         button.frame = CGRect(x: 0, y: 0, width: 48, height: 44)
         playBarButton.customView = button
@@ -96,6 +97,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     }
     
     @IBAction func MenuAction(_ sender: UIBarButtonItem){
+        self.navigationItem.backBarButtonItem?.title = "Back"
         self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
@@ -161,6 +163,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     
     @objc func presentARVC(){
         if (Currency.isRenderableFor(maxcount: 100000)){
+            self.navigationItem.backBarButtonItem?.title = "Return"
             let vc = storyboard?.instantiateViewController(withIdentifier: "ARViewController") as! ARViewController
             navigationController?.pushViewController(vc, animated: true)
         } else {
@@ -176,14 +179,13 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         cashTextField.resignFirstResponder()
-        
         if segue.identifier == "containerBanknoteSegue" {
             banknoteVC = segue.destination as? BanknoteViewController
             banknoteVC!.banknoteViewControllerDelegate = self
         } else if segue.identifier == "ARSceneSegue"{
             self.navigationItem.backBarButtonItem?.title = "Return"
         } else {
-            self.navigationItem.backBarButtonItem?.title = "Back"  // temporary solution
+            self.navigationItem.backBarButtonItem?.title = "Back"
         }
     }
 
