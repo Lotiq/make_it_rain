@@ -67,7 +67,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidLayoutSubviews() {
-        
+        super.viewDidLayoutSubviews()
         // Configure the required item size
         centeredCollectionViewFlowLayout.itemSize = CGSize(
             width: banknoteCollectionView.bounds.width * 0.7,

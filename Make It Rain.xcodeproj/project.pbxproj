@@ -24,6 +24,7 @@
 		1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A96A226247A200436085 /* LaunchScreen.storyboard */; };
 		1C78A99422627B4F00436085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* Extensions.swift */; };
 		1C78A9992262A04A00436085 /* Euro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A9982262A04A00436085 /* Euro.xcassets */; };
+		1CAA740822B571E700DFAFF3 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA740722B571E600DFAFF3 /* RecordButton.swift */; };
 		1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E469226575430084F229 /* BanknoteCell.swift */; };
 		1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E46B22669D320084F229 /* Pound.xcassets */; };
 		1CC4E46E2266A4EC0084F229 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E46D2266A4EC0084F229 /* Currency.swift */; };
@@ -62,6 +63,7 @@
 		1C78A96D226247A200436085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C78A99322627B4F00436085 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1C78A9982262A04A00436085 /* Euro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Euro.xcassets; sourceTree = "<group>"; };
+		1CAA740722B571E600DFAFF3 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordButton.swift; path = "Make It Rain/Custom Subclasses/RecordButton.swift"; sourceTree = SOURCE_ROOT; };
 		1CC4E469226575430084F229 /* BanknoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteCell.swift; sourceTree = "<group>"; };
 		1CC4E46B22669D320084F229 /* Pound.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pound.xcassets; sourceTree = "<group>"; };
 		1CC4E46D2266A4EC0084F229 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				1C049405228D690C005D0ABD /* PulsingBarButtonItem.swift */,
+				1CAA740722B571E600DFAFF3 /* RecordButton.swift */,
 				1C0493FF228C59EB005D0ABD /* CircularButton.swift */,
 				1CC4E485227527D80084F229 /* TagTapGestureRecognizer.swift */,
 				1CC4E48322738E170084F229 /* ActionButton.swift */,
@@ -390,6 +393,7 @@
 				1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */,
 				1C78A962226247A000436085 /* AppDelegate.swift in Sources */,
 				1CC4E47B226AA2BC0084F229 /* NewCurrencyViewController.swift in Sources */,
+				1CAA740822B571E700DFAFF3 /* RecordButton.swift in Sources */,
 				1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */,
 				1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */,
 				1C049406228D690C005D0ABD /* PulsingBarButtonItem.swift in Sources */,

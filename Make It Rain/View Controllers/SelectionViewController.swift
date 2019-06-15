@@ -23,7 +23,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let FirstViewController = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as? SideMenuTableViewController //dont call UISidemenuNavigation here
+        let FirstViewController = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as? SideMenuTableViewController 
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: FirstViewController!)
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
         SideMenuManager.default.menuFadeStatusBar = false

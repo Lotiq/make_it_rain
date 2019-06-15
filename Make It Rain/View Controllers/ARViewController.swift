@@ -16,6 +16,7 @@ class ARViewController: UIViewController {
     @IBOutlet weak var sessionInfoLabel: UILabel!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var sessionInfoView: UIVisualEffectView!
+    @IBOutlet weak var recordBarButtonItem: UIBarButtonItem!
     
     var money: Int!
     // Width of the currency in meters
@@ -36,9 +37,17 @@ class ARViewController: UIViewController {
     // Bool variable to track whether the action has been performed
     var rained = false
     
+    var recordButton: RecordButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
+        
+        recordButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        recordButton.delegate = self
+        recordBarButtonItem.customView = recordButton
+       
+        //ADD .other for ALL NAVIGATION
         
         interaction(isHidden: true)
         
@@ -166,6 +175,8 @@ class ARViewController: UIViewController {
             timing = 30
         }
         
+        recordButton.playState = .playing
+        
         for banknote in banknoteBank {
             for _ in (0..<banknote.value){
                 
@@ -237,6 +248,17 @@ class ARViewController: UIViewController {
             
             modelAssets[banknote.key] = node
         }
+    }
+}
+
+extension ARViewController: RecordButtonDelegate {
+    func RecordButtonStartedRecording() {
+        
+    }
+    
+    func RecordButtonFinished() {
+        recordButton.isEnabled = false
+        recordBarButtonItem.customView = nil
     }
 }
 

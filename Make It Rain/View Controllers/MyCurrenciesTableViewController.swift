@@ -32,7 +32,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        addNewCurrencyButton.isHidden = true
         userDefinedCurrencies = Currency.userDefinedCurrencies
         currencyTableView.reloadData()
     }
@@ -49,7 +49,15 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
         // Animations
+        addNewCurrencyButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+        addNewCurrencyButton.isHidden = false
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
+            self.addNewCurrencyButton.transform = .identity
+        }, completion: nil)
+        
         for i in 0..<userDefinedCurrencies.count{
             let cell = self.currencyTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MyCurrencyTableViewCell
             cell?.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY)
@@ -68,9 +76,9 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         
                     cell?.transform = .identity
             })
+            
         }
     }
-    
     
     // MARK: IBAction
     
@@ -120,8 +128,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-            // ADD A PUBLIC MODEL FUNCTION FOR DELETING
             let currency = userDefinedCurrencies[indexPath.row]
             currency.deleteImages()
             userDefinedCurrencies.remove(at: indexPath.row)

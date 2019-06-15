@@ -33,6 +33,7 @@ class CircularButton: UIButton {
         self.setTitleColor(UIColor.gray.withAlphaComponent(0.3), for: .highlighted)
         self.titleLabel?.font = UIFont(name: "Money Money", size: 40)
         self.backgroundColor = UIColor.theme.gold
+        self.adjustsImageWhenHighlighted = false
         
         self.layer.masksToBounds = true
         

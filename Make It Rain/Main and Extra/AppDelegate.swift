@@ -17,6 +17,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIBarButtonItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font : UIFont(name: "Montserrat Medium", size: 24)!,
+             NSAttributedString.Key.foregroundColor : UIColor.theme.gold],
+            for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font : UIFont(name: "Montserrat Medium", size: 22)!,
+             NSAttributedString.Key.foregroundColor : UIColor.theme.gold],
+            for: .selected)
+        UIBarButtonItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font : UIFont(name: "Montserrat Medium", size: 22)!,
+             NSAttributedString.Key.foregroundColor : UIColor.theme.gold],
+            for: .highlighted)
+        UIBarButtonItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font : UIFont(name: "Montserrat Medium", size: 24)!,
+             NSAttributedString.Key.foregroundColor : UIColor.theme.gray],
+            for: .disabled)
+        UIBarButtonItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.font : UIFont(name: "Montserrat Medium", size: 22)!,
+             NSAttributedString.Key.foregroundColor : UIColor.theme.gold],
+            for: .focused)
+        
         return true
     }
 
