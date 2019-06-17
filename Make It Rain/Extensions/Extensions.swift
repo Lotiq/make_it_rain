@@ -64,6 +64,7 @@ extension UIImage {
     }
 }
 
+// Turns double to a string avoiding scientific notation
 extension Double {
     
     func toString(decimal: Int = 9) -> String {

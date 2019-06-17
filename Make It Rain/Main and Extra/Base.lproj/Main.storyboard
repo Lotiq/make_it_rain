@@ -299,10 +299,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="beK-6c-KU5" userLabel="Text Field Stack View">
-                                <rect key="frame" x="20" y="107.99999999999999" width="374" height="166.66666666666663"/>
+                                <rect key="frame" x="20" y="108" width="374" height="138"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZAj-Ya-c7j" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="39.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -323,7 +323,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X2B-cx-nAc" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="63.666666666666657" width="374" height="39.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="54" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -344,7 +344,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VSJ-Hr-spG" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="0.0" y="127.00000000000001" width="374" height="39.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="108" width="374" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -370,7 +370,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-ZD-Ea2">
-                                <rect key="frame" x="20" y="304.66666666666674" width="374" height="487.33333333333326"/>
+                                <rect key="frame" x="20" y="276" width="374" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageValueTableViewCell" rowHeight="100" id="ERB-g5-rPw" customClass="ImageValueTableViewCell" customModule="Make_It_Rain" customModuleProvider="target">
@@ -450,9 +450,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRq-Jk-Psb">
-                                <rect key="frame" x="0.0" y="837.33333333333337" width="414" height="24.666666666666629"/>
+                                <rect key="frame" x="0.0" y="837" width="414" height="25"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="01b-oj-lZ3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24.666666666666629"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5K-Rj-D0F">
@@ -499,6 +499,9 @@
                     <navigationItem key="navigationItem" id="woc-e0-Q8x">
                         <barButtonItem key="rightBarButtonItem" title="Show" id="dC8-h8-bkB">
                             <color key="tintColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showPressed:" destination="Ler-Rg-6dv" id="vqt-Yk-Dwn"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -507,11 +510,71 @@
                         <outlet property="sceneView" destination="k1h-3W-2MN" id="0Zf-b2-Q5O"/>
                         <outlet property="sessionInfoLabel" destination="U5K-Rj-D0F" id="4n9-WV-OPF"/>
                         <outlet property="sessionInfoView" destination="GRq-Jk-Psb" id="zsU-A9-bGk"/>
+                        <segue destination="v54-Ij-Lwn" kind="show" id="SQf-FY-i9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-yi-Kty" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="952.79999999999995" y="848.27586206896558"/>
+            <point key="canvasLocation" x="1004" y="838"/>
+        </scene>
+        <!--Share Video View Controller-->
+        <scene sceneID="6kg-5y-4Em">
+            <objects>
+                <viewController storyboardIdentifier="ShareVideoViewController" id="v54-Ij-Lwn" customClass="ShareVideoViewController" customModule="Make_It_Rain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sWC-Cr-KrQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="1Jf-mv-cpb">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="d9e-TL-2gc">
+                                <rect key="frame" x="122" y="747" width="170" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GlT-lj-YoH" customClass="CircularButton" customModule="Make_It_Rain" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="GlT-lj-YoH" secondAttribute="height" multiplier="1:1" id="2jv-Uf-WRr"/>
+                                        </constraints>
+                                        <state key="normal" title="IG"/>
+                                        <connections>
+                                            <action selector="shareToInstagram:" destination="v54-Ij-Lwn" eventType="touchUpInside" id="6bP-hz-7JW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHv-Ol-xwl" customClass="CircularButton" customModule="Make_It_Rain" customModuleProvider="target">
+                                        <rect key="frame" x="115" y="0.0" width="55" height="55"/>
+                                        <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveToCameraRoll:" destination="v54-Ij-Lwn" eventType="touchUpInside" id="0gd-jP-2SQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="8y0-KH-bMd"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="1Jf-mv-cpb" secondAttribute="bottom" id="DHw-do-d06"/>
+                            <constraint firstItem="1Jf-mv-cpb" firstAttribute="top" secondItem="Lp4-9e-9UU" secondAttribute="top" id="XQB-vf-v8I"/>
+                            <constraint firstItem="Lp4-9e-9UU" firstAttribute="bottom" secondItem="d9e-TL-2gc" secondAttribute="bottom" constant="60" id="bUn-OF-bjO"/>
+                            <constraint firstItem="d9e-TL-2gc" firstAttribute="centerX" secondItem="sWC-Cr-KrQ" secondAttribute="centerX" id="lVb-jy-ibc"/>
+                            <constraint firstItem="Lp4-9e-9UU" firstAttribute="trailing" secondItem="1Jf-mv-cpb" secondAttribute="trailing" id="n0R-FB-z8u"/>
+                            <constraint firstItem="1Jf-mv-cpb" firstAttribute="leading" secondItem="Lp4-9e-9UU" secondAttribute="leading" id="o9R-dI-HjQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lp4-9e-9UU"/>
+                    </view>
+                    <connections>
+                        <outlet property="IGButton" destination="GlT-lj-YoH" id="cq6-oB-oc6"/>
+                        <outlet property="saveButton" destination="LHv-Ol-xwl" id="W2a-vN-zYa"/>
+                        <outlet property="videoView" destination="1Jf-mv-cpb" id="qcK-28-iV8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cj0-gK-Ou4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1913.0434782608697" y="837.72321428571422"/>
         </scene>
         <!--Banknote View Controller-->
         <scene sceneID="0SK-yt-7Bs">

@@ -1,28 +1,36 @@
 PODS:
+  - BrightFutures (8.0.0)
   - CenteredCollectionView (2.2.1)
   - HGCircularSlider (2.0.0)
+  - SceneKitVideoRecorder (1.6.0):
+    - BrightFutures
   - SideMenu (5.0.3)
   - SkyFloatingLabelTextField (3.6.0)
 
 DEPENDENCIES:
   - CenteredCollectionView (~> 2.2.1)
   - HGCircularSlider (~> 2.0.0)
+  - SceneKitVideoRecorder (~> 1.6.0)
   - SideMenu (~> 5.0.3)
   - SkyFloatingLabelTextField (~> 3.6.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BrightFutures
     - CenteredCollectionView
     - HGCircularSlider
+    - SceneKitVideoRecorder
     - SideMenu
     - SkyFloatingLabelTextField
 
 SPEC CHECKSUMS:
+  BrightFutures: f8427b46feabaf73c5e71ace7d86d65dfbb47696
   CenteredCollectionView: ba6e45fb7774627890621d73c8dd7dbd33391da9
   HGCircularSlider: 92e2ee098c814709f455b8f46cd9008147f6a869
+  SceneKitVideoRecorder: 33e4ae8148f4633cf8a965c903c81f35ade4db88
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
   SkyFloatingLabelTextField: 38164979b79512f9ff9288ad8acfc4bbf5d843e3
 
-PODFILE CHECKSUM: a8a70b14bc19749fb00b5d0561a6fe15bd6c42b2
+PODFILE CHECKSUM: 9360b44bc18c30a6279410d2d3b4d2612541c0df
 
 COCOAPODS: 1.6.1

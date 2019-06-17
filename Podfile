@@ -10,4 +10,5 @@ target 'Make It Rain' do
   pod 'CenteredCollectionView', '~> 2.2.1'
   pod 'SkyFloatingLabelTextField', '~> 3.6.0'
   pod 'SideMenu', '~> 5.0.3'
+  pod 'SceneKitVideoRecorder', '~> 1.6.0'
 end

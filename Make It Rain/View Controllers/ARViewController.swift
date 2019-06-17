@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import SceneKitVideoRecorder
 
 class ARViewController: UIViewController {
 
@@ -37,15 +38,21 @@ class ARViewController: UIViewController {
     // Bool variable to track whether the action has been performed
     var rained = false
     
-    var recordButton: RecordButton!
+    // Button that enables and disables recording
+    var recButton: RecordButton!
+    
+    // AR Recorder
+    var recorder: SceneKitVideoRecorder?
+    
+    // Video URL
+    var videoURL: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
-        
-        recordButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        recordButton.delegate = self
-        recordBarButtonItem.customView = recordButton
+        recButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        recButton.delegate = self
+        recordBarButtonItem.customView = recButton
        
         //ADD .other for ALL NAVIGATION
         
@@ -107,10 +114,28 @@ class ARViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if recorder == nil {
+            var options = SceneKitVideoRecorder.Options.default
+            
+            let scale = UIScreen.main.nativeScale
+            let sceneSize = sceneView.bounds.size
+            options.videoSize = CGSize(width: sceneSize.width * scale, height: sceneSize.height * scale)
+            recorder = try! SceneKitVideoRecorder(withARSCNView: sceneView, options: options)
+        }
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let navBar = self.navigationController!.navigationBar
+        // recButton.frame = CGRect(x: 0, y: 0, width: navBar.frame.height - 10, height: navBar.frame.height - 10 )
+        // self.navigationController?.navigationBar.frame.width -4
+    }
+    
     @IBAction func makeItRain(_ sender: UIButton) {
         rained = true
         sender.isHidden = true
-        
         // Get SNNode which is serves as an anchor
         guard let anchor = sceneView.scene.rootNode.childNode(withName: "anchor", recursively: true) else {
             print("No plane anchor detected")
@@ -175,7 +200,7 @@ class ARViewController: UIViewController {
             timing = 30
         }
         
-        recordButton.playState = .playing
+        recButton.playState = .playing
         
         for banknote in banknoteBank {
             for _ in (0..<banknote.value){
@@ -249,16 +274,32 @@ class ARViewController: UIViewController {
             modelAssets[banknote.key] = node
         }
     }
+    
+    @IBAction func showPressed(_ sender: UIBarButtonItem) {
+        guard sender.customView == nil else {return}
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let shareVC = main.instantiateViewController(withIdentifier: "ShareVideoViewController") as! ShareVideoViewController
+        shareVC.videoURL = self.videoURL
+        navigationController?.pushViewController(shareVC, animated: true)
+    }
 }
+
+
 
 extension ARViewController: RecordButtonDelegate {
     func RecordButtonStartedRecording() {
-        
+        self.recorder?.startWriting().onSuccess {
+            print("Recording Started")
+        }
     }
     
     func RecordButtonFinished() {
-        recordButton.isEnabled = false
+        recButton.isEnabled = false
         recordBarButtonItem.customView = nil
+        self.recorder?.finishWriting().onSuccess { [weak self] url in
+            print("Recording Finished", url)
+            self?.videoURL = url
+        }
     }
 }
 
