@@ -38,7 +38,7 @@ class CircularButton: UIButton {
         self.layer.masksToBounds = true
         
         self.layer.shadowRadius = 4.0
-        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowColor = UIColor.gray.cgColor //UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 1, height: 1)
         self.layer.shadowOpacity = 1.0
         

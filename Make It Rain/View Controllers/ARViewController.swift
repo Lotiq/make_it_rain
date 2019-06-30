@@ -54,7 +54,11 @@ class ARViewController: UIViewController {
         recButton.delegate = self
         recordBarButtonItem.customView = recButton
        
-        //ADD .other for ALL NAVIGATION
+        let cancelButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
+        cancelButton.tintColor = UIColor.theme.gold
+        let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
+        self.navigationItem.backBarButtonItem = cancelButton
         
         interaction(isHidden: true)
         
@@ -128,7 +132,7 @@ class ARViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let navBar = self.navigationController!.navigationBar
+        // let navBar = self.navigationController!.navigationBar
         // recButton.frame = CGRect(x: 0, y: 0, width: navBar.frame.height - 10, height: navBar.frame.height - 10 )
         // self.navigationController?.navigationBar.frame.width -4
     }
@@ -294,6 +298,7 @@ extension ARViewController: RecordButtonDelegate {
     }
     
     func RecordButtonFinished() {
+ 
         recButton.isEnabled = false
         recordBarButtonItem.customView = nil
         self.recorder?.finishWriting().onSuccess { [weak self] url in
@@ -316,8 +321,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         // Create a SceneKit plane to visualize the plane anchor using its position and extent.
         let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
         let planeNode = SCNNode(geometry: plane)
-        planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
-        
+        planeNode.simdPosition = SIMD3(planeAnchor.center.x, 0, planeAnchor.center.z)
         
         /*
          `SCNPlane` is vertically oriented in its local coordinate space, so
@@ -350,8 +354,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
                 return }
         
         // Plane estimation may shift the center of a plane relative to its anchor's transform.
-        planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
-        
+        planeNode.simdPosition = SIMD3(planeAnchor.center.x, 0, planeAnchor.center.z)
         /*
          Plane estimation may extend the size of the plane, or combine previously detected
          planes into a larger one. In the latter case, `ARSCNView` automatically deletes the

@@ -8,20 +8,26 @@
 import Foundation
 import UIKit
 import AVKit
+import Photos
 
 class ShareVideoViewController: UIViewController {
 
     @IBOutlet weak var videoView: UIView!
-    @IBOutlet weak var IGButton: CircularButton!
+    @IBOutlet weak var IGbutton: CircularButton!
     @IBOutlet weak var saveButton: CircularButton!
     
     var videoURL: URL?
     var player: AVPlayer!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        IGButton.isEnabled = false
+        let image = UIImage(named: "download")?.tint(with: .gray)
+        saveButton.setImage(image, for: .normal)
+        IGbutton.isEnabled = false
         saveButton.isEnabled = false
+        
+    
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, policy: .default, options: .defaultToSpeaker)
 
         view.backgroundColor = UIColor.theme.secondary
@@ -30,7 +36,7 @@ class ShareVideoViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = false
         
         if let videoURL = videoURL {
-            IGButton.isEnabled = true
+            IGbutton.isEnabled = true
             saveButton.isEnabled = true
             playVideo(videoURL: videoURL)
         } else {
@@ -53,13 +59,13 @@ class ShareVideoViewController: UIViewController {
         playerLayer.shadowOffset = CGSize(width: 0, height: 1)
         playerLayer.shadowRadius = -4
         
-        /*
+        
         NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
                                                object: self.player!.currentItem,
                                                queue: nil) { [weak self] note in
                                                 self?.player!.seek(to: CMTime.zero)
                                                 self?.player!.play()
-        }*/
+        }
         
         self.videoView.layer.addSublayer(playerLayer)
         player!.volume = 1.0
@@ -67,14 +73,53 @@ class ShareVideoViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //
+        super.viewWillDisappear(animated)
+        player!.pause()
     }
     
     @IBAction func shareToInstagram(_ sender: UIButton) {
-       
+        
+        
+        let videoData = try? Data(contentsOf: videoURL!)
+        //let videoURL : NSURL = "URL of video"
+        guard let urlScheme = URL(string: "instagram-stories://share") else{
+            print("Failed")
+            return
+        }
+        
+        guard UIApplication.shared.canOpenURL(urlScheme) else {
+            print("Permission Issues")
+            return
+        }
+        
+        let pasteboardItems = [["com.instagram.sharedSticker.backgroundVideo": videoData!]]
+        let pasteboardOptions = [UIPasteboard.OptionsKey.expirationDate: Date().addingTimeInterval(60*5)]
+        
+        UIPasteboard.general.setItems(pasteboardItems, options: pasteboardOptions)
+        UIApplication.shared.open(urlScheme, options: [:], completionHandler: nil)
     }
     
     @IBAction func saveToCameraRoll(_ sender: UIButton) {
-        
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.videoURL!)
+        }) { (saved, error) in
+            if (error == nil) {
+                let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+                let vc = storyboard.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
+                
+                vc.bodyText = "Your amazing video was saved"
+                vc.titleText = "Yay!"
+                vc.buttonText = "Good"
+                vc.completion = {
+                    DispatchQueue.main.async {
+                        self.player.play()
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.player.pause()
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }
