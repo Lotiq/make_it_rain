@@ -19,7 +19,6 @@
 		1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69F9B72264D28C00ECD4DF /* CashTextField.swift */; };
 		1C78A962226247A000436085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A961226247A000436085 /* AppDelegate.swift */; };
 		1C78A964226247A000436085 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A963226247A000436085 /* SelectionViewController.swift */; };
-		1C78A967226247A000436085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A965226247A000436085 /* Main.storyboard */; };
 		1C78A969226247A200436085 /* Dollar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A968226247A200436085 /* Dollar.xcassets */; };
 		1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A96A226247A200436085 /* LaunchScreen.storyboard */; };
 		1C78A99422627B4F00436085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* Extensions.swift */; };
@@ -40,6 +39,7 @@
 		1CC4E4882277793F0084F229 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E4872277793F0084F229 /* SideMenuTableViewController.swift */; };
 		1CC8C1DA227799EE0058C6F6 /* MyCurrenciesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */; };
 		1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */; };
+		1CC92AD022D91B1B00C309FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CC92ACF22D91B1B00C309FD /* Main.storyboard */; };
 		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +58,6 @@
 		1C78A95E226247A000436085 /* Make It Rain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Make It Rain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C78A961226247A000436085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C78A963226247A000436085 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
-		1C78A966226247A000436085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C78A968226247A200436085 /* Dollar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dollar.xcassets; sourceTree = "<group>"; };
 		1C78A96B226247A200436085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C78A96D226247A200436085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		1CC4E4872277793F0084F229 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrenciesTableViewController.swift; sourceTree = "<group>"; };
 		1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		1CC92ACF22D91B1B00C309FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
 		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -220,7 +220,7 @@
 			children = (
 				1C78A961226247A000436085 /* AppDelegate.swift */,
 				1C049401228D6504005D0ABD /* AlertStoryboard.storyboard */,
-				1C78A965226247A000436085 /* Main.storyboard */,
+				1CC92ACF22D91B1B00C309FD /* Main.storyboard */,
 				1C78A96A226247A200436085 /* LaunchScreen.storyboard */,
 				1C78A96D226247A200436085 /* Info.plist */,
 			);
@@ -310,12 +310,12 @@
 				1C78A9992262A04A00436085 /* Euro.xcassets in Resources */,
 				1CC4E472226A310D0084F229 /* Money_Money.ttf in Resources */,
 				1C049402228D6504005D0ABD /* AlertStoryboard.storyboard in Resources */,
+				1CC92AD022D91B1B00C309FD /* Main.storyboard in Resources */,
 				1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */,
 				1C78A969226247A200436085 /* Dollar.xcassets in Resources */,
 				1CC4E48222738C2D0084F229 /* Montserrat-Medium.ttf in Resources */,
 				1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */,
 				1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */,
-				1C78A967226247A000436085 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,14 +411,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1C78A965226247A000436085 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1C78A966226247A000436085 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1C78A96A226247A200436085 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

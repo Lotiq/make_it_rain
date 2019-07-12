@@ -55,6 +55,7 @@ class ARViewController: UIViewController {
         recButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         recButton.delegate = self
         recordBarButtonItem.customView = recButton
+
        
         let cancelButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
         cancelButton.tintColor = UIColor.theme.gold
@@ -302,6 +303,7 @@ extension ARViewController: RecordButtonDelegate {
  
         recButton.isEnabled = false
         recordBarButtonItem.customView = nil
+<<<<<<< HEAD
         recordBarButtonItem.isEnabled = false
         self.recorder?.finishWriting().onSuccess { [weak self] url in
             DispatchQueue.main.async {
@@ -309,6 +311,13 @@ extension ARViewController: RecordButtonDelegate {
             }
             self?.videoURL = url
         }
+||||||| merged common ancestors
+=======
+        self.recorder?.finishWriting().onSuccess { [weak self] url in
+            print("Recording Finished", url)
+            self?.videoURL = url
+        }
+>>>>>>> 1304b55adf06cb066498ce22cc818434a9352cc5
     }
 }
 
