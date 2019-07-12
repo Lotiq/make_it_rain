@@ -143,10 +143,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     @objc func addAnimations(){
         playBarButton.pulse()
     }
-    
-    @objc func removeAnimations(){
-        playBarButton.pulseLayers = []
-    }
+
     
     
     // MARK: Delegate Functions
@@ -265,12 +262,11 @@ extension SelectionViewController: UITextFieldDelegate {
     
     func subscribeToBackgroundNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(addAnimations), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(removeAnimations), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
     }
     
     func unsubscribeToBackgroundNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
 }
