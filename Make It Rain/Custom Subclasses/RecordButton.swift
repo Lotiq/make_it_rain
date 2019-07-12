@@ -84,7 +84,7 @@ import UIKit
     override public init(frame: CGRect) {
         
         super.init(frame: frame)
-        
+        print("init")
         self.addTarget(self, action: #selector(RecordButton.didTouchDown), for: .touchDown)
         
         self.drawButton()
@@ -92,7 +92,7 @@ import UIKit
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+        print("encoder init")
         self.addTarget(self, action: #selector(RecordButton.didTouchDown), for: .touchDown)
         
         self.drawButton()
@@ -105,11 +105,11 @@ import UIKit
         let layer = self.layer
         circleLayer = CALayer()
         circleLayer.backgroundColor = buttonColor.cgColor
-        
+        print("Frame MidY: ", self.frame.midY)
         let size: CGFloat = self.frame.size.width / 1.12 / 1.5
         circleLayer.bounds = CGRect(x: 0, y: 0, width: size, height: size)
         circleLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        circleLayer.position = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
+        circleLayer.position = CGPoint(x: self.frame.midX,y: self.frame.midY)
         circleLayer.cornerRadius = size / 2
         layer.insertSublayer(circleLayer, at: 0)
         
@@ -118,18 +118,19 @@ import UIKit
         circleBorder.backgroundColor = UIColor.clear.cgColor
         circleBorder.borderWidth = 1
         circleBorder.borderColor = buttonColor.cgColor
-        circleBorder.bounds = CGRect(x: 0, y: 0, width: self.bounds.size.width/1.12 - 1.5, height: self.bounds.size.height/1.12 - 1.5)
+        circleBorder.bounds = CGRect(x: 0, y: 0, width: (self.frame.size.width - 3)/1.12, height: (self.frame.size.height - 3)/1.12)
         circleBorder.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        circleBorder.position = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
-        circleBorder.cornerRadius = self.frame.size.width / 1.12 / 2
+        circleBorder.position = CGPoint(x: self.frame.midX,y: self.frame.midY)
+        circleBorder.cornerRadius = circleBorder.bounds.width / 2
         layer.insertSublayer(circleBorder, at: 0)
  
-        
+        print("Circle Border MidY: ", circleBorder.frame.midY)
         
         let startAngle: CGFloat = CGFloat(Double.pi) + CGFloat(Double.pi/2)
         let endAngle: CGFloat = CGFloat(Double.pi) * 3 + CGFloat(Double.pi/2)
-        //let centerPoint: CGPoint = CGPoint(x: self.frame.size.width * 0.87 / 2, y: self.frame.size.height * 0.87 / 2)
-        let centerPoint: CGPoint = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
+        //let centerPoint: CGPoint = CGPoint(x: self.frame.size.width / 1.12 / 2, y: self.frame.size.height / 1.12 / 2)
+        let centerPoint: CGPoint = CGPoint(x: self.frame.midX,y: self.frame.midY)
+        //let centerPoint: CGPoint = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height / 2)
         gradientMaskLayer = self.gradientMask()
         progressLayer = CAShapeLayer()
         progressLayer.path = UIBezierPath(arcCenter: centerPoint, radius: self.frame.size.width / 2 - 1.5, startAngle: startAngle, endAngle: endAngle, clockwise: true).cgPath
@@ -139,15 +140,27 @@ import UIKit
         progressLayer.lineWidth = 3.0
         progressLayer.strokeStart = 0.0
         progressLayer.strokeEnd = 0.0
+        
         gradientMaskLayer.mask = progressLayer
         layer.insertSublayer(gradientMaskLayer, at: 1)
+        print("Progress Layer MidY: ", progressLayer.frame.midY)
         
     }
     
     fileprivate func setRecording(_ recording: Bool) {
         
+        if (recording) {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.enableAllOrientations = false
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        } else {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.enableAllOrientations = true
+        }
+        
         let duration: TimeInterval = 0.15
         circleLayer.contentsGravity = .center
+        circleBorder.contentsGravity = .center
         
         let scale = CABasicAnimation(keyPath: "transform.scale")
         scale.fromValue = recording ? 1 : 1.12
@@ -172,7 +185,7 @@ import UIKit
         borderColor.duration = duration
         borderColor.fillMode = .forwards
         borderColor.isRemovedOnCompletion = false
-        borderColor.toValue = recording ? UIColor.white.cgColor : buttonColor
+        borderColor.toValue = recording ? UIColor.white.cgColor : buttonColor.cgColor
         
         let borderScale = CABasicAnimation(keyPath: "transform.scale")
         borderScale.fromValue = recording ? 1 : 1.12
@@ -211,11 +224,17 @@ import UIKit
     }
     
     override open func layoutSubviews() {
-        circleLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        circleLayer.position = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
+        
         circleBorder.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        circleBorder.position = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
+        circleBorder.position = CGPoint(x: self.frame.midX,y: self.frame.midY - 1)
+        circleLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        circleLayer.position = CGPoint(x: self.frame.midX,y: self.frame.midY - 1)
+        //progressLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        //progressLayer.position = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
+        
+        
         super.layoutSubviews()
+    
     }
     
     @objc open func updateProgress(){

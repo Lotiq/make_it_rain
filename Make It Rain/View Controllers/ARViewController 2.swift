@@ -113,8 +113,8 @@ class ARViewController: UIViewController {
         sceneView.session.pause()
         
         // Rotates back to Portrait if needed
-        
         UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        
         
         UIApplication.shared.isIdleTimerDisabled = false
     }
@@ -355,7 +355,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
             let planeNode = node.childNodes.first,
             let plane = planeNode.geometry as? SCNPlane,
             rained == false
-            else {return }
+            else {return}
         
         // Plane estimation may shift the center of a plane relative to its anchor's transform.
         planeNode.simdPosition = SIMD3(planeAnchor.center.x, 0, planeAnchor.center.z)

@@ -25,6 +25,7 @@
 		1C78A99422627B4F00436085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* Extensions.swift */; };
 		1C78A9992262A04A00436085 /* Euro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A9982262A04A00436085 /* Euro.xcassets */; };
 		1CAA740822B571E700DFAFF3 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA740722B571E600DFAFF3 /* RecordButton.swift */; };
+		1CAA740A22B5AAA100DFAFF3 /* ShareVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA740922B5AAA100DFAFF3 /* ShareVideoViewController.swift */; };
 		1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E469226575430084F229 /* BanknoteCell.swift */; };
 		1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E46B22669D320084F229 /* Pound.xcassets */; };
 		1CC4E46E2266A4EC0084F229 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E46D2266A4EC0084F229 /* Currency.swift */; };
@@ -64,6 +65,7 @@
 		1C78A99322627B4F00436085 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1C78A9982262A04A00436085 /* Euro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Euro.xcassets; sourceTree = "<group>"; };
 		1CAA740722B571E600DFAFF3 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordButton.swift; path = "Make It Rain/Custom Subclasses/RecordButton.swift"; sourceTree = SOURCE_ROOT; };
+		1CAA740922B5AAA100DFAFF3 /* ShareVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVideoViewController.swift; sourceTree = "<group>"; };
 		1CC4E469226575430084F229 /* BanknoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteCell.swift; sourceTree = "<group>"; };
 		1CC4E46B22669D320084F229 /* Pound.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pound.xcassets; sourceTree = "<group>"; };
 		1CC4E46D2266A4EC0084F229 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				1CC4E4872277793F0084F229 /* SideMenuTableViewController.swift */,
 				1C14E436226534D700EB14C1 /* BanknoteViewController.swift */,
 				1C78A963226247A000436085 /* SelectionViewController.swift */,
+				1CAA740922B5AAA100DFAFF3 /* ShareVideoViewController.swift */,
 				1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */,
 				1C0493FD227FF041005D0ABD /* AboutViewController.swift */,
 				1CC4E47D226E1D4D0084F229 /* ARViewController.swift */,
@@ -328,8 +331,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/HGCircularSlider/HGCircularSlider.framework",
+				"${BUILT_PRODUCTS_DIR}/SceneKitVideoRecorder/SceneKitVideoRecorder.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework",
 			);
@@ -337,8 +342,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGCircularSlider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SceneKitVideoRecorder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyFloatingLabelTextField.framework",
 			);
@@ -376,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CAA740A22B5AAA100DFAFF3 /* ShareVideoViewController.swift in Sources */,
 				1CC4E486227527D80084F229 /* TagTapGestureRecognizer.swift in Sources */,
 				1CC4E4882277793F0084F229 /* SideMenuTableViewController.swift in Sources */,
 				1C0493FC227F80B4005D0ABD /* RainEmitter.swift in Sources */,

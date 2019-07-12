@@ -17,6 +17,7 @@ class AlertViewController: UIViewController {
     var bodyText = String()
     var titleText = String()
     var buttonText = String()
+    var completion: (() -> Void)?
     
     
     override func viewDidLoad() {
@@ -33,6 +34,6 @@ class AlertViewController: UIViewController {
     }
     
     @IBAction func actionButtonPressed(_ sender: ActionButton) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: self.completion)
     }
 }
