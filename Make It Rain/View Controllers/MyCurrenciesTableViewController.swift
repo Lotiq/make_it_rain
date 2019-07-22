@@ -95,6 +95,10 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
         cancelButton.tintColor = UIColor.theme.gold
         cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .selected)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .disabled)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .focused)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .highlighted)
         self.navigationItem.backBarButtonItem = cancelButton
     }
     

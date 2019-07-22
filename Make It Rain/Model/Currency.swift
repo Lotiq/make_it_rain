@@ -154,9 +154,9 @@ struct Currency: Codable, Equatable {
 extension Currency{
     
     static var defaultCurrencies: [Currency] {
-        let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [5,20])
-        let euro = Currency(name: "euro", sign: "€", ratio: 1.13, availableBanknotes: [5])
-        let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5,50])
+        let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [1,5,10,20,100])
+        let euro = Currency(name: "euro", sign: "€", ratio: 1.13, availableBanknotes: [5,10,50,100])
+        let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5,10,50])
         let yuan = Currency(name: "yuan", sign: "¥", ratio: 0.15, availableBanknotes: [50])
         return [dollar,euro,pound,yuan]
     }

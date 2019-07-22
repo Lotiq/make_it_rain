@@ -41,7 +41,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         
         
         let button = UIButton(type: .custom)
-        let image = UIImage(named: "plays")!.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(named: "play")!.withRenderingMode(.alwaysTemplate)
         button.setImage(image.tint(with: UIColor.theme.gold), for: .normal)
         button.tintColor = UIColor.theme.gold
         button.adjustsImageWhenHighlighted = false
@@ -65,6 +65,11 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         cancelButton.tintColor = UIColor.theme.gold
         let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
         cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .disabled)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .highlighted)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .focused)
+        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .selected)
+        
         self.navigationItem.backBarButtonItem = cancelButton
         
         rain(with: UIImage(named: "dollar_particle.png")!)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14810.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uAj-vs-2xF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uAj-vs-2xF">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.15"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -448,9 +448,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRq-Jk-Psb">
-                                <rect key="frame" x="0.0" y="837.33333333333337" width="414" height="24.666666666666629"/>
+                                <rect key="frame" x="0.0" y="837.66666666666663" width="414" height="24.333333333333371"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="01b-oj-lZ3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24.333333333333371"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5K-Rj-D0F">
@@ -535,7 +535,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="GlT-lj-YoH" secondAttribute="height" multiplier="1:1" id="2jv-Uf-WRr"/>
                                         </constraints>
-                                        <state key="normal" title="IG" image="IG1"/>
+                                        <state key="normal" title="IG" image="IG"/>
                                         <connections>
                                             <action selector="shareToInstagram:" destination="v54-Ij-Lwn" eventType="touchUpInside" id="6bP-hz-7JW"/>
                                         </connections>
@@ -631,7 +631,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IG1" width="375" height="375"/>
+        <image name="IG" width="375" height="375"/>
         <image name="banknote" width="564" height="349"/>
         <image name="list" width="33" height="33"/>
     </resources>

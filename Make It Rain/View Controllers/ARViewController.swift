@@ -21,7 +21,7 @@ class ARViewController: UIViewController {
     
     var money: Int!
     // Width of the currency in meters
-    let restrictedWidth: CGFloat = 0.126
+    let restrictedWidth: CGFloat = 0.156
     
     // Selected currency local variable
     var selectedCurrency: Currency!
@@ -54,14 +54,21 @@ class ARViewController: UIViewController {
         
         recButton = RecordButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         recButton.delegate = self
+        let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
+        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .normal)
+        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .selected)
+        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .focused)
+        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .highlighted)
+        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .disabled)
+
         recordBarButtonItem.customView = recButton
 
        
         let cancelButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
         cancelButton.tintColor = UIColor.theme.gold
-        let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
         cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
         self.navigationItem.backBarButtonItem = cancelButton
+        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: [.normal,.selected,.disabled,.focused,.highlighted])
         
         interaction(isHidden: true)
         
