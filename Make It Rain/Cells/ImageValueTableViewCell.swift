@@ -18,6 +18,7 @@ class ImageValueTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear
+        self.valueTextField.attributedPlaceholder = NSAttributedString(string: "Value",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         // Initialization code
     }
 
