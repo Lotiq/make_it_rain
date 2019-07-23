@@ -190,7 +190,7 @@
                                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5n-6z-HaH">
-                                                            <rect key="frame" x="158.66666666666666" y="95.333333333333329" width="66.666666666666657" height="29.333333333333329"/>
+                                                            <rect key="frame" x="158.66666666666666" y="95.666666666666671" width="67" height="29"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat Medium" pointSize="24"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </label>
@@ -449,9 +449,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRq-Jk-Psb">
-                                <rect key="frame" x="0.0" y="837.66666666666663" width="414" height="24.333333333333371"/>
+                                <rect key="frame" x="0.0" y="808" width="414" height="24"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="01b-oj-lZ3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24.333333333333371"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5K-Rj-D0F">
@@ -471,7 +471,7 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgD-qA-ReG" customClass="ActionButton" customModule="Make_It_Rain" customModuleProvider="target">
-                                <rect key="frame" x="140.66666666666666" y="829" width="132.99999999999997" height="33"/>
+                                <rect key="frame" x="140.66666666666666" y="799" width="132.99999999999997" height="33"/>
                                 <fontDescription key="fontDescription" name="MoneyMoney" family="Money Money" pointSize="20"/>
                                 <state key="normal" title="Make It Rain">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -486,10 +486,10 @@
                             <constraint firstAttribute="bottom" secondItem="k1h-3W-2MN" secondAttribute="bottom" id="Lcj-Ne-baa"/>
                             <constraint firstItem="GRq-Jk-Psb" firstAttribute="trailing" secondItem="Wgh-XD-2FE" secondAttribute="trailing" id="POz-di-hJr"/>
                             <constraint firstItem="k1h-3W-2MN" firstAttribute="leading" secondItem="i0Z-V9-NHZ" secondAttribute="leading" id="cem-7h-se8"/>
-                            <constraint firstItem="Wgh-XD-2FE" firstAttribute="bottom" secondItem="GRq-Jk-Psb" secondAttribute="bottom" id="eQh-UB-iIm"/>
+                            <constraint firstItem="Wgh-XD-2FE" firstAttribute="bottom" secondItem="GRq-Jk-Psb" secondAttribute="bottom" constant="30" id="eQh-UB-iIm"/>
                             <constraint firstItem="lgD-qA-ReG" firstAttribute="centerX" secondItem="i0Z-V9-NHZ" secondAttribute="centerX" id="sGd-dD-pz4"/>
                             <constraint firstItem="k1h-3W-2MN" firstAttribute="top" secondItem="i0Z-V9-NHZ" secondAttribute="top" id="sp4-hm-fFo"/>
-                            <constraint firstItem="lgD-qA-ReG" firstAttribute="bottom" secondItem="Wgh-XD-2FE" secondAttribute="bottom" id="w5m-s5-a2F"/>
+                            <constraint firstItem="lgD-qA-ReG" firstAttribute="bottom" secondItem="Wgh-XD-2FE" secondAttribute="bottom" constant="-30" id="w5m-s5-a2F"/>
                             <constraint firstItem="GRq-Jk-Psb" firstAttribute="leading" secondItem="Wgh-XD-2FE" secondAttribute="leading" id="wbW-hX-Mba"/>
                             <constraint firstItem="k1h-3W-2MN" firstAttribute="trailing" secondItem="i0Z-V9-NHZ" secondAttribute="trailing" id="xFl-Mu-w1k"/>
                         </constraints>
@@ -509,7 +509,7 @@
                         <outlet property="sceneView" destination="k1h-3W-2MN" id="0Zf-b2-Q5O"/>
                         <outlet property="sessionInfoLabel" destination="U5K-Rj-D0F" id="4n9-WV-OPF"/>
                         <outlet property="sessionInfoView" destination="GRq-Jk-Psb" id="zsU-A9-bGk"/>
-                        <segue destination="v54-Ij-Lwn" kind="show" id="SQf-FY-i9i"/>
+                        <segue destination="v54-Ij-Lwn" kind="show" identifier="showShareVC" id="SQf-FY-i9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-yi-Kty" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -524,7 +524,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="1Jf-mv-cpb">
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Jf-mv-cpb">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>

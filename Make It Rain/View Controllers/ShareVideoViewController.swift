@@ -36,14 +36,20 @@ class ShareVideoViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.theme.main
         navigationController?.navigationBar.isTranslucent = false
         
-        if let videoURL = videoURL {
+        if videoURL != nil {
             IGbutton.isEnabled = true
             saveButton.isEnabled = true
-            playVideo(videoURL: videoURL)
+            //playVideo(videoURL: videoURL)
         } else {
             print("error with video")
         }
         
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if saveButton.isEnabled {
+            playVideo(videoURL: videoURL!)
+        }
     }
     
     func playVideo(videoURL: URL){
