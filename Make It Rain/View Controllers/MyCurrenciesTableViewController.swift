@@ -19,7 +19,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     // MARK: Variables
     // Local user default
     var userDefinedCurrencies: [Currency]!
-    
+    var allImages: [[Int: UIImage]] = []
     // MARK: Override Presenting Functions
     
     override func viewDidLoad() {
@@ -34,7 +34,15 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         super.viewWillAppear(animated)
         addNewCurrencyButton.isHidden = true
         userDefinedCurrencies = Currency.userDefinedCurrencies
+        allImages = []
+        for i in 0..<userDefinedCurrencies.count {
+            allImages.append(userDefinedCurrencies[i].getImages())
+        }
         currencyTableView.reloadData()
+        for i in 0..<userDefinedCurrencies.count{
+            let cell = self.currencyTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MyCurrencyTableViewCell
+            cell?.contentView.alpha = 0
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,7 +62,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         addNewCurrencyButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         addNewCurrencyButton.isHidden = false
         
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
             self.addNewCurrencyButton.transform = .identity
         }, completion: nil)
         
@@ -63,21 +71,22 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
             cell?.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY)
             
             UIView.animate(
-                withDuration: 1.4,
-                delay: 0.07 * Double(i),
+                withDuration: 1.1,
+                delay: 0.05 * Double(i),
                 animations: {
                     cell?.contentView.alpha = 1
             })
             
             UIView.animate(
-                withDuration: 0.7,
-                delay: 0.07 * Double(i),
+                withDuration: 0.55,
+                delay: 0.05 * Double(i),
                 animations: {
         
                     cell?.transform = .identity
             })
             
         }
+        
     }
     
     // MARK: IBAction
@@ -120,10 +129,9 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCurrencyTableViewCell", for: indexPath) as! MyCurrencyTableViewCell
-        let image = userDefinedCurrencies[indexPath.row].getImages().randomElement()!.value
+        let image = allImages[indexPath.row].randomElement()!.value
         cell.sampleBanknoteImageView.image = image
         cell.nameLabel.text = userDefinedCurrencies[indexPath.row].name
-        cell.contentView.alpha = 0
 
         return cell
     }

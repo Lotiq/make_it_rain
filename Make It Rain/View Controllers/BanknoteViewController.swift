@@ -23,7 +23,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var banknoteViewControllerDelegate: BanknoteViewControllerDelegate?
     var allCurrencies = Currency.allCurrencies
-    var allImages: [[Int: UIImage]] = .init()
+    var allImages: [[Int: UIImage]] = []
     // MARK: Override Presenting Functions
     
     override func viewDidLoad() {
@@ -51,10 +51,11 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        print(allCurrencies.count)
         allCurrencies = Currency.allCurrencies
-        for currency in allCurrencies {
-            allImages.append(currency.getImages())
+        allImages = []
+        for i in 0..<allCurrencies.count {
+            allImages.append(allCurrencies[i].getImages())
         }
         banknoteCollectionView.reloadData()
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
@@ -63,7 +64,10 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        allImages = []
+        for i in 0..<allCurrencies.count {
+            allImages.append(allCurrencies[i].getImages())
+        }
         banknoteCollectionView.reloadData()
         super.viewDidAppear(true)
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0

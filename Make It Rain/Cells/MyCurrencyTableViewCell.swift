@@ -13,9 +13,11 @@ class MyCurrencyTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sampleBanknoteImageView: UIImageView!
     @IBOutlet weak var containerBanknoteView: UIView!
+    @IBOutlet weak var overlayView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.overlayView.layer.cornerRadius = 10
         containerBanknoteView.layer.cornerRadius = 10
         self.backgroundColor = .clear
         self.sampleBanknoteImageView.layer.cornerRadius = 10
@@ -31,13 +33,5 @@ class MyCurrencyTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-    }
-    
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.sampleBanknoteImageView.frame.size.width, height: self.sampleBanknoteImageView.frame.size.height))
-        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
-        overlay.layer.cornerRadius = self.containerBanknoteView.layer.cornerRadius
-        self.sampleBanknoteImageView.addSubview(overlay)
     }
 }
