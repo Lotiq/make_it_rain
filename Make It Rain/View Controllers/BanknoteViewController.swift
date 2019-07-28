@@ -23,7 +23,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var banknoteViewControllerDelegate: BanknoteViewControllerDelegate?
     var allCurrencies = Currency.allCurrencies
-    
+    var allImages: [[Int: UIImage]] = .init()
     // MARK: Override Presenting Functions
     
     override func viewDidLoad() {
@@ -49,9 +49,13 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
+        
         
         allCurrencies = Currency.allCurrencies
+        for currency in allCurrencies {
+            allImages.append(currency.getImages())
+        }
         banknoteCollectionView.reloadData()
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
         Currency.selectedCurrency = allCurrencies[index]
@@ -84,7 +88,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         // Check if the cell is not the one reserved for new currencies
         if (indexPath.row != 0){
-            let images = allCurrencies[indexPath.row-1].getImages()
+            let images = allImages[indexPath.row-1]
             let smallestValue = images.keys.min()!
             let image = images[5] ?? images[smallestValue]
             cell.banknoteImageView.image = image
