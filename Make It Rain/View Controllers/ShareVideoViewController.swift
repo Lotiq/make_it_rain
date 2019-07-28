@@ -55,12 +55,9 @@ class ShareVideoViewController: UIViewController {
     func playVideo(videoURL: URL){
         self.player = AVPlayer(url: videoURL)
         let playerLayer = AVPlayerLayer(player: player)
-        print("frame width:", self.videoView.frame.width)
-        print("frame height:", self.videoView.frame.height)
         //set up player layer
         playerLayer.frame = CGRect(x: 0,y: 0,width: self.videoView.frame.width, height: self.videoView.frame.height)
         playerLayer.position = CGPoint(x: self.videoView.bounds.midX, y: self.videoView.bounds.midY)
-        print("inner frame:", playerLayer.frame)
         //player styling
         playerLayer.shadowColor = UIColor.black.cgColor
         playerLayer.shadowOpacity = 0.3

@@ -102,6 +102,14 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         self.navigationItem.backBarButtonItem = cancelButton
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        currencyTableView.reloadData()
+        for row in 0..<userDefinedCurrencies.count {
+            currencyTableView.cellForRow(at: IndexPath(row: row, section: 0))
+            
+        }
+    }
     
     // MARK: Table View
 

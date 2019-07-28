@@ -18,10 +18,6 @@ class MyCurrencyTableViewCell: UITableViewCell {
         super.awakeFromNib()
         containerBanknoteView.layer.cornerRadius = 10
         self.backgroundColor = .clear
-        let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.sampleBanknoteImageView.frame.size.width, height: self.sampleBanknoteImageView.frame.size.height))
-        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
-        overlay.layer.cornerRadius = containerBanknoteView.layer.cornerRadius
-        self.sampleBanknoteImageView.addSubview(overlay)
         self.sampleBanknoteImageView.layer.cornerRadius = 10
         // Initialization code
     }
@@ -31,5 +27,17 @@ class MyCurrencyTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        let overlay: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.sampleBanknoteImageView.frame.size.width, height: self.sampleBanknoteImageView.frame.size.height))
+        overlay.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.3)
+        overlay.layer.cornerRadius = self.containerBanknoteView.layer.cornerRadius
+        self.sampleBanknoteImageView.addSubview(overlay)
+    }
 }

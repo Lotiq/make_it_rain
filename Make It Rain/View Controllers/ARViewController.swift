@@ -100,6 +100,7 @@ class ARViewController: UIViewController {
         // Start the view's AR session with a configuration that uses the rear camera,
         // device position and orientation tracking, and plane detection.
         let configuration = ARWorldTrackingConfiguration()
+        
         configuration.planeDetection = [.horizontal]
         sceneView.session.run(configuration)
         
@@ -329,7 +330,7 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
     /// - Tag: PlaceARContent
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // Place content only for anchors found by plane detection.
-        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        guard let planeAnchor = anchor as? ARPlaneAnchor, rained == false else { return }
         
         // Create a SceneKit plane to visualize the plane anchor using its position and extent.
         let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))

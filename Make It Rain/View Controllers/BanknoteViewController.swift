@@ -89,7 +89,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
             let image = images[5] ?? images[smallestValue]
             cell.banknoteImageView.image = image
         } else {
-            let image = UIImage(named: "newCurrency.jpg")
+            let image = UIImage(named: "newCurrency")
             cell.banknoteImageView.image = image
         }
         

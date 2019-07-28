@@ -22,8 +22,8 @@ extension UIColor {
     }
     
     struct theme{
-        static let main = #colorLiteral(red: 0.1631833613, green: 0.3730655909, blue: 0.2650748491, alpha: 1)
-        static let secondary = #colorLiteral(red: 0.731172502, green: 0.8121758103, blue: 0.6814717054, alpha: 1)
+        static let main = #colorLiteral(red: 0.1647058824, green: 0.3725490196, blue: 0.2666666667, alpha: 1)
+        static let secondary = #colorLiteral(red: 0.7294117647, green: 0.8117647059, blue: 0.6823529412, alpha: 1)
         static let gray = #colorLiteral(red: 0.8, green: 0.7843137255, blue: 0.7294117647, alpha: 1)
         static let gold = #colorLiteral(red: 0.9137254902, green: 0.8274509804, blue: 0.4549019608, alpha: 1)
     }
