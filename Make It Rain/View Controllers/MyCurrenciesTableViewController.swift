@@ -13,27 +13,49 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     // MARK: - IBOutlets
     @IBOutlet weak var currencyTableView: UITableView!
     @IBOutlet weak var addNewCurrencyButton: CircularButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     // MARK: - Variables
-    var userDefinedCurrencies: [Currency]!
+    var userDefinedCurrencies: [Currency] = []
     var allImages: [UIImage] = []
     
     // MARK: - Override Presenting Functions
-    
     override func viewDidLoad() {
+        print("viewDidLoad")
         super.viewDidLoad()
         
+        activityIndicator.color = UIColor.theme.main
         currencyTableView.backgroundColor = UIColor.theme.secondary
-        userDefinedCurrencies = Currency.userDefinedCurrencies
         self.navigationItem.backBarButtonItem = .createBackButtonWith(title: "Cancel")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear")
+        userDefinedCurrencies = []
+        currencyTableView.reloadData()
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         
         // Hide button to animate it in viewDidAppear
         addNewCurrencyButton.isHidden = true
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
+        // Remove all animations.
+        for view in view.subviews {
+            view.layer.removeAllAnimations()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+        activityIndicator.startAnimating()
         
         // The only place where the the table gets data for the cells
         userDefinedCurrencies = Currency.userDefinedCurrencies
@@ -47,19 +69,8 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         
         // Table view updated with new data present
         currencyTableView.reloadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
         
-        // Remove all animations.
-        for view in view.subviews {
-            view.layer.removeAllAnimations()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        activityIndicator.stopAnimating()
         
         // Animating 'add' button appearance
         addNewCurrencyButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
@@ -116,8 +127,8 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.alpha = 0
+        let transform = CATransform3DTranslate(CATransform3DIdentity, -tableView.frame.width*2/3, 20, 0)
         
-        let transform = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
         cell.layer.transform = transform
         
         UIView.animate(withDuration: 0.7) {

@@ -16,16 +16,14 @@ protocol BanknoteViewControllerDelegate{
 
 class BanknoteViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait}
-    
     @IBOutlet weak var banknoteCollectionView: UICollectionView!
     @IBOutlet weak var centeredCollectionViewFlowLayout: CenteredCollectionViewFlowLayout!
     
     var banknoteViewControllerDelegate: BanknoteViewControllerDelegate?
     var allCurrencies = Currency.allCurrencies
-    var allImages: [[Int: UIImage]] = []
-    // MARK: Override Presenting Functions
+    var allImages: [UIImage] = []
     
+    // MARK: - Override Presenting Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,7 +55,9 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         // Access images of all the currencies
         allImages = []
         for i in 0..<allCurrencies.count {
-            allImages.append(allCurrencies[i].getImages())
+            let images = allCurrencies[i].getImages()
+            let image = images[5] ?? images[images.keys.min()!]!
+            allImages.append(image)
         }
         
         
@@ -84,8 +84,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         )
     }
     
-    // MARK: Collection View Setup
-    
+    // MARK: - Collection View Setup
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {return allCurrencies.count + 1}
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,10 +92,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         // Check if the cell is not the one reserved for new currencies
         if (indexPath.row != 0){
-            let images = allImages[indexPath.row-1]
-            let smallestValue = images.keys.min()!
-            let image = images[5] ?? images[smallestValue]
-            cell.banknoteImageView.image = image
+            cell.banknoteImageView.image = allImages[indexPath.row - 1]
         } else {
             let image = UIImage(named: "newCurrency")
             cell.banknoteImageView.image = image
@@ -126,8 +122,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     
-    // MARK: Scroll View to Track current location
-    
+    // MARK: - Scroll View to Track current location
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (centeredCollectionViewFlowLayout.currentCenteredPage != 0){
             Currency.selectedCurrency = allCurrencies[centeredCollectionViewFlowLayout.currentCenteredPage!-1]

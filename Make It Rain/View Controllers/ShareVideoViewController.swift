@@ -116,20 +116,21 @@ class ShareVideoViewController: UIViewController {
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: self.videoURL!)
         }) { (saved, error) in
             if (error == nil) {
-                let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-                let vc = storyboard.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
-                
-                vc.bodyText = "Your amazing video was saved"
-                vc.titleText = "Yay!"
-                vc.buttonText = "Good"
-                vc.completion = {
-                    DispatchQueue.main.async {
-                        self.player.play()
-                    }
-                }
                 DispatchQueue.main.async {
-                    self.player.pause()
-                    self.present(vc, animated: true, completion: nil)
+                    let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
+                    
+                    vc.bodyText = "Your amazing video was saved"
+                    vc.titleText = "Yay!"
+                    vc.buttonText = "Good"
+                    vc.completion = {
+                        DispatchQueue.main.async {
+                            self.player.play()
+                        }
+                    }
+                    
+                        self.player.pause()
+                        self.present(vc, animated: true, completion: nil)
                 }
             }
         }
