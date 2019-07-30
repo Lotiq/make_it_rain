@@ -21,6 +21,10 @@ struct Currency: Codable, Equatable {
     var images = [Int: String]() // stores the name of the image
     var availableBanknotes: Set<Int>
     
+    static func initiate() {
+        Currency.userDefinedCurrencies = Currency.getUserDefinedCurrencies()
+    }
+    
     fileprivate init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
         self.name = name
         self.sign = sign
@@ -161,7 +165,13 @@ extension Currency{
         return [dollar,euro,pound,yuan]
     }
     
-    static var userDefinedCurrencies: [Currency] {
+    static var userDefinedCurrencies: [Currency] = []
+    
+    static var allCurrencies: [Currency] {
+        return Currency.userDefinedCurrencies + Currency.defaultCurrencies
+    }
+    
+    static func getUserDefinedCurrencies() -> [Currency] {
         if let data = UserDefaults.standard.value(forKey: currencyArrayKey) as? Data {
             do{
                 let currencyArray = try PropertyListDecoder().decode(Array<Currency>.self, from: data)
@@ -176,8 +186,8 @@ extension Currency{
         }
     }
     
-    static var allCurrencies: [Currency] {
-        let addCurrencies = self.userDefinedCurrencies.reversed() + self.defaultCurrencies
-        return addCurrencies
+    static func setUserDefined(Currencies currencies: [Currency]) {
+        Currency.userDefinedCurrencies = currencies
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(currencies), forKey: Currency.currencyArrayKey)
     }
 }

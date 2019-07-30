@@ -61,16 +61,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         
         slider.addTarget(self, action: #selector(updateCashValue), for: .valueChanged)
         
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
-        cancelButton.tintColor = UIColor.theme.gold
-        let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .disabled)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .highlighted)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .focused)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .selected)
-        
-        self.navigationItem.backBarButtonItem = cancelButton
+        self.navigationItem.backBarButtonItem = .createBackButtonWith(title: "Cancel")
         
         rain(with: UIImage(named: "dollar_particle.png")!)
         

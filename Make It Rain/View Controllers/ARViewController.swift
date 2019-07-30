@@ -56,19 +56,13 @@ class ARViewController: UIViewController {
         recButton.delegate = self
         let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
         recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .normal)
-        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .selected)
         recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .focused)
         recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .highlighted)
         recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: .disabled)
-
+        
         recordBarButtonItem.customView = recButton
 
-       
-        let cancelButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
-        cancelButton.tintColor = UIColor.theme.gold
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
-        self.navigationItem.backBarButtonItem = cancelButton
-        recordBarButtonItem.setTitleTextAttributes([NSAttributedString.Key.font: navigationFont!], for: [.normal,.selected,.disabled,.focused,.highlighted])
+        self.navigationItem.backBarButtonItem = .createBackButtonWith(title: "Back")
         
         interaction(isHidden: true)
         

@@ -133,11 +133,7 @@ class NewCurrencyViewController: UIViewController {
         let newCurrency = Currency(name: name, sign: sign, rate: rate, valueImageDictionary: valueImageDictionary)
         updatedCurrencies.append(newCurrency)
         
-        do {
-            UserDefaults.standard.set(try PropertyListEncoder().encode(updatedCurrencies), forKey: Currency.currencyArrayKey)
-        } catch {
-            print("couldn't encode array")
-        }
+        Currency.setUserDefined(Currencies: updatedCurrencies)
         
         Currency.selectedCurrency = newCurrency
         

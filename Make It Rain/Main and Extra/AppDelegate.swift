@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              NSAttributedString.Key.foregroundColor : UIColor.theme.gold],
             for: .focused)
         */
+        Currency.initiate()
         return true
     }
 

@@ -21,11 +21,5 @@ class ImageValueTableViewCell: UITableViewCell {
         self.valueTextField.attributedPlaceholder = NSAttributedString(string: "Value",attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 }

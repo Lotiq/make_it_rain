@@ -51,12 +51,16 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print(allCurrencies.count)
+        // Get all Currencies
         allCurrencies = Currency.allCurrencies
+        
+        // Access images of all the currencies
         allImages = []
         for i in 0..<allCurrencies.count {
             allImages.append(allCurrencies[i].getImages())
         }
+        
+        
         banknoteCollectionView.reloadData()
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
         Currency.selectedCurrency = allCurrencies[index]
@@ -64,12 +68,9 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        allImages = []
-        for i in 0..<allCurrencies.count {
-            allImages.append(allCurrencies[i].getImages())
-        }
+        
+        super.viewDidAppear(animated)
         banknoteCollectionView.reloadData()
-        super.viewDidAppear(true)
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
         centeredCollectionViewFlowLayout.scrollToPage(index: index+1, animated: true)
     }

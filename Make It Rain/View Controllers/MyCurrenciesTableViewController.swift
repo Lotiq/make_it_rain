@@ -10,39 +10,43 @@ import UIKit
 
 class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    // MARK: IBOutlets
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var currencyTableView: UITableView!
     @IBOutlet weak var addNewCurrencyButton: CircularButton!
     
     
-    // MARK: Variables
-    // Local user default
+    // MARK: - Variables
     var userDefinedCurrencies: [Currency]!
-    var allImages: [[Int: UIImage]] = []
-    // MARK: Override Presenting Functions
+    var allImages: [UIImage] = []
+    
+    // MARK: - Override Presenting Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         currencyTableView.backgroundColor = UIColor.theme.secondary
         userDefinedCurrencies = Currency.userDefinedCurrencies
-        setupBackButtonWith(title: "Cancel")
+        self.navigationItem.backBarButtonItem = .createBackButtonWith(title: "Cancel")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Hide button to animate it in viewDidAppear
         addNewCurrencyButton.isHidden = true
+        
+        // The only place where the the table gets data for the cells
         userDefinedCurrencies = Currency.userDefinedCurrencies
+        
+        // Necessary images are fetched from the data
         allImages = []
         for i in 0..<userDefinedCurrencies.count {
-            allImages.append(userDefinedCurrencies[i].getImages())
+            let image = userDefinedCurrencies[i].getImages().randomElement()!.value
+            allImages.append(image)
         }
+        
+        // Table view updated with new data present
         currencyTableView.reloadData()
-        for i in 0..<userDefinedCurrencies.count{
-            let cell = self.currencyTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MyCurrencyTableViewCell
-            cell?.contentView.alpha = 0
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,8 +61,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-        // Animations
+        // Animating 'add' button appearance
         addNewCurrencyButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         addNewCurrencyButton.isHidden = false
         
@@ -66,61 +69,16 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
             self.addNewCurrencyButton.transform = .identity
         }, completion: nil)
         
-        for i in 0..<userDefinedCurrencies.count{
-            let cell = self.currencyTableView.cellForRow(at: IndexPath(row: i, section: 0)) as? MyCurrencyTableViewCell
-            cell?.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY)
-            
-            UIView.animate(
-                withDuration: 1.1,
-                delay: 0.05 * Double(i),
-                animations: {
-                    cell?.contentView.alpha = 1
-            })
-            
-            UIView.animate(
-                withDuration: 0.55,
-                delay: 0.05 * Double(i),
-                animations: {
-        
-                    cell?.transform = .identity
-            })
-            
-        }
-        
     }
     
-    // MARK: IBAction
+    // MARK: - IBAction
     
     @IBAction func newCurrencyAction(_ sender: Any) {
         let newCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
         self.navigationController?.pushViewController(newCurrencyVC, animated: true)
     }
     
-    
-    // MARK: Supporting functions
-    
-    func setupBackButtonWith(title: String) {
-        let cancelButton = UIBarButtonItem(title: title, style: .plain, target: self, action: nil)
-        let navigationFont = UIFont(name: "Montserrat Medium", size: 24)
-        cancelButton.tintColor = UIColor.theme.gold
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .normal)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .selected)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .disabled)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .focused)
-        cancelButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.theme.gold, NSAttributedString.Key.font: navigationFont!], for: .highlighted)
-        self.navigationItem.backBarButtonItem = cancelButton
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        currencyTableView.reloadData()
-        for row in 0..<userDefinedCurrencies.count {
-            currencyTableView.cellForRow(at: IndexPath(row: row, section: 0))
-            
-        }
-    }
-    
-    // MARK: Table View
+    // MARK: - Table View
 
     func numberOfSections(in tableView: UITableView) -> Int {return 1}
 
@@ -129,8 +87,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCurrencyTableViewCell", for: indexPath) as! MyCurrencyTableViewCell
-        let image = allImages[indexPath.row].randomElement()!.value
-        cell.sampleBanknoteImageView.image = image
+        cell.sampleBanknoteImageView.image = allImages[indexPath.row]
         cell.nameLabel.text = userDefinedCurrencies[indexPath.row].name
 
         return cell
@@ -138,7 +95,8 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
-        // Pass additional values to indicate that the currency is being edited, but not created new
+        
+        // Pass an additional values to indicate that the currency is being edited, but not created new
         editCurrencyVC.isEdited = true
         editCurrencyVC.passedIndexValue = (indexPath.row,userDefinedCurrencies[indexPath.row])
         navigationController?.pushViewController(editCurrencyVC, animated: true)
@@ -151,8 +109,24 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
             let currency = userDefinedCurrencies[indexPath.row]
             currency.deleteImages()
             userDefinedCurrencies.remove(at: indexPath.row)
-            UserDefaults.standard.set(try? PropertyListEncoder().encode(userDefinedCurrencies), forKey: Currency.currencyArrayKey)
+            Currency.setUserDefined(Currencies: userDefinedCurrencies)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.alpha = 0
+        
+        let transform = CATransform3DTranslate(CATransform3DIdentity, -250, 20, 0)
+        cell.layer.transform = transform
+        
+        UIView.animate(withDuration: 0.7) {
+            cell.contentView.alpha = 1
+        }
+        
+        UIView.animate(withDuration: 0.6) {
+            cell.layer.transform = CATransform3DIdentity
+        }
+    }
+
 }
