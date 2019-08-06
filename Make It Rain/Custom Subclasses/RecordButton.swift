@@ -84,7 +84,6 @@ import UIKit
     override public init(frame: CGRect) {
         
         super.init(frame: frame)
-        print("init")
         self.addTarget(self, action: #selector(RecordButton.didTouchDown), for: .touchDown)
         
         self.drawButton()
@@ -92,7 +91,6 @@ import UIKit
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        print("encoder init")
         self.addTarget(self, action: #selector(RecordButton.didTouchDown), for: .touchDown)
         
         self.drawButton()
@@ -105,7 +103,6 @@ import UIKit
         let layer = self.layer
         circleLayer = CALayer()
         circleLayer.backgroundColor = buttonColor.cgColor
-        print("Frame MidY: ", self.frame.midY)
         let size: CGFloat = self.frame.size.width / 1.12 / 1.5
         circleLayer.bounds = CGRect(x: 0, y: 0, width: size, height: size)
         circleLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -124,7 +121,6 @@ import UIKit
         circleBorder.cornerRadius = circleBorder.bounds.width / 2
         layer.insertSublayer(circleBorder, at: 0)
  
-        print("Circle Border MidY: ", circleBorder.frame.midY)
         
         let startAngle: CGFloat = CGFloat(Double.pi) + CGFloat(Double.pi/2)
         let endAngle: CGFloat = CGFloat(Double.pi) * 3 + CGFloat(Double.pi/2)
@@ -143,7 +139,6 @@ import UIKit
         
         gradientMaskLayer.mask = progressLayer
         layer.insertSublayer(gradientMaskLayer, at: 1)
-        print("Progress Layer MidY: ", progressLayer.frame.midY)
         
     }
     

@@ -22,7 +22,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     // MARK: - Override Presenting Functions
     override func viewDidLoad() {
-        print("viewDidLoad")
+        
         super.viewDidLoad()
         
         activityIndicator.color = UIColor.theme.main
@@ -32,7 +32,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWillAppear")
         userDefinedCurrencies = []
         currencyTableView.reloadData()
         activityIndicator.isHidden = false
@@ -45,7 +44,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        print("viewWillDisappear")
         // Remove all animations.
         for view in view.subviews {
             view.layer.removeAllAnimations()
@@ -54,7 +52,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear")
         activityIndicator.startAnimating()
         
         // The only place where the the table gets data for the cells
@@ -127,7 +124,12 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.alpha = 0
-        let transform = CATransform3DTranslate(CATransform3DIdentity, -tableView.frame.width*2/3, 20, 0)
+        var transform: CATransform3D!
+        if (indexPath.row % 2 == 0){
+            transform = CATransform3DTranslate(CATransform3DIdentity, -tableView.frame.width*2/3, -20, 0)
+        } else {
+            transform = CATransform3DTranslate(CATransform3DIdentity, tableView.frame.width*2/3, -20, 0)
+        }
         
         cell.layer.transform = transform
         
