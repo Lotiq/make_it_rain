@@ -76,7 +76,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         addNewCurrencyButton.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
         addNewCurrencyButton.isHidden = false
         
-        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.1, options: .curveLinear, animations: {
             self.addNewCurrencyButton.transform = .identity
         }, completion: nil)
         

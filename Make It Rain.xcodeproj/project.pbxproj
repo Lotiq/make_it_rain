@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,7 +29,7 @@
 		1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E46B22669D320084F229 /* Pound.xcassets */; };
 		1CC4E46E2266A4EC0084F229 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E46D2266A4EC0084F229 /* Currency.swift */; };
 		1CC4E472226A310D0084F229 /* Money_Money.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E471226A307A0084F229 /* Money_Money.ttf */; };
-		1CC4E479226A399B0084F229 /* Yuan.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E478226A399B0084F229 /* Yuan.xcassets */; };
+		1CC4E479226A399B0084F229 /* Renminbi.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CC4E478226A399B0084F229 /* Renminbi.xcassets */; };
 		1CC4E47B226AA2BC0084F229 /* NewCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */; };
 		1CC4E47E226E1D4D0084F229 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E47D226E1D4D0084F229 /* ARViewController.swift */; };
 		1CC4E4802270CA480084F229 /* ImageValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */; };
@@ -69,7 +69,7 @@
 		1CC4E46B22669D320084F229 /* Pound.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pound.xcassets; sourceTree = "<group>"; };
 		1CC4E46D2266A4EC0084F229 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		1CC4E471226A307A0084F229 /* Money_Money.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Money_Money.ttf; sourceTree = "<group>"; };
-		1CC4E478226A399B0084F229 /* Yuan.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Yuan.xcassets; sourceTree = "<group>"; };
+		1CC4E478226A399B0084F229 /* Renminbi.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Renminbi.xcassets; sourceTree = "<group>"; };
 		1CC4E47A226AA2BC0084F229 /* NewCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCurrencyViewController.swift; sourceTree = "<group>"; };
 		1CC4E47D226E1D4D0084F229 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		1CC4E47F2270CA480084F229 /* ImageValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageValueTableViewCell.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 				1CC4E46B22669D320084F229 /* Pound.xcassets */,
 				1C78A968226247A200436085 /* Dollar.xcassets */,
 				1C78A9982262A04A00436085 /* Euro.xcassets */,
-				1CC4E478226A399B0084F229 /* Yuan.xcassets */,
+				1CC4E478226A399B0084F229 /* Renminbi.xcassets */,
 				1C69F9B3226392DD00ECD4DF /* Media.xcassets */,
 			);
 			path = Assets;
@@ -305,7 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CC4E479226A399B0084F229 /* Yuan.xcassets in Resources */,
+				1CC4E479226A399B0084F229 /* Renminbi.xcassets in Resources */,
 				1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */,
 				1C78A9992262A04A00436085 /* Euro.xcassets in Resources */,
 				1CC4E472226A310D0084F229 /* Money_Money.ttf in Resources */,

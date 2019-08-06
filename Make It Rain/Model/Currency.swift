@@ -161,8 +161,8 @@ extension Currency{
         let dollar = Currency(name: "dollar", sign: "$", ratio: 1, availableBanknotes: [1,5,10,20,100])
         let euro = Currency(name: "euro", sign: "€", ratio: 1.13, availableBanknotes: [5,10,50,100])
         let pound = Currency(name: "pound", sign: "£", ratio: 1.3, availableBanknotes: [5,10,50])
-        let yuan = Currency(name: "yuan", sign: "¥", ratio: 0.15, availableBanknotes: [50])
-        return [dollar,euro,pound,yuan]
+        let renminbi = Currency(name: "renminbi", sign: "¥", ratio: 0.14, availableBanknotes: [5,10,50,100])
+        return [dollar,euro,pound,renminbi]
     }
     
     static var userDefinedCurrencies: [Currency] = []
