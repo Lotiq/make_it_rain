@@ -167,7 +167,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
             let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
             let vc = storyboard.instantiateViewController(withIdentifier: "AlertViewController") as! AlertViewController
             
-            vc.bodyText = "I know you are a wealthy one, but this is too much money to rain my dear, try something more modest"
+            vc.bodyText = "Unfortunately, this too much money to rain and I don't think you can handle it, try something more modest!"
             vc.titleText = "Ouch!"
             vc.buttonText = "Fine"
             present(vc, animated: true, completion: nil)
