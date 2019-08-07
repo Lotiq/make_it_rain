@@ -117,6 +117,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
             let currency = userDefinedCurrencies[indexPath.row]
             currency.deleteImages()
             userDefinedCurrencies.remove(at: indexPath.row)
+            allImages.remove(at: indexPath.row)
             Currency.setUserDefined(Currencies: userDefinedCurrencies)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

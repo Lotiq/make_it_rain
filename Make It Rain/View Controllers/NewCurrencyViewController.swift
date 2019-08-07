@@ -195,6 +195,7 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
         //cell.valueTextField.text = String(imageValueArray[indexPath.row].1)
         cell.valueTextField.textColor = .darkGray
         cell.valueTextField.delegate = self
+        cell.valueTextField.tag = indexPath.row
         
         return cell
     }
@@ -238,10 +239,20 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 
                 // It is required to update the row index for each tap gesture as they don't get reinitiated, but just moved
+                
+                //tableView.reloadData()
+                for cell in tableView.visibleCells{
+                    let myCell = cell as! ImageValueTableViewCell
+                    if (myCell.valueTextField.tag > indexPath.row) {
+                        myCell.valueTextField.tag -= 1
+                    }
+                    myCell.tagTapGestureRecognizer.row = myCell.valueTextField.tag
+                }
+                /*
                 for i in 0..<tableView.numberOfRows(inSection: 0){
                     let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! ImageValueTableViewCell
                     cell.tagTapGestureRecognizer.row = i
-                }
+                }*/
                 saveButton.isEnabled = checkForCompletion()
             }
         }
@@ -348,21 +359,13 @@ extension NewCurrencyViewController: UITextFieldDelegate {
             
         } else {
             if let value = Int(text), value > 0 {
-                for i in 0..<banknoteTableView.numberOfRows(inSection: 0){
-                    let cell = banknoteTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! ImageValueTableViewCell
-                    if (cell.valueTextField == textField){
-                        imageValueArray[i].1 = value
-                    }
-                }
+            
+                imageValueArray[textField.tag].1 = value
+                  
                 saveButton.isEnabled = checkForCompletion()
                 return true
             } else if text == ""{
-                for i in 0..<banknoteTableView.numberOfRows(inSection: 0){
-                    let cell = banknoteTableView.cellForRow(at: IndexPath(row: i, section: 0)) as! ImageValueTableViewCell
-                    if (cell.valueTextField == textField){
-                        imageValueArray[i].1 = nil
-                    }
-                }
+                imageValueArray[textField.tag].1 = nil
                 saveButton.isEnabled = checkForCompletion()
                 return true
             } else {
