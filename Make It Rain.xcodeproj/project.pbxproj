@@ -21,7 +21,7 @@
 		1C78A964226247A000436085 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A963226247A000436085 /* SelectionViewController.swift */; };
 		1C78A969226247A200436085 /* Dollar.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A968226247A200436085 /* Dollar.xcassets */; };
 		1C78A96C226247A200436085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A96A226247A200436085 /* LaunchScreen.storyboard */; };
-		1C78A99422627B4F00436085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* Extensions.swift */; };
+		1C78A99422627B4F00436085 /* UIBarButtonItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A99322627B4F00436085 /* UIBarButtonItem+.swift */; };
 		1C78A9992262A04A00436085 /* Euro.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C78A9982262A04A00436085 /* Euro.xcassets */; };
 		1CAA740822B571E700DFAFF3 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA740722B571E600DFAFF3 /* RecordButton.swift */; };
 		1CAA740A22B5AAA100DFAFF3 /* ShareVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAA740922B5AAA100DFAFF3 /* ShareVideoViewController.swift */; };
@@ -41,6 +41,10 @@
 		1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */; };
 		1CC92AD022D91B1B00C309FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CC92ACF22D91B1B00C309FD /* Main.storyboard */; };
 		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
+		E278DEC422FB74BC009418C2 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC322FB74BC009418C2 /* UIColor+.swift */; };
+		E278DEC622FB74ED009418C2 /* NSCharacterSet+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */; };
+		E278DEC822FB7534009418C2 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC722FB7534009418C2 /* Double+.swift */; };
+		E278DECA22FB7558009418C2 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC922FB7558009418C2 /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,7 +65,7 @@
 		1C78A968226247A200436085 /* Dollar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dollar.xcassets; sourceTree = "<group>"; };
 		1C78A96B226247A200436085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C78A96D226247A200436085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C78A99322627B4F00436085 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1C78A99322627B4F00436085 /* UIBarButtonItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+.swift"; sourceTree = "<group>"; };
 		1C78A9982262A04A00436085 /* Euro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Euro.xcassets; sourceTree = "<group>"; };
 		1CAA740722B571E600DFAFF3 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordButton.swift; path = "Make It Rain/Custom Subclasses/RecordButton.swift"; sourceTree = SOURCE_ROOT; };
 		1CAA740922B5AAA100DFAFF3 /* ShareVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVideoViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +86,10 @@
 		1CC92ACF22D91B1B00C309FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
 		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
+		E278DEC322FB74BC009418C2 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCharacterSet+.swift"; sourceTree = "<group>"; };
+		E278DEC722FB7534009418C2 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
+		E278DEC922FB7558009418C2 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +115,11 @@
 		1C0494092292BF40005D0ABD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1C78A99322627B4F00436085 /* Extensions.swift */,
+				1C78A99322627B4F00436085 /* UIBarButtonItem+.swift */,
+				E278DEC922FB7558009418C2 /* UIImage+.swift */,
+				E278DEC722FB7534009418C2 /* Double+.swift */,
+				E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */,
+				E278DEC322FB74BC009418C2 /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -377,17 +389,21 @@
 				1C78A964226247A000436085 /* SelectionViewController.swift in Sources */,
 				1CC8C1DA227799EE0058C6F6 /* MyCurrenciesTableViewController.swift in Sources */,
 				1CC4E46A226575430084F229 /* BanknoteCell.swift in Sources */,
+				E278DECA22FB7558009418C2 /* UIImage+.swift in Sources */,
 				1CC4E48422738E170084F229 /* ActionButton.swift in Sources */,
 				1C049400228C59EB005D0ABD /* CircularButton.swift in Sources */,
 				1CC4E4802270CA480084F229 /* ImageValueTableViewCell.swift in Sources */,
 				1C0493FE227FF041005D0ABD /* AboutViewController.swift in Sources */,
 				1CC4E47E226E1D4D0084F229 /* ARViewController.swift in Sources */,
-				1C78A99422627B4F00436085 /* Extensions.swift in Sources */,
+				E278DEC822FB7534009418C2 /* Double+.swift in Sources */,
+				1C78A99422627B4F00436085 /* UIBarButtonItem+.swift in Sources */,
 				1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */,
 				1C78A962226247A000436085 /* AppDelegate.swift in Sources */,
+				E278DEC422FB74BC009418C2 /* UIColor+.swift in Sources */,
 				1CC4E47B226AA2BC0084F229 /* NewCurrencyViewController.swift in Sources */,
 				1CAA740822B571E700DFAFF3 /* RecordButton.swift in Sources */,
 				1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */,
+				E278DEC622FB74ED009418C2 /* NSCharacterSet+.swift in Sources */,
 				1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */,
 				1C049406228D690C005D0ABD /* PulsingBarButtonItem.swift in Sources */,
 			);

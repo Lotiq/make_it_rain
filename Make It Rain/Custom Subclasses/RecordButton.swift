@@ -224,12 +224,8 @@ import UIKit
         circleBorder.position = CGPoint(x: self.frame.midX,y: self.frame.midY - 1)
         circleLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         circleLayer.position = CGPoint(x: self.frame.midX,y: self.frame.midY - 1)
-        //progressLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        //progressLayer.position = CGPoint(x: self.bounds.midX,y: self.bounds.midY)
-        
         
         super.layoutSubviews()
-    
     }
     
     @objc open func updateProgress(){
@@ -243,8 +239,8 @@ import UIKit
     }
     
     open func changed(playing: Bool){
-        
         guard playing else {return}
+        
         if (self.buttonState == .ready) {
             self.progressTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
             self.delegate?.RecordButtonStartedRecording?()

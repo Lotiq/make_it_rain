@@ -20,7 +20,7 @@ struct Currency: Codable, Equatable {
     var ratio: Double // 1:ratio to dollars
     var images = [Int: String]() // stores the name of the image
     var availableBanknotes: Set<Int>
-    
+    private static var cachedImages = NSCache<NSString, UIImage>()
     static func initiate() {
         Currency.userDefinedCurrencies = Currency.getUserDefinedCurrencies()
     }
@@ -50,7 +50,8 @@ struct Currency: Codable, Equatable {
             do {
                 try banknote.value.pngData()?.write(to: imgPath, options: .atomic)
                 self.images[banknote.key] = imageName
-                
+                let cacheImageName = NSString(string: name + "_" + imageName + "_" + "\(banknote.key)")
+                Currency.cachedImages.setObject(banknote.value, forKey: cacheImageName)
             } catch {
                 return
             }
@@ -66,13 +67,21 @@ struct Currency: Codable, Equatable {
             let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             
             for imageLoc in images{
+                let name = self.name + "_" + imageLoc.value + "_" + "\(imageLoc.key)"
+                if let cachedImage = Currency.cachedImages.object(forKey: NSString(string: name)) {
+                    unarchivedImages[imageLoc.key] = cachedImage
+                    continue
+                }
+                
                 let imageURL = documentDirectoryPath.appendingPathComponent(imageLoc.value)
                 
                 // HERE LIES THE CAUSE OF A LOT OF SUFFERING
                 let imageData = try? Data(contentsOf: imageURL)
-                let image = UIImage(data: imageData!)
+                let image = UIImage(data: imageData!)!
                 
                 unarchivedImages[imageLoc.key] = image
+                
+                Currency.cachedImages.setObject(image, forKey: NSString(string: name))
             }
         } else {
             for banknote in self.availableBanknotes {

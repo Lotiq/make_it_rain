@@ -18,9 +18,8 @@ class MyCurrencyTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.overlayView.layer.cornerRadius = 10
-        containerBanknoteView.layer.cornerRadius = 10
+        self.containerBanknoteView.layer.cornerRadius = 10
         self.backgroundColor = .clear
         self.sampleBanknoteImageView.layer.cornerRadius = 10
-        // Initialization code
     }
 }

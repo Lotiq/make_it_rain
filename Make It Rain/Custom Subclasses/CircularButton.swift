@@ -47,7 +47,6 @@ class CircularButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.height/2
-        
     }
     
 

@@ -9,6 +9,5 @@
 import UIKit
 
 class BanknoteCell: UICollectionViewCell {
-    
     @IBOutlet weak var banknoteImageView: UIImageView!
 }

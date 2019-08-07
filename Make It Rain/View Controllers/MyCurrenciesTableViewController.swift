@@ -22,7 +22,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     // MARK: - Override Presenting Functions
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         activityIndicator.color = UIColor.theme.main
@@ -32,14 +31,17 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // clear table view before it is presented
         userDefinedCurrencies = []
         currencyTableView.reloadData()
+        
+        // starts activity indicator
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         
         // Hide button to animate it in viewDidAppear
         addNewCurrencyButton.isHidden = true
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,7 +54,6 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        activityIndicator.startAnimating()
         
         // The only place where the the table gets data for the cells
         userDefinedCurrencies = Currency.userDefinedCurrencies
@@ -104,9 +105,10 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let editCurrencyVC = storyboard?.instantiateViewController(withIdentifier: "NewCurrencyViewController") as! NewCurrencyViewController
         
-        // Pass an additional values to indicate that the currency is being edited, but not created new
+        // Pass an additional values to indicate that the currency is being edited, but not created
         editCurrencyVC.isEdited = true
         editCurrencyVC.passedIndexValue = (indexPath.row,userDefinedCurrencies[indexPath.row])
+        
         navigationController?.pushViewController(editCurrencyVC, animated: true)
     }
     
@@ -126,6 +128,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.contentView.alpha = 0
         var transform: CATransform3D!
+        
         if (indexPath.row % 2 == 0){
             transform = CATransform3DTranslate(CATransform3DIdentity, -tableView.frame.width*2/3, -20, 0)
         } else {
@@ -142,5 +145,4 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
             cell.layer.transform = CATransform3DIdentity
         }
     }
-
 }
