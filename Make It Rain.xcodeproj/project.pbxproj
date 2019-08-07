@@ -15,7 +15,6 @@
 		1C049406228D690C005D0ABD /* PulsingBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C049405228D690C005D0ABD /* PulsingBarButtonItem.swift */; };
 		1C14E437226534D700EB14C1 /* BanknoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C14E436226534D700EB14C1 /* BanknoteViewController.swift */; };
 		1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B3226392DD00ECD4DF /* Media.xcassets */; };
-		1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */; };
 		1C69F9B82264D28C00ECD4DF /* CashTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69F9B72264D28C00ECD4DF /* CashTextField.swift */; };
 		1C78A962226247A000436085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A961226247A000436085 /* AppDelegate.swift */; };
 		1C78A964226247A000436085 /* SelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C78A963226247A000436085 /* SelectionViewController.swift */; };
@@ -57,7 +56,6 @@
 		1C049405228D690C005D0ABD /* PulsingBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulsingBarButtonItem.swift; sourceTree = "<group>"; };
 		1C14E436226534D700EB14C1 /* BanknoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteViewController.swift; sourceTree = "<group>"; };
 		1C69F9B3226392DD00ECD4DF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cash_Currency.ttf; sourceTree = "<group>"; };
 		1C69F9B72264D28C00ECD4DF /* CashTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTextField.swift; sourceTree = "<group>"; };
 		1C78A95E226247A000436085 /* Make It Rain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Make It Rain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C78A961226247A000436085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		1C78A995226290DA00436085 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				1C69F9B5226396D100ECD4DF /* Cash_Currency.ttf */,
 				1CC4E471226A307A0084F229 /* Money_Money.ttf */,
 				1CC4E48122738C260084F229 /* Montserrat-Medium.ttf */,
 			);
@@ -323,7 +320,6 @@
 				1CC4E472226A310D0084F229 /* Money_Money.ttf in Resources */,
 				1C049402228D6504005D0ABD /* AlertStoryboard.storyboard in Resources */,
 				1CC92AD022D91B1B00C309FD /* Main.storyboard in Resources */,
-				1C69F9B62263970A00ECD4DF /* Cash_Currency.ttf in Resources */,
 				1C78A969226247A200436085 /* Dollar.xcassets in Resources */,
 				1CC4E48222738C2D0084F229 /* Montserrat-Medium.ttf in Resources */,
 				1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */,

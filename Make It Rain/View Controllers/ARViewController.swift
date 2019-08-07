@@ -160,40 +160,6 @@ class ARViewController: UIViewController {
         let width = Float(plane.width)
         let height = Float(plane.height)
         
-        /*
-        // Test Corners
-        var corners: [(x: Float,z: Float)] = []
-        corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z - height/2))
-        corners.append((x: anchorWorldPosition.x - width/2, z: anchorWorldPosition.z + height/2))
-        corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z - height/2))
-        corners.append((x: anchorWorldPosition.x + width/2, z: anchorWorldPosition.z + height/2)
-        
-        let (min, max) = anchor.boundingBox
-        let minWorld = anchor.convertPosition(min, to: sceneView.scene.rootNode)
-        let maxWorld = anchor.convertPosition(max, to: sceneView.scene.rootNode)
-        let xMinActual = Float.minimum(minWorld.x, maxWorld.x)
-        let xMaxActual = Float.maximum(minWorld.x, maxWorld.x)
-        let zMinActual = Float.minimum(minWorld.z, maxWorld.z)
-        let zMaxActual = Float.maximum(minWorld.z, maxWorld.z)
-        
-        // Test Corner boxes
-        let box1 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box1.position = SCNVector3(corners[0].x, anchorWorldPosition.y, corners[0].z)
-        sceneView.scene.rootNode.addChildNode(box1)
-        
-        let box2 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box2.position = SCNVector3(corners[1].x, anchorWorldPosition.y, corners[1].z)
-        sceneView.scene.rootNode.addChildNode(box2)
-        
-        let box3 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box3.position = SCNVector3(corners[2].x, anchorWorldPosition.y, corners[2].z)
-        sceneView.scene.rootNode.addChildNode(box3)
-        
-        let box4 = SCNNode(geometry: SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0))
-        box4.position = SCNVector3(corners[3].x, anchorWorldPosition.y, corners[3].z)
-        sceneView.scene.rootNode.addChildNode(box4)
-        */
-        
         for anchorPlane in anchorPlanesInScene {
             anchorPlane.isHidden = true
         }

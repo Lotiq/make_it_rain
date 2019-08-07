@@ -68,8 +68,8 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
+        
         banknoteCollectionView.reloadData()
         let index = allCurrencies.firstIndex(of: Currency.selectedCurrency) ?? 0
         centeredCollectionViewFlowLayout.scrollToPage(index: index+1, animated: true)
@@ -94,7 +94,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         if (indexPath.row != 0){
             cell.banknoteImageView.image = allImages[indexPath.row - 1]
         } else {
-            let image = UIImage(named: "newCurrency")
+            let image = UIImage(named: "new_currency")
             cell.banknoteImageView.image = image
         }
         
