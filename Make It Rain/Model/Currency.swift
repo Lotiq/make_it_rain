@@ -20,9 +20,10 @@ struct Currency: Codable, Equatable {
     var ratio: Double // 1:ratio to dollars
     var images = [Int: String]() // stores the name of the image
     var availableBanknotes: Set<Int>
-    private static var cachedImages = NSCache<NSString, UIImage>()
+    static var cachedImages = NSCache<NSString, UIImage>()
     static func initiate() {
         Currency.userDefinedCurrencies = Currency.getUserDefinedCurrencies()
+        Currency.cachedImages.countLimit = 30
     }
     
     fileprivate init(name: String, sign: String, ratio: Double, availableBanknotes: [Int]){
