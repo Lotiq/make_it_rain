@@ -24,6 +24,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     var allImages: [UIImage] = []
     
     // MARK: - Override Presenting Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,6 +86,7 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     // MARK: - Collection View Setup
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {return allCurrencies.count + 1}
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -121,8 +123,8 @@ class BanknoteViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    
     // MARK: - Scroll View to Track current location
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if (centeredCollectionViewFlowLayout.currentCenteredPage != 0){
             Currency.selectedCurrency = allCurrencies[centeredCollectionViewFlowLayout.currentCenteredPage!-1]

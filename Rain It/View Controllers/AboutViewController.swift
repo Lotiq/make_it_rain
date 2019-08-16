@@ -35,15 +35,4 @@ class AboutViewController: UIViewController {
         aboutTextView.attributedText = text
         aboutTextView.linkTextAttributes = linkAttributes
     }
-    
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
 }

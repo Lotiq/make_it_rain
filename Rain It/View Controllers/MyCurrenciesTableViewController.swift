@@ -11,16 +11,18 @@ import UIKit
 class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - IBOutlets
+    
     @IBOutlet weak var currencyTableView: UITableView!
     @IBOutlet weak var addNewCurrencyButton: CircularButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
     // MARK: - Variables
+    
     var userDefinedCurrencies: [Currency] = []
     var allImages: [UIImage] = []
     
     // MARK: - Override Presenting Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,7 +89,7 @@ class MyCurrenciesTableViewController: UIViewController, UITableViewDelegate, UI
         self.navigationController?.pushViewController(newCurrencyVC, animated: true)
     }
     
-    // MARK: - Table View
+    // MARK: - Table View Delegate
 
     func numberOfSections(in tableView: UITableView) -> Int {return 1}
 

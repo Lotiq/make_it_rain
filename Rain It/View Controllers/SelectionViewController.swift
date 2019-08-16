@@ -21,8 +21,11 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
     var topBar: CGFloat = 0
     var pulseLayers: [CAShapeLayer] = []
     
+    // MARK: - Override Presenting Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let FirstViewController = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as? SideMenuTableViewController 
         let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: FirstViewController!)
         SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController
@@ -92,6 +95,8 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         
     }
     
+    // MARK: - Main Functions
+    
     @IBAction func MenuAction(_ sender: UIBarButtonItem){
         self.navigationItem.backBarButtonItem?.title = "Back"
         self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
@@ -140,9 +145,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         playBarButton.pulse()
     }
 
-    
-    
-    // MARK: Delegate Functions
+    // MARK: - Delegate Functions
     
     func updateView() {
         let convertedVal = Int(Double(Currency.dollarValue) / Currency.selectedCurrency.ratio)
@@ -155,8 +158,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
         self.navigationItem.backBarButtonItem?.title = "Cancel"
     }
     
-    
-    // MARK: Segues
+    // MARK: - Segues
     
     @objc func presentARVC(){
         if (Currency.isRenderableFor(maxcount: 100000)){
@@ -191,8 +193,7 @@ class SelectionViewController: UIViewController, BanknoteViewControllerDelegate 
 
 extension SelectionViewController: UITextFieldDelegate {
     
-    
-    // MARK: TextField Delegate
+    // MARK: - TextField Delegate
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldText = textField.text! as NSString
@@ -226,12 +227,11 @@ extension SelectionViewController: UITextFieldDelegate {
         return true
     }
     
-    
-    // MARK: Keyboard Notifications
+    // MARK: - Keyboard Notifications
     
     func subscribeToKeybordNotifications(){
         
-        //Initiation of notification observation
+        // Initiation of notification observation
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
@@ -239,7 +239,7 @@ extension SelectionViewController: UITextFieldDelegate {
     
     func unsubscribeFromKeyboardNotifications() {
         
-        //Removes this control view as observer for notifications
+        // Removes this control view as observer for notifications
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
@@ -253,9 +253,7 @@ extension SelectionViewController: UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    
-    // MARK: Background Notifications
-    
+    // MARK: - Background Notifications
     func subscribeToBackgroundNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(addAnimations), name: UIApplication.didBecomeActiveNotification, object: nil)
         

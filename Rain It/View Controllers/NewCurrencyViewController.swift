@@ -25,8 +25,11 @@ class NewCurrencyViewController: UIViewController {
     var imageValueArray: [(UIImage,Int?)] = [(UIImage(named: "banknote.png")!,nil)]
     var userDefinedCurrencies = [Currency]()
     
+    // MARK: - Override Presenting Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         saveButton.isEnabled = false
         self.setupHideKeyboardOnTap()
         saveButton.isEnabled = false
@@ -68,7 +71,6 @@ class NewCurrencyViewController: UIViewController {
             imageValueArray.append((UIImage(named: "banknote.png")!,nil))
             
         }
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +83,8 @@ class NewCurrencyViewController: UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
+    
+    // MARK: - Main Functions
     
     func setup(textField: SkyFloatingLabelTextField) {
         textField.delegate = self
@@ -170,6 +174,8 @@ class NewCurrencyViewController: UIViewController {
 
 extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: - Table View Delegate
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -181,18 +187,17 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageValueTableViewCell") as! ImageValueTableViewCell
         
-        //let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageSelectionPressed))
         cell.tagTapGestureRecognizer = TagTapGestureRecognizer(target: self, action: #selector(self.imageSelectionPressed(sender:)))
-      
         cell.tagTapGestureRecognizer.row = indexPath.row
         cell.banknoteImage.addGestureRecognizer(cell.tagTapGestureRecognizer)
         cell.banknoteImage.image = imageValueArray[indexPath.row].0
+        
         if let value = imageValueArray[indexPath.row].1{
             cell.valueTextField.text = String(value)
         } else {
             cell.valueTextField.text = ""
         }
-        //cell.valueTextField.text = String(imageValueArray[indexPath.row].1)
+
         cell.valueTextField.textColor = .darkGray
         cell.valueTextField.delegate = self
         cell.valueTextField.tag = indexPath.row
@@ -200,15 +205,34 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if (imageValueArray[indexPath.row].0 != UIImage(named: "banknote.png")){
+                imageValueArray.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+               
+                for cell in tableView.visibleCells{
+                    let myCell = cell as! ImageValueTableViewCell
+                    if (myCell.valueTextField.tag > indexPath.row) {
+                        myCell.valueTextField.tag -= 1
+                    }
+                    myCell.tagTapGestureRecognizer.row = myCell.valueTextField.tag
+                }
+                
+                saveButton.isEnabled = checkForCompletion()
+            }
+        }
+   }
+   
+    // MARK: - Image Delegate Operation
+    
     @objc func imageSelectionPressed(sender: TagTapGestureRecognizer){
         latestRow = sender.row
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary //Depending on the button assigns where to get images from
+        imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
     }
-    
-    // MARK: Image Delegate Operation
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // checks if the image was selected
@@ -232,35 +256,11 @@ extension NewCurrencyViewController: UITableViewDelegate, UITableViewDataSource,
         dismiss(animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if (imageValueArray[indexPath.row].0 != UIImage(named: "banknote.png")){
-                imageValueArray.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                
-                // It is required to update the row index for each tap gesture as they don't get reinitiated, but just moved
-                
-                //tableView.reloadData()
-                for cell in tableView.visibleCells{
-                    let myCell = cell as! ImageValueTableViewCell
-                    if (myCell.valueTextField.tag > indexPath.row) {
-                        myCell.valueTextField.tag -= 1
-                    }
-                    myCell.tagTapGestureRecognizer.row = myCell.valueTextField.tag
-                }
-                /*
-                for i in 0..<tableView.numberOfRows(inSection: 0){
-                    let cell = tableView.cellForRow(at: IndexPath(row: i, section: 0)) as! ImageValueTableViewCell
-                    cell.tagTapGestureRecognizer.row = i
-                }*/
-                saveButton.isEnabled = checkForCompletion()
-            }
-        }
-    }
-    
 }
 
 extension NewCurrencyViewController: UITextFieldDelegate {
+    
+    // MARK: - Text Field Delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
@@ -268,7 +268,6 @@ extension NewCurrencyViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         if let skyTextField = textField as? SkyFloatingLabelTextField {
@@ -376,6 +375,8 @@ extension NewCurrencyViewController: UITextFieldDelegate {
         return true
     }
     
+    // MARK: - Notifications
+    
     func subscribeToKeybordNotifications(){
         
         //Initiation of notification observation
@@ -386,7 +387,7 @@ extension NewCurrencyViewController: UITextFieldDelegate {
     
     @objc func keyboardWillShow(_ notification: Notification){
         
-        //changes y-coordinate of the view above the keyboard if bottom text is selected
+        // Changes y-coordinate of the view above the keyboard if bottom text is selected
         if (!currencySignTextField.isFirstResponder && !nameTextField.isFirstResponder && !rateTextField.isFirstResponder){
             
             let tableViewYLoc = banknoteTableView.frame.minY

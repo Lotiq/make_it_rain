@@ -134,14 +134,7 @@ class ARViewController: UIViewController {
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        // let navBar = self.navigationController!.navigationBar
-        // recButton.frame = CGRect(x: 0, y: 0, width: navBar.frame.height - 10, height: navBar.frame.height - 10 )
-        // self.navigationController?.navigationBar.frame.width -4
-    }
-    
-    @IBAction func makeItRain(_ sender: UIButton) {
+    @IBAction func RainIt(_ sender: UIButton) {
         rained = true
         sender.isHidden = true
         // Get SNNode which is serves as an anchor
@@ -285,9 +278,9 @@ extension ARViewController: RecordButtonDelegate {
 
 
 extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
+    
     // MARK: - ARSCNViewDelegate
     
-    /// - Tag: PlaceARContent
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // Place content only for anchors found by plane detection.
         guard let planeAnchor = anchor as? ARPlaneAnchor, rained == false else { return }
@@ -318,7 +311,6 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         anchorPlanesInScene.append(planeNode)
     }
     
-    /// - Tag: UpdateARContent
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         // Update content only for plane anchors and nodes matching the setup created in `renderer(_:didAdd:for:)`.
         guard let planeAnchor = anchor as?  ARPlaneAnchor,
@@ -405,13 +397,10 @@ extension ARViewController: ARSCNViewDelegate, ARSessionDelegate {
         case .limited(_):
             print("nothing happening")
         }
+        
         // Disable raining again, once finished
         if (!rained){
-            if message != ""{
-                interaction(isHidden: true)
-            } else {
-                interaction(isHidden: false)
-            }
+            interaction(isHidden: message != "")
         }
         sessionInfoLabel.text = message
     }

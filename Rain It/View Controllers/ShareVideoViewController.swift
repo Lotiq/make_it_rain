@@ -20,9 +20,11 @@ class ShareVideoViewController: UIViewController {
     var videoURL: URL?
     var player: AVPlayer!
     
+    // MARK: - Override Presenting Functions
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         let image = UIImage(named: "download")?.tint(with: .gray)
         saveButton.setImage(image, for: .normal)
         IGbutton.isEnabled = false
@@ -39,7 +41,6 @@ class ShareVideoViewController: UIViewController {
         if videoURL != nil {
             IGbutton.isEnabled = true
             saveButton.isEnabled = true
-            //playVideo(videoURL: videoURL)
         } else {
             print("error with video")
         }
@@ -47,34 +48,10 @@ class ShareVideoViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         if saveButton.isEnabled {
             playVideo(videoURL: videoURL!)
         }
-    }
-    
-    func playVideo(videoURL: URL){
-        self.player = AVPlayer(url: videoURL)
-        let playerLayer = AVPlayerLayer(player: player)
-        //set up player layer
-        playerLayer.frame = CGRect(x: 0,y: 0,width: self.videoView.frame.width, height: self.videoView.frame.height)
-        playerLayer.position = CGPoint(x: self.videoView.bounds.midX, y: self.videoView.bounds.midY)
-        //player styling
-        playerLayer.shadowColor = UIColor.black.cgColor
-        playerLayer.shadowOpacity = 0.3
-        playerLayer.shadowOffset = CGSize(width: 0, height: 1)
-        playerLayer.shadowRadius = -4
-        
-        
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                                               object: self.player!.currentItem,
-                                               queue: nil) { [weak self] note in
-                                                self?.player!.seek(to: CMTime.zero)
-                                                self?.player!.play()
-        }
-        
-        self.videoView.layer.addSublayer(playerLayer)
-        player!.volume = 1.0
-        player!.play()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,6 +65,7 @@ class ShareVideoViewController: UIViewController {
         subscribeToBackgroundNotifications()
     }
     
+    // MARK: - Main Functions
     
     @IBAction func shareToInstagram(_ sender: UIButton) {
         
@@ -136,6 +114,33 @@ class ShareVideoViewController: UIViewController {
         }
     }
     
+    func playVideo(videoURL: URL){
+        self.player = AVPlayer(url: videoURL)
+        let playerLayer = AVPlayerLayer(player: player)
+        
+        //set up player layer
+        playerLayer.frame = CGRect(x: 0,y: 0,width: self.videoView.frame.width, height: self.videoView.frame.height)
+        playerLayer.position = CGPoint(x: self.videoView.bounds.midX, y: self.videoView.bounds.midY)
+        
+        //player styling
+        playerLayer.shadowColor = UIColor.black.cgColor
+        playerLayer.shadowOpacity = 0.3
+        playerLayer.shadowOffset = CGSize(width: 0, height: 1)
+        playerLayer.shadowRadius = -4
+        
+        
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               object: self.player!.currentItem,
+                                               queue: nil) { [weak self] note in
+                                                self?.player!.seek(to: CMTime.zero)
+                                                self?.player!.play()
+        }
+        
+        self.videoView.layer.addSublayer(playerLayer)
+        player!.volume = 1.0
+        player!.play()
+    }
+    
     @objc func resumeVideo(){
         player.play()
     }
@@ -148,7 +153,7 @@ class ShareVideoViewController: UIViewController {
 
 extension ShareVideoViewController {
     
-    // MARK: Background Notifications
+    // MARK: - Background Notifications
     
     func subscribeToBackgroundNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(resumeVideo), name: UIApplication.didBecomeActiveNotification, object: nil)
