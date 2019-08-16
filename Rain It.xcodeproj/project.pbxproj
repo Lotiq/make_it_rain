@@ -39,7 +39,7 @@
 		1CC8C1DA227799EE0058C6F6 /* MyCurrenciesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */; };
 		1CC8C1DC22779A600058C6F6 /* MyCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */; };
 		1CC92AD022D91B1B00C309FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CC92ACF22D91B1B00C309FD /* Main.storyboard */; };
-		AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */; };
+		CA355024E275E723842B0DCA /* Pods_Rain_It.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B74241B5ED25D2CAD3BED6D /* Pods_Rain_It.framework */; };
 		E278DEC422FB74BC009418C2 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC322FB74BC009418C2 /* UIColor+.swift */; };
 		E278DEC622FB74ED009418C2 /* NSCharacterSet+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */; };
 		E278DEC822FB7534009418C2 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC722FB7534009418C2 /* Double+.swift */; };
@@ -47,7 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Make_It_Rain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		128C1BDB44C68AABF13A0683 /* Pods-Rain It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rain It.release.xcconfig"; path = "Target Support Files/Pods-Rain It/Pods-Rain It.release.xcconfig"; sourceTree = "<group>"; };
 		1C0493FB227F80B4005D0ABD /* RainEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainEmitter.swift; sourceTree = "<group>"; };
 		1C0493FD227FF041005D0ABD /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1C0493FF228C59EB005D0ABD /* CircularButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButton.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		1C14E436226534D700EB14C1 /* BanknoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteViewController.swift; sourceTree = "<group>"; };
 		1C69F9B3226392DD00ECD4DF /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		1C69F9B72264D28C00ECD4DF /* CashTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashTextField.swift; sourceTree = "<group>"; };
-		1C78A95E226247A000436085 /* Make It Rain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Make It Rain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C78A95E226247A000436085 /* Rain It.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rain It.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C78A961226247A000436085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C78A963226247A000436085 /* SelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionViewController.swift; sourceTree = "<group>"; };
 		1C78A968226247A200436085 /* Dollar.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Dollar.xcassets; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		1C78A96D226247A200436085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C78A99322627B4F00436085 /* UIBarButtonItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+.swift"; sourceTree = "<group>"; };
 		1C78A9982262A04A00436085 /* Euro.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Euro.xcassets; sourceTree = "<group>"; };
-		1CAA740722B571E600DFAFF3 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecordButton.swift; path = "Make It Rain/Custom Subclasses/RecordButton.swift"; sourceTree = SOURCE_ROOT; };
+		1CAA740722B571E600DFAFF3 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		1CAA740922B5AAA100DFAFF3 /* ShareVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareVideoViewController.swift; sourceTree = "<group>"; };
 		1CC4E469226575430084F229 /* BanknoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanknoteCell.swift; sourceTree = "<group>"; };
 		1CC4E46B22669D320084F229 /* Pound.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Pound.xcassets; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		1CC8C1D9227799EE0058C6F6 /* MyCurrenciesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrenciesTableViewController.swift; sourceTree = "<group>"; };
 		1CC8C1DB22779A600058C6F6 /* MyCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		1CC92ACF22D91B1B00C309FD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.release.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.release.xcconfig"; sourceTree = "<group>"; };
-		B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Make It Rain.debug.xcconfig"; path = "Target Support Files/Pods-Make It Rain/Pods-Make It Rain.debug.xcconfig"; sourceTree = "<group>"; };
+		5B74241B5ED25D2CAD3BED6D /* Pods_Rain_It.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rain_It.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95B32646AE1FC9E3399F0373 /* Pods-Rain It.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rain It.debug.xcconfig"; path = "Target Support Files/Pods-Rain It/Pods-Rain It.debug.xcconfig"; sourceTree = "<group>"; };
 		E278DEC322FB74BC009418C2 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCharacterSet+.swift"; sourceTree = "<group>"; };
 		E278DEC722FB7534009418C2 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE12A248487D9647159F13F0 /* Pods_Make_It_Rain.framework in Frameworks */,
+				CA355024E275E723842B0DCA /* Pods_Rain_It.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,22 +125,22 @@
 		1C78A955226247A000436085 = {
 			isa = PBXGroup;
 			children = (
-				1C78A960226247A000436085 /* Make It Rain */,
+				1C78A960226247A000436085 /* Rain It */,
 				1C78A95F226247A000436085 /* Products */,
 				7C6C8A8437836BFD82B62020 /* Pods */,
-				3C1883510CF9491072E7AAD1 /* Frameworks */,
+				313E2638CE5A2C8193C94625 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		1C78A95F226247A000436085 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C78A95E226247A000436085 /* Make It Rain.app */,
+				1C78A95E226247A000436085 /* Rain It.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1C78A960226247A000436085 /* Make It Rain */ = {
+		1C78A960226247A000436085 /* Rain It */ = {
 			isa = PBXGroup;
 			children = (
 				1C0494092292BF40005D0ABD /* Extensions */,
@@ -153,7 +153,7 @@
 				1CC8C1DF22779AB40058C6F6 /* Assets */,
 				1C78A995226290DA00436085 /* Fonts */,
 			);
-			path = "Make It Rain";
+			path = "Rain It";
 			sourceTree = "<group>";
 		};
 		1C78A995226290DA00436085 /* Fonts */ = {
@@ -236,10 +236,10 @@
 			path = "Main and Extra";
 			sourceTree = "<group>";
 		};
-		3C1883510CF9491072E7AAD1 /* Frameworks */ = {
+		313E2638CE5A2C8193C94625 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0E45BAA6199BF452D4C87BA2 /* Pods_Make_It_Rain.framework */,
+				5B74241B5ED25D2CAD3BED6D /* Pods_Rain_It.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,8 +247,8 @@
 		7C6C8A8437836BFD82B62020 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */,
-				86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */,
+				95B32646AE1FC9E3399F0373 /* Pods-Rain It.debug.xcconfig */,
+				128C1BDB44C68AABF13A0683 /* Pods-Rain It.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -256,23 +256,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1C78A95D226247A000436085 /* Make It Rain */ = {
+		1C78A95D226247A000436085 /* Rain It */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C78A970226247A200436085 /* Build configuration list for PBXNativeTarget "Make It Rain" */;
+			buildConfigurationList = 1C78A970226247A200436085 /* Build configuration list for PBXNativeTarget "Rain It" */;
 			buildPhases = (
-				AAA61ABE68FF6839B91A7E19 /* [CP] Check Pods Manifest.lock */,
+				0A39383C1CCC07AE43A99157 /* [CP] Check Pods Manifest.lock */,
 				1C78A95A226247A000436085 /* Sources */,
 				1C78A95B226247A000436085 /* Frameworks */,
 				1C78A95C226247A000436085 /* Resources */,
-				00D6E2B8570CE9D9C02C4555 /* [CP] Embed Pods Frameworks */,
+				C74F6FCFCCD7C003CFE8DD6D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Make It Rain";
+			name = "Rain It";
 			productName = "Make It Rain";
-			productReference = 1C78A95E226247A000436085 /* Make It Rain.app */;
+			productReference = 1C78A95E226247A000436085 /* Rain It.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -291,7 +291,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1C78A959226247A000436085 /* Build configuration list for PBXProject "Make It Rain" */;
+			buildConfigurationList = 1C78A959226247A000436085 /* Build configuration list for PBXProject "Rain It" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -304,7 +304,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1C78A95D226247A000436085 /* Make It Rain */,
+				1C78A95D226247A000436085 /* Rain It */,
 			);
 		};
 /* End PBXProject section */
@@ -330,24 +330,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00D6E2B8570CE9D9C02C4555 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Make It Rain/Pods-Make It Rain-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AAA61ABE68FF6839B91A7E19 /* [CP] Check Pods Manifest.lock */ = {
+		0A39383C1CCC07AE43A99157 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,11 +345,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Make It Rain-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Rain It-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C74F6FCFCCD7C003CFE8DD6D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rain It/Pods-Rain It-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rain It/Pods-Rain It-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rain It/Pods-Rain It-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -537,12 +537,12 @@
 		};
 		1C78A971226247A200436085 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B887E342C55E0B7E05D57DEE /* Pods-Make It Rain.debug.xcconfig */;
+			baseConfigurationReference = 95B32646AE1FC9E3399F0373 /* Pods-Rain It.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q7FL57GKN;
-				INFOPLIST_FILE = "$(SRCROOT)/Make It Rain/Main and Extra/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Rain It/Main and Extra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -556,12 +556,12 @@
 		};
 		1C78A972226247A200436085 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86938FFEBBF3207770E3A81A /* Pods-Make It Rain.release.xcconfig */;
+			baseConfigurationReference = 128C1BDB44C68AABF13A0683 /* Pods-Rain It.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3Q7FL57GKN;
-				INFOPLIST_FILE = "$(SRCROOT)/Make It Rain/Main and Extra/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Rain It/Main and Extra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,7 +576,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1C78A959226247A000436085 /* Build configuration list for PBXProject "Make It Rain" */ = {
+		1C78A959226247A000436085 /* Build configuration list for PBXProject "Rain It" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C78A96E226247A200436085 /* Debug */,
@@ -585,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C78A970226247A200436085 /* Build configuration list for PBXNativeTarget "Make It Rain" */ = {
+		1C78A970226247A200436085 /* Build configuration list for PBXNativeTarget "Rain It" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C78A971226247A200436085 /* Debug */,
