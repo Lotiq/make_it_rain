@@ -17,7 +17,7 @@ class AboutViewController: UIViewController {
         super.viewDidLoad()
         
         let text = NSMutableAttributedString(string: """
-            Make It Rain is an AR experience app that visualizes money, inducing reactions and emotions that are otherwise inhibited through the constant use of digital transactions.
+            Rain It! is an AR experience app that visualizes money, trying to induce reactions and emotions that are otherwise inhibited through the constant use of digital transactions.
             
             This is a non-profit open-source project created by Timothy Lobiak. This and other work can be viewed at timothylobiak.me
             """)

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uAj-vs-2xF">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uAj-vs-2xF">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -49,7 +47,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="592"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="$1000" borderStyle="roundedRect" textAlignment="center" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="46K-0Y-bwU" customClass="CashTextField" customModule="Make_It_Rain" customModuleProvider="target">
-                                                <rect key="frame" x="125.66666666666669" y="266" width="163" height="60"/>
+                                                <rect key="frame" x="122" y="266" width="170" height="60"/>
                                                 <color key="backgroundColor" red="0.89019607840000003" green="0.79607843140000001" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="tintColor" red="0.12941176469999999" green="0.30588235289999999" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -393,11 +391,11 @@
                                         <rect key="frame" x="0.0" y="28" width="374" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ERB-g5-rPw" id="8cc-2x-F3r">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="99.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banknote" translatesAutoresizingMaskIntoConstraints="NO" id="7kf-AM-l5o">
-                                                    <rect key="frame" x="5" y="5" width="249" height="89.666666666666671"/>
+                                                    <rect key="frame" x="5" y="5" width="249" height="90"/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pgs-FL-E9L">
@@ -467,9 +465,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRq-Jk-Psb">
-                                <rect key="frame" x="0.0" y="807.33333333333337" width="414" height="24.666666666666629"/>
+                                <rect key="frame" x="0.0" y="807" width="414" height="25"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="01b-oj-lZ3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="24.666666666666629"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5K-Rj-D0F">
@@ -489,9 +487,9 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lgD-qA-ReG" customClass="ActionButton" customModule="Make_It_Rain" customModuleProvider="target">
-                                <rect key="frame" x="140.66666666666666" y="799" width="132.99999999999997" height="33"/>
+                                <rect key="frame" x="166" y="799" width="82" height="33"/>
                                 <fontDescription key="fontDescription" name="MoneyMoney" family="Money Money" pointSize="20"/>
-                                <state key="normal" title="Make It Rain">
+                                <state key="normal" title="Rain It!">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
