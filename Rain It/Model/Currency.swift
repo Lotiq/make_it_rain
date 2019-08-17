@@ -192,6 +192,10 @@ extension Currency{
             }
         } else {
             print("No data in User Defaults")
+            print("loading data")
+            //loadAppData()
+            print("Trying to access it again")
+            //Currency.userDefinedCurrencies = Currency.getUserDefinedCurrencies()
             return []
         }
     }

@@ -44,7 +44,21 @@
 		E278DEC622FB74ED009418C2 /* NSCharacterSet+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */; };
 		E278DEC822FB7534009418C2 /* Double+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC722FB7534009418C2 /* Double+.swift */; };
 		E278DECA22FB7558009418C2 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DEC922FB7558009418C2 /* UIImage+.swift */; };
+		E281E9E523079A620059F3A2 /* SampleData.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = E281E9E423079A610059F3A2 /* SampleData.xcappdata */; };
+		E28AE8592307810400206282 /* Rain_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AE8582307810400206282 /* Rain_It_UITests.swift */; };
+		E28AE86123078A9C00206282 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28AE86023078A9C00206282 /* SnapshotHelper.swift */; };
+		E2E84BD02307978E001FD833 /* Rain It UITests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = E2AAED562307948F00E9FE10 /* Rain It UITests.xctestplan */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E28AE85B2307810400206282 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C78A956226247A000436085 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C78A95D226247A000436085;
+			remoteInfo = "Rain It";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		128C1BDB44C68AABF13A0683 /* Pods-Rain It.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rain It.release.xcconfig"; path = "Target Support Files/Pods-Rain It/Pods-Rain It.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +102,12 @@
 		E278DEC522FB74ED009418C2 /* NSCharacterSet+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCharacterSet+.swift"; sourceTree = "<group>"; };
 		E278DEC722FB7534009418C2 /* Double+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+.swift"; sourceTree = "<group>"; };
 		E278DEC922FB7558009418C2 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		E281E9E423079A610059F3A2 /* SampleData.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SampleData.xcappdata; sourceTree = SOURCE_ROOT; };
+		E28AE8562307810400206282 /* Rain It UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rain It UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E28AE8582307810400206282 /* Rain_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rain_It_UITests.swift; sourceTree = "<group>"; };
+		E28AE85A2307810400206282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E28AE86023078A9C00206282 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		E2AAED562307948F00E9FE10 /* Rain It UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Rain It UITests.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +116,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA355024E275E723842B0DCA /* Pods_Rain_It.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E28AE8532307810400206282 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1C78A960226247A000436085 /* Rain It */,
+				E28AE8572307810400206282 /* Rain It UITests */,
 				1C78A95F226247A000436085 /* Products */,
 				7C6C8A8437836BFD82B62020 /* Pods */,
 				313E2638CE5A2C8193C94625 /* Frameworks */,
@@ -136,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				1C78A95E226247A000436085 /* Rain It.app */,
+				E28AE8562307810400206282 /* Rain It UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -253,6 +282,18 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E28AE8572307810400206282 /* Rain It UITests */ = {
+			isa = PBXGroup;
+			children = (
+				E281E9E423079A610059F3A2 /* SampleData.xcappdata */,
+				E28AE86023078A9C00206282 /* SnapshotHelper.swift */,
+				E28AE8582307810400206282 /* Rain_It_UITests.swift */,
+				E2AAED562307948F00E9FE10 /* Rain It UITests.xctestplan */,
+				E28AE85A2307810400206282 /* Info.plist */,
+			);
+			path = "Rain It UITests";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,19 +316,41 @@
 			productReference = 1C78A95E226247A000436085 /* Rain It.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E28AE8552307810400206282 /* Rain It UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E28AE85F2307810400206282 /* Build configuration list for PBXNativeTarget "Rain It UITests" */;
+			buildPhases = (
+				E28AE8522307810400206282 /* Sources */,
+				E28AE8532307810400206282 /* Frameworks */,
+				E28AE8542307810400206282 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E28AE85C2307810400206282 /* PBXTargetDependency */,
+			);
+			name = "Rain It UITests";
+			productName = "Rain It UITests";
+			productReference = E28AE8562307810400206282 /* Rain It UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1C78A956226247A000436085 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Timothy;
 				TargetAttributes = {
 					1C78A95D226247A000436085 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1020;
+					};
+					E28AE8552307810400206282 = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = 1C78A95D226247A000436085;
 					};
 				};
 			};
@@ -305,6 +368,7 @@
 			projectRoot = "";
 			targets = (
 				1C78A95D226247A000436085 /* Rain It */,
+				E28AE8552307810400206282 /* Rain It UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -324,6 +388,15 @@
 				1CC4E48222738C2D0084F229 /* Montserrat-Medium.ttf in Resources */,
 				1CC4E46C22669D320084F229 /* Pound.xcassets in Resources */,
 				1C69F9B4226392DD00ECD4DF /* Media.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E28AE8542307810400206282 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E281E9E523079A620059F3A2 /* SampleData.xcappdata in Resources */,
+				E2E84BD02307978E001FD833 /* Rain It UITests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +478,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E28AE8522307810400206282 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E28AE8592307810400206282 /* Rain_It_UITests.swift in Sources */,
+				E28AE86123078A9C00206282 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E28AE85C2307810400206282 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C78A95D226247A000436085 /* Rain It */;
+			targetProxy = E28AE85B2307810400206282 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1C78A96A226247A200436085 /* LaunchScreen.storyboard */ = {
@@ -575,6 +665,46 @@
 			};
 			name = Release;
 		};
+		E28AE85D2307810400206282 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3Q7FL57GKN;
+				INFOPLIST_FILE = "Rain It UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.timothylobiak.Rain-It-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Rain It";
+			};
+			name = Debug;
+		};
+		E28AE85E2307810400206282 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3Q7FL57GKN;
+				INFOPLIST_FILE = "Rain It UITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.timothylobiak.Rain-It-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Rain It";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -592,6 +722,15 @@
 			buildConfigurations = (
 				1C78A971226247A200436085 /* Debug */,
 				1C78A972226247A200436085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E28AE85F2307810400206282 /* Build configuration list for PBXNativeTarget "Rain It UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E28AE85D2307810400206282 /* Debug */,
+				E28AE85E2307810400206282 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

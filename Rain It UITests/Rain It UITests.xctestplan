@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4D94A2AD-E699-4FBC-BDA6-96C75FA79D9A",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "userAttachmentLifetime" : "keepAlways"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Rain It.xcodeproj",
+        "identifier" : "E28AE8552307810400206282",
+        "name" : "Rain It UITests"
+      }
+    }
+  ],
+  "version" : 1
+}
